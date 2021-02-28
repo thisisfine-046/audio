@@ -7,3 +7,7 @@ Nodejs v15.10.0
 NPM 7.6.0
 
 Django 3.1.7
+
+Hit to run server
+- python manage.py runserver
+
