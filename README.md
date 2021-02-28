@@ -13,5 +13,6 @@ Django
 - 3.1.7
 
 Hit to run server
+- cd jaudio
 - python manage.py runserver
 
