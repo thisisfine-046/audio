@@ -18,14 +18,14 @@ Hit to run server
 
 
 
-\audio\jaudio\frontend> npm i webpack webpack-cli --save-dev
-\audio\jaudio\frontend> npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
-\audio\jaudio\frontend> npm i react react-dom --save-dev
+- \audio\jaudio\frontend> npm i webpack webpack-cli --save-dev
+- \audio\jaudio\frontend> npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
+- \audio\jaudio\frontend> npm i react react-dom --save-dev
 
-\audio\jaudio\frontend> npm install @material-ui/core
-\audio\jaudio\frontend> npm install @babel/plugin-proposal-class-properties
-\audio\jaudio\frontend> npm install react-router-dom
-\audio\jaudio\frontend> npm install @material-ui/icons
+- \audio\jaudio\frontend> npm install @material-ui/core
+- \audio\jaudio\frontend> npm install @babel/plugin-proposal-class-properties
+- \audio\jaudio\frontend> npm install react-router-dom
+- \audio\jaudio\frontend> npm install @material-ui/icons
 
 http://127.0.0.1:8000/api/room
 
