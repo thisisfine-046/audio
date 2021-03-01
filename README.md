@@ -12,11 +12,9 @@ NPM
 Django 
 - 3.1.7
 
-Hit to run server
-- cd jaudio
-- python manage.py runserver
 
 
+More install for package
 
 - \audio\jaudio\frontend> npm i webpack webpack-cli --save-dev
 - \audio\jaudio\frontend> npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
@@ -27,5 +25,9 @@ Hit to run server
 - \audio\jaudio\frontend> npm install react-router-dom
 - \audio\jaudio\frontend> npm install @material-ui/icons
 
+
+Hit to run server
+- cd jaudio
+- python manage.py runserver
 http://127.0.0.1:8000/api/room
 
