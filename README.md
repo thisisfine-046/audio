@@ -1,4 +1,4 @@
-You would need to install
+You need to install this
 
 Python 
 - 3.9.2
@@ -13,5 +13,6 @@ Django
 - 3.1.7
 
 Hit to run server
+- cd jaudio
 - python manage.py runserver
 
