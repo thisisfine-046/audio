@@ -4,6 +4,6 @@ from .views import index
 urlpatterns = [
 
     path('',index),
-    path('joinroom',index),
-    path('createroom',index)
+    path('join',index),
+    path('create',index)
 ]
