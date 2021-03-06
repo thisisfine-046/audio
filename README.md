@@ -15,7 +15,7 @@ Django
 
 
 More install for package
-
+- pip install djangorestframework
 - \audio\jaudio\frontend> npm i webpack webpack-cli --save-dev
 - \audio\jaudio\frontend> npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
 - \audio\jaudio\frontend> npm i react react-dom --save-dev
