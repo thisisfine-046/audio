@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Pacifico:200,300,400,500,600,700,800,900&display=swap');
 
 *{
     font-family: 'Poppins', sans-serif;
@@ -51,12 +52,12 @@ html{
 
 
 #sidebar{
-    position: relative;
+    position: absolute;
     display: flex;
     width: 230px;
     height: 85%;
-    left: -29%;   
-    top: -5%; 
+    left: 1%;
+    top: 2%;
     box-shadow: 20px 20px 50px rgba(0, 0, 0,0.5);
     border-radius: 15px;
     background: rgba(255, 255, 255,0.1);
@@ -66,29 +67,41 @@ html{
 }
 
 #sidebar-logo{
-    background: brown;
+    background: black;
     position:absolute;
     height: 10%;
     width: 100%;
     top: 10px;
+    display: flex;
 }
 
 #sidebar-section{
-    background: darkgreen;
+    background: black;
     position:absolute;
     height: 25%;
     width: 100%;
     top: 105px;
+    display: flex;
 }
 #sidebar-playlist{
-    background: blueviolet;
+    background: black;
     position:absolute;
     height: 55%;
     width: 100%;
     top: 315px;
+    display: flex;
 }
 
-
+h2{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color: white;
+    display: block;
+    margin-block-start: 0.83em;
+    margin-block-end: 1.83em;
+    margin-inline-start: 15px;
+    margin-inline-end: 0px;
+    font-size: large;
+}
 #h1{
     position: absolute;
     top: 50%;
@@ -118,6 +131,31 @@ html{
     backdrop-filter: blur(5px);
 }
 
+#lowbar-nowplaying{
+    background: black;
+    position: absolute;
+    height: 80%;
+    width: 40%;
+    left: 10px;
+    display: flex;
+}
+
+#lowbar-maincontrol{
+    background: black;
+    position: absolute;
+    height: 80%;
+    width: 30%;
+    left: 45%;
+    display: flex;
+}
+#lowbar-rightcontrol{
+    background: black;
+    position: absolute;
+    height: 80%;
+    width: 15%;
+    left: 83%;
+    display: flex;
+}
 .center{
     position: absolute;
     top: 50%;
