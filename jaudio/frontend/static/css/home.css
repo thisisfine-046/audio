@@ -1,0 +1,345 @@
+@import url('https://font.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root{
+  --main-color:#1f1f1f;
+  --color-dark:#fff;
+  --text-grey:#fa2d48;
+}
+
+*{
+  font-family: 'Poppins',sans-serif;
+  margin:0;
+  padding: 0;
+  text-decoration: none;
+  list-style-type: none;
+  box-sizing: border-box;
+}
+
+.sidebar{
+  height: 100%;
+  width: 240px;
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--main-color);
+  color: #fff;
+  overflow-y:auto ;
+  border-right: thin groove  #ffffff46;
+  border-width: 1.3px;
+}
+
+.sidebar-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding:0rem 1rem;
+
+}
+
+
+h3.brand{
+  font-size: 1.6rem;
+}
+
+.sidebar-menu{
+  padding: 1.2rem;
+}
+
+.sidebar li{
+  margin-bottom: 1.6rem;
+  cursor: pointer;
+}
+
+.sidebar a {
+  color:#fff;
+  font-size: 1rem;
+}
+
+.sidebar a:hover{color: var(--text-grey);}
+
+.sidebar a span:last-child{
+  padding-left: .6rem;
+}
+
+.main-content{
+  position: relative;
+  margin-left: 240px;
+}
+
+
+header{
+  position: fixed;
+  left: 240px;
+  top: 0;
+  z-index: 100;
+  width: calc(100% - 240px);
+  background:var(--text-grey);
+  height: 60px;
+  padding: 0rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.search-wrapper{
+  display: flex;
+  align-items: center;
+}
+
+.search-wrapper input{
+  border:0;
+  outline: 0;
+  padding: 0.9rem;
+  margin-left: 6px;
+  height: 35px;
+  width: 400px;
+  border-radius: 2rem;
+}
+
+.social-icons{
+  display: flex;
+  align-items: center;
+}
+
+.social-icons span,
+.social-icons div{
+  margin-left: 1.3rem;
+}
+
+.social-icons div{
+  height: 38px;
+  width: 38px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image:url(https://api.time.com/wp-content/uploads/2017/12/terry-crews-person-of-year-2017-time-magazine-2.jpg?w=800&quality=85) ;
+  border-radius: 50%;
+}
+
+main{
+  margin-top: 60px;
+  background: var(--main-color);
+  min-height: 100vh;
+  padding: 1rem 3rem;
+}
+
+span{
+  user-select:none;
+}
+
+i{
+  user-select: none;
+}
+
+h3,h3,h5{
+  user-select: none;
+}
+
+div{
+  user-select: none;
+}
+
+.dash-title{
+  color:var(--color-dark);
+  margin-bottom: 2rem;
+  border-bottom: thin groove  #ffffff46;
+  height:50px
+}
+
+
+.dash-cards-title{
+  display: grid;
+  grid-template-columns: repeat(3,1fr) ;
+  grid-gap: 3rem;
+  margin-bottom: 40px;
+}
+
+.dash-cards-small{
+  display: grid;
+  grid-template-columns: repeat(5,1fr) ;
+  grid-gap: 3rem;
+  margin-bottom: 40px;
+}
+
+.dash-cards-circle{
+  display: grid;
+  grid-template-columns: repeat(5,2fr) ;
+  grid-gap: 3rem;
+  margin-bottom: 40px;
+}
+
+.card-single{
+  background:#fff;
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 160px;
+  backdrop-filter: blur(5px);
+}
+
+.card-circle{
+  background:#fff;
+  width: 200px;
+  height: 200px;
+  backdrop-filter: blur(5px);
+  border-radius: 50%;
+}
+
+.card-title{
+  background:#000;
+  border-radius: 0.5rem;
+  height: 339px;
+  width: 100%;
+  backdrop-filter: blur(5px);
+}
+
+.card-single img{
+  height: 100%; 
+  width: 100%; 
+  border-radius: 0.5rem;
+
+}
+
+.card-title img{
+  width:100%;
+  height:100%;
+  border-radius: 0.5rem;
+
+}
+
+.card-circle img{
+  width:100%;
+  height:100%;
+  border-radius: 50%;
+}
+
+.card-single:hover .overlayer-single {
+	visibility: visible;
+  border-radius:0.5rem;
+}
+
+.card-title:hover .overlayer {
+	visibility: visible;
+  border-radius:0.5rem;
+}
+
+.card-circle:hover .overlayer-circle {
+	visibility: visible;
+  border-radius:50%;
+}
+
+.card-single .overlayer-single {
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.3)) ;
+	text-align: center;
+	visibility: hidden;
+}
+
+.card-title .overlayer {
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.3)) ;
+	text-align: center;
+	visibility: hidden;
+}
+
+.card-circle .overlayer-circle {
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.3)) ;
+	text-align: center;
+	visibility: hidden;
+  
+}
+
+.overlayer .material-icons:nth-of-type(1){
+	color: rgba(255,255,255,0.3);
+  opacity: 0.5;
+  position: absolute;
+  margin-top: 280px;
+  right: 35px;
+	font-size: 40px;
+	transition: 100ms ease-in-out;
+}
+
+.overlayer-single .material-icons:nth-of-type(1){
+	color: rgba(255,255,255,0.3);
+  opacity: 0.5;
+  position: absolute;
+  margin-top: 123px;
+  right: 16px;
+	font-size: 25px;
+	transition: 100ms ease-in-out;
+}
+
+
+.overlayer-single .material-icons:nth-of-type(2){
+	color: rgba(255,255,255,0.5);
+  opacity: 0.5;
+  position: absolute;
+  margin-top: 123px;
+  left: 16px;
+	font-size: 25px;
+	transition: 100ms ease-in-out;
+}
+
+.overlayer-circle .material-icons{
+	color: rgba(255,255,255,0.3);
+  opacity: 0.5;
+  position: flex;
+	font-size: 50px;
+  margin-top:70px;
+	transition: 100ms ease-in-out;
+}
+
+
+.material-icons:hover{
+  transform: scale(1.4);
+  opacity: 1 !important;
+  color: var(--text-grey) !important;
+}
+
+
+
+.overlayer .material-icons:nth-of-type(2){
+	color: rgba(255,255,255,0.5);
+  opacity: 0.5;
+  position: absolute;
+  margin-top: 280px;
+  left: 35px;
+	font-size: 40px;
+	transition: 100ms ease-in-out;
+}
+
+
+.logo{
+  object-fit: cover;
+  max-height: 30px;
+
+}
+
+
+::-webkit-scrollbar{
+  width: 2px;
+}
+
+::-webkit-scrollbar-track{
+  background:var(--main-color);
+}
+
+::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.5);
+  border-radius: 3rem;
+}
+

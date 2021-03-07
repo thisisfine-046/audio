@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Music Controller</title>
+    {% load static %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <!-- ===== BOX ICONS ===== -->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"/>
+  </head>
+  <body>
+
+      <div class="sidebar">
+        <div class ="sidebar-header">
+          <h3 class="brand">
+            <span class"logo-brand">
+              <img class="logo"style="width:2em; height:3em;" src="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNTEyIDUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxnPjxnPjxjaXJjbGUgY3g9IjI1NiIgY3k9IjI1NiIgZmlsbD0iI2YzMyIgcj0iMjU2Ii8+PC9nPjxwYXRoIGQ9Im01MTEuNzQxIDI2Ny4yMjYtMTQ4Ljk1MS0xNDguOTUxLTM5Ljc3NiAyMi41MDYtNi45OTYgMTUyLjA0MmMwIDI5LjI1Mi0yMy44MzggNDEuODE4LTUyLjQxNCA0NC40ODdsLTcxLjM4NS02OS4zNDUtNDYuMjQyIDIyLjYwNmMwIDM0LjEwNiAyMC42MDkgNjguNDQ1IDIwLjYwOSA2OC40NDVsMTQ2Ljc1NyAxNDYuNTMxYzExMC4yNTgtMjUuMjMzIDE5My4zNjItMTIxLjY1NSAxOTguMzk4LTIzOC4zMjF6IiBmaWxsPSIjYzYwMDAwIi8+PGc+PHBhdGggZD0ibTM2Mi43OSAxMTguMjc1djE2MS4xN2MwIDU1LjY1LTM5Ljk5IDEwMi4xNC05Mi43NCAxMTIuMjMtNi45OCAxLjM1LTE0LjE5IDIuMDUtMjEuNTUgMi4wNS03LjM3IDAtMTQuNTctLjctMjEuNTUtMi4wNS01Mi43NS0xMC4xLTkyLjczLTU2LjU5LTkyLjczLTExMi4yM3YtMTEuNDhoNTh2MTEuNDhjMCAzMS4wMyAyNS4yNSA1Ni4yOCA1Ni4yOCA1Ni4yOCAzMS4wNCAwIDU2LjI5LTI1LjI1IDU2LjI5LTU2LjI4di0xNjEuMTd6IiBmaWxsPSIjZjhmZmZiIi8+PC9nPjxnPjxwYXRoIGQ9Im0zNjIuNzkgMTE4LjI4djE2MS4xNmMwIDU1LjY2LTM5Ljk5IDEwMi4xNC05Mi43NCAxMTIuMjQtNC41OS44OC05LjI4IDEuNDktMTQuMDUgMS43OXYtNTguMjVjMjcuNTEtMy42NyA0OC43OS0yNy4yOCA0OC43OS01NS43OHYtMTYxLjE2eiIgZmlsbD0iI2Q4ZDhkOCIvPjwvZz48L2c+PC9zdmc+"/>
+            </span>
+            <span>JSOUND</span>
+          </h3>
+        </div>
+
+        <div class="sidebar-menu">
+          <ul>
+            <li>
+              <a href="">
+                <span class="ti-home"></span>
+                <span>Home</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="">
+                <span  class="ti-music-alt"></span>
+                <span> Browse</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="">
+                <span class="ti-direction"></span>
+                <span>Radio</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="">
+                <span  class="ti-settings"></span>
+                <span> Setting</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+    <div class="main-content">
+      <header>
+        <div class="search-wrapper">
+          <span class="ti-search"></span>
+          <input type="search" placeholder="Search">
+        </div>
+
+        <div class="social-icons">
+          <span class="ti-bell"></span>
+          <span class="ti-comment"></span>
+          <div></div>
+        </div>
+      </header>
+
+      <main>
+        <h2 class="dash-title" >Overview</h2>
+
+        <div class="dash-cards-title">
+          <div class="card-title">
+            <div class="overlayer">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="">
+            
+          </div>
+
+          <div class="card-title">
+            <div class="overlayer">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1510216283985-18086caa8de4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="">
+            
+          </div>
+
+
+          <div class="card-title">
+            <div class="overlayer">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+            
+          </div>
+
+         
+        </div>
+
+        <h2 class="dash-title" >New releases</h2>
+        
+        <div class="dash-cards-small">
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+
+             
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+             
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+        </div>
+
+
+        <h2 class="dash-title" >Trending</h2>
+        
+        <div class="dash-cards-small">
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+
+             
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+             
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+
+          <div class="card-single">
+            <div class="overlayer-single">
+				      <i class="material-icons">play_circle</i>
+              <i class="material-icons">favorite</i>
+              
+			      </div>
+
+            <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt="">
+          </div>
+        </div>
+
+        <h2 class="dash-title" >Artists</h2>
+        <div class="dash-cards-circle">
+            <div class="card-circle">
+              <div class="overlayer-circle">
+                <i class="material-icons">play_circle</i>      
+              </div>
+
+              <img src="data:image/jpeg;base64,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" alt="">
+            </div>
+
+            <div class="card-circle">
+              <div class="overlayer-circle">
+                <i class="material-icons">play_circle</i>
+              </div>
+
+              <img src="https://external-preview.redd.it/T-m8x-KlE9J5lz8-YJA-2OTZbqzj7NnRJh9dU2H17Pw.jpg?auto=webp&s=972eea88862419eb8f4dc1a03286c46cd4c5858a" alt="">
+            </div>
+
+            <div class="card-circle">
+              <div class="overlayer-circle">
+                <i class="material-icons">play_circle</i>
+              </div>
+
+              <img src="https://i.imgur.com/kthMk0T.jpg" alt="">
+            </div>
+
+            <div class="card-circle">
+              <div class="overlayer-circle">
+                <i class="material-icons">play_circle</i>
+              </div>
+
+              <img src="https://i.pinimg.com/originals/22/47/41/224741133cb7493c8f7b2f5a550e5028.jpg" alt="">
+            </div>
+
+            <div class="card-circle">
+              <div class="overlayer-circle">
+                <i class="material-icons">play_circle</i>
+              </div>
+              <img src="https://www.dhresource.com/0x0/f2/albu/g7/M01/F8/E4/rBVaSVvkMNeAdPQRAARy8yBI2OU451.jpg/cardi-b-invasion-of-privacy-album-cover-music.jpg" alt="">
+            </div>
+        </div>
+
+        <footer>
+        </footer>
+      </main>
+
+      <footer>
+        
+      </footer>
+    </div>  
+    
+
+    
+
+    <script src="{% static "frontend/main.js" %}"></script>
+  </body>
+</html>
