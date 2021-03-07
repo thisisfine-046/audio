@@ -8,6 +8,6 @@ export default class IndexPage extends Component{
     }
 
     render(){
-        return <p>Main Page</p>
+        return <p>ksgfjsgfjoj</p>
     }
 }

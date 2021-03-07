@@ -21,9 +21,7 @@ export default class HomePage extends Component{
     render(){
         return <Router>
             <switch>
-                <Route exact path = "/" component={IndexPage} />
-                
-                
+                <Route exact path = "/" component={IndexPage} />            
                 <Route path="/join" component={RoomJoinPage} />
                 <Route path="/create" component={CreateRoomPage} />
                 <Route path ="/room/:roomCode" component = {Room}/>
