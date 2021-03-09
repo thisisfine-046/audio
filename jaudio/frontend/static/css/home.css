@@ -76,7 +76,7 @@ header{
   top: 0;
   z-index: 100;
   width: calc(100% - 240px);
-  background:var(--text-grey);
+  background:var(--main-color);
   height: 60px;
   padding: 0rem 1rem;
   display: flex;
@@ -87,6 +87,7 @@ header{
 .search-wrapper{
   display: flex;
   align-items: center;
+  color: #fff;
 }
 
 .search-wrapper input{
@@ -102,6 +103,7 @@ header{
 .social-icons{
   display: flex;
   align-items: center;
+  color: #fff;
 }
 
 .social-icons span,
@@ -158,8 +160,8 @@ div{
 
 .dash-cards-small{
   display: grid;
-  grid-template-columns: repeat(5,1fr) ;
-  grid-gap: 3rem;
+  grid-template-columns: repeat(5,3fr) ;
+  grid-gap: 1rem;
   margin-bottom: 40px;
 }
 
@@ -171,11 +173,14 @@ div{
 }
 
 .card-single{
-  background:#fff;
+  background:rgba(0, 0, 0, 0);
   border-radius: 0.5rem;
   width: 100%;
-  height: 160px;
+  height: 190px;
   backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card-circle{
@@ -187,25 +192,41 @@ div{
 }
 
 .card-title{
-  background:#000;
+  background:rgba(0, 0, 0, 0);
   border-radius: 0.5rem;
   height: 339px;
   width: 100%;
   backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card{
+  width: 90%;
+  height: 90%;
+	position: flex;
+	background:(0,0,0,0) ;
+	text-align: left;
+}
+
+.card-small{
+  width: 90%;
+  height: 90%;
+	position: flex;
+	background:(0,0,0,0) ;
+	text-align: left;
 }
 
 .card-single img{
-  height: 100%; 
+  height: 70%; 
   width: 100%; 
-  border-radius: 0.5rem;
-
 }
 
 .card-title img{
   width:100%;
-  height:100%;
-  border-radius: 0.5rem;
-
+  height:73%;
+  margin-bottom:10px ;
 }
 
 .card-circle img{
@@ -215,14 +236,13 @@ div{
 }
 
 .card-single:hover .overlayer-single {
-	visibility: visible;
-  border-radius:0.5rem;
+	background: rgba(83, 82, 82, 0.3);
 }
 
 .card-title:hover .overlayer {
-	visibility: visible;
-  border-radius:0.5rem;
+	background: rgba(83, 82, 82, 0.3);
 }
+
 
 .card-circle:hover .overlayer-circle {
 	visibility: visible;
@@ -235,9 +255,9 @@ div{
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.3)) ;
+	background:rgba(83, 82, 82, 0.1);
 	text-align: center;
-	visibility: hidden;
+  border-radius: 0.5rem;
 }
 
 .card-title .overlayer {
@@ -246,9 +266,9 @@ div{
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.3)) ;
+	background:rgba(83, 82, 82, 0.1);
 	text-align: center;
-	visibility: hidden;
+  border-radius: 0.5rem;
 }
 
 .card-circle .overlayer-circle {
@@ -277,7 +297,7 @@ div{
 	color: rgba(255,255,255,0.3);
   opacity: 0.5;
   position: absolute;
-  margin-top: 123px;
+  margin-top: 157px;
   right: 16px;
 	font-size: 25px;
 	transition: 100ms ease-in-out;
@@ -288,7 +308,7 @@ div{
 	color: rgba(255,255,255,0.5);
   opacity: 0.5;
   position: absolute;
-  margin-top: 123px;
+  margin-top: 157px;
   left: 16px;
 	font-size: 25px;
 	transition: 100ms ease-in-out;
@@ -310,6 +330,12 @@ div{
   color: var(--text-grey) !important;
 }
 
+.content{
+  
+  color: #fff;
+  font-weight: bold ;
+}
+
 
 
 .overlayer .material-icons:nth-of-type(2){
@@ -324,9 +350,7 @@ div{
 
 
 .logo{
-  object-fit: cover;
-  max-height: 30px;
-
+  max-height: 40px;
 }
 
 
