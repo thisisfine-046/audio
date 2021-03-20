@@ -37,6 +37,7 @@ export default class RoomJoinPage extends Component{
                     <TextField
                         error={this.state.error}
                         label="Code"
+                        color="primary"
                         placeholder="Enter a Room Code"
                         value={this.state.roomCode}
                         helperText={this.state.error}
