@@ -3,7 +3,7 @@ html,body {
     overflow: hidden;
     margin: 0;
     font: normal 75% Arial, Helvetica, sans-serif;
-    background: radial-gradient(ellipse at bottom, #004b96 0%,#008f07 100%);
+    background: radial-gradient(ellipse at bottom, #000000 0%,#262626 100%);
 }
 /* ---- reset ---- */
 
