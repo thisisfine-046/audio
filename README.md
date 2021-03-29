@@ -29,5 +29,7 @@ More install for package
 Hit to run server
 - cd jaudio
 - python manage.py runserver
-http://127.0.0.1:8000/api/room
+http://127.0.0.1:8000
+- cd jaudio/frontend
+- npm run dev 
 
