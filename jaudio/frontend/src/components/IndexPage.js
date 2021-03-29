@@ -16,7 +16,9 @@ import {
 export default class IndexPage extends Component{
     constructor(props){
         super(props);
-        
+        this.state = {
+            roomCode: null,
+        };
     }
     
 
@@ -42,6 +44,18 @@ export default class IndexPage extends Component{
         );
     }
     render(){
-        return (this.renderRoomPage());
+        return (
+            <Route
+            exact
+            path="/"
+            render={() => {
+              return this.state.roomCode ? (
+                <Redirect to={`/room/${this.state.roomCode}`} />
+              ) : (
+                this.renderRoomPage()
+              );
+            }}
+          />
+        );
     }
 }
