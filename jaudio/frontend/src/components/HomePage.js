@@ -3,6 +3,9 @@ import RoomJoinPage from "./RoomJoinPage"
 import CreateRoomPage from "./CreateRoomPage"
 import IndexPage from "./IndexPage"
 import Room from "./Room"
+import LibraryPage from "./Library"
+import SearchPage from "./Search"
+import ExplorePage from "./Explore"
 import { 
     BrowserRouter as Router,
     Switch, 
@@ -60,7 +63,13 @@ export default class HomePage extends Component{
                         return <Room {...props} leaveRoomCallback={this.clearRoomCode} />;
                         }}
                     />
+
+                    <Route path="/explore" component={ExplorePage} />
+
+                    <Route path="/search" component={SearchPage} />
+                    <Route path="/library" component={LibraryPage} />
                 </Switch>
+
             </Router>
         );
     }

@@ -12,7 +12,10 @@
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
     />
     <!-- ===== BOX ICONS ===== -->
-
+    <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"
+    rel="stylesheet"
+  />
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="{% static 'css/nightsky.css' %}"/>
@@ -34,8 +37,41 @@
       <div id="sidebar-logo">
         <h2> Logo </h2>
       </div>
+
       <div id="sidebar-section" >
         <h2> Apps </h2>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="explore">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                <span class="link-text">Explore</span>
+              </a>
+            </li>
+
+
+            <li class="nav-item">
+              <a href="search" class="nav-link">
+                <i class="fas fa-headphones-alt"></i>
+                  
+                <span class="link-text">Search</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="library" class="nav-link">
+                
+                <span class="link-text">Library</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/" class="nav-link">
+                
+                <span class="link-text">Room</span>
+              </a>
+            </li>
+
+        </ul>
       </div>
       <div id="sidebar-playlist">
         <h2> Playlists </h2>
