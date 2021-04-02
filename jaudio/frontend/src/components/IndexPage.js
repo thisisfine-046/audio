@@ -13,6 +13,8 @@ import {
     Redirect,
   } from "react-router-dom";
 
+
+  
 export default class IndexPage extends Component{
     constructor(props){
         super(props);
@@ -43,7 +45,7 @@ export default class IndexPage extends Component{
             </Grid>
         );
     }
-    
+
     render(){
         return this.renderRoomPage();
     }
