@@ -16,10 +16,10 @@ import {
 export default class IndexPage extends Component{
     constructor(props){
         super(props);
-        this.state = {
-            roomCode: null,
-        };
+        
     }
+
+    
     
 
     renderRoomPage(){
@@ -43,19 +43,8 @@ export default class IndexPage extends Component{
             </Grid>
         );
     }
+    
     render(){
-        return (
-            <Route
-            exact
-            path="/"
-            render={() => {
-              return this.state.roomCode ? (
-                <Redirect to={`/room/${this.state.roomCode}`} />
-              ) : (
-                this.renderRoomPage()
-              );
-            }}
-          />
-        );
+        return this.renderRoomPage();
     }
 }

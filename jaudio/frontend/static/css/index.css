@@ -18,6 +18,9 @@ body{
   align-items: center;
 }
 
+.notecolor {
+  color: wheat;
+}
 
 html{
   height: 100;

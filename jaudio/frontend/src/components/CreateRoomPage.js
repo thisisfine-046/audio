@@ -65,7 +65,7 @@ export default class CreateRoomPage extends Component {
       .then((data) => this.props.history.push('/room/'+ data.code));
   }
 
-  render() {
+  renderCreateRoom(){
     return (
       <Grid container spacing={1}>
         <Grid item xs={12} align="center">
@@ -76,7 +76,7 @@ export default class CreateRoomPage extends Component {
         <Grid item xs={12} align="center">
           <FormControl component="fieldset">
             <FormHelperText>
-              <div align="center">Guest Control of Playback State</div>
+              <div align="center" class="notecolor">Guest Control of Playback State</div>
             </FormHelperText>
             <RadioGroup
               row
@@ -105,13 +105,15 @@ export default class CreateRoomPage extends Component {
               type="number"
               onChange={this.handleVotesChange}
               defaultValue={this.defaultVotes}
+              color="primary"
+              variant="outlined"
               inputProps={{
                 min: 1,
-                style: { textAlign: "center" },
+                style: { textAlign: "center" ,color:"white"},
               }}
             />
             <FormHelperText>
-              <div align="center">Votes Required To Skip Song</div>
+              <div align="center" class="notecolor">Votes Required To Skip Song</div>
             </FormHelperText>
           </FormControl>
         </Grid>
@@ -132,5 +134,9 @@ export default class CreateRoomPage extends Component {
         </Grid>
       </Grid>
     );
+  }
+
+  render() {
+    return this.renderCreateRoom();
   }
 }
