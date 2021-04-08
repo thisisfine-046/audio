@@ -42,6 +42,9 @@ export default class RoomJoinPage extends Component{
                         value={this.state.roomCode}
                         helperText={this.state.error}
                         variant="outlined"
+                        inputProps={{
+                            style: { textAlign: "center" ,color:"white"},
+                        }}
                         onChange={this.handleTextFieldChange}
                     />
                 </Grid>

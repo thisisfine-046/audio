@@ -5,12 +5,10 @@ import {
     Grid, 
     Typography, 
 } from '@material-ui/core';
-import {
-    Link
-} from "react-router-dom";
+
 import CreateRoomPage from './CreateRoomPage'
 
-export default class RoomJoinPage extends Component{
+export default class Room extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -18,14 +16,21 @@ export default class RoomJoinPage extends Component{
             guestCanPause: false,
             isHost: false,
             showSetting: false,
+            spotifyAuthenticated: false,
         };
         this.roomCode = this.props.match.params.roomCode;
-        this.getRoomDetail();
         this.leaveButtonPressed = this.leaveButtonPressed.bind(this);
         this.updateShowSettings = this.updateShowSettings.bind(this);
         this.renderSettingButton = this.renderSettingButton.bind(this);
         this.renderSettings = this.renderSettings.bind(this);
+        this.getRoomDetail = this.getRoomDetail.bind(this);
+
+        this.authenticateSpotify = this.authenticateSpotify.bind(this);
+        this.getRoomDetail();
+
     }
+
+
 
     getRoomDetail(){
         return fetch("/api/get-room" + "?code=" + this.roomCode)
@@ -42,6 +47,9 @@ export default class RoomJoinPage extends Component{
               guestCanPause: data.guest_can_pause,
               isHost: data.is_host,
           });
+          if(this.state.isHost){
+              this.authenticateSpotify();
+          }
         });
         /*
         fetch('/api/get-room' + '?code=' +this.roomCode).then((response) => response.json()).then((data) =>{
@@ -53,6 +61,22 @@ export default class RoomJoinPage extends Component{
                 }); 
             });
         */
+    }
+
+    authenticateSpotify() {
+      fetch("/spotify/is-authenticated")
+        .then((response) => response.json())
+        .then((data) => {
+          this.setState({ spotifyAuthenticated: data.status });
+          console.log(data.status);
+          if (!data.status) {
+            fetch("/spotify/get-auth-url")
+              .then((response) => response.json())
+              .then((data) => {
+                window.location.replace(data.url);
+              });
+          }
+        });
     }
 
 
@@ -97,7 +121,7 @@ export default class RoomJoinPage extends Component{
               votesToSkip={this.state.votesToSkip}
               guestCanPause={this.state.guestCanPause}
               roomCode={this.roomCode}
-              updateCallback={() => {}}
+              updateCallback={this.getRoomDetail()}
             />
           </Grid>
           <Grid item xs={12} align="center">

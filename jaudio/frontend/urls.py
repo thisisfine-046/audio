@@ -1,9 +1,11 @@
 from django.urls import path
 from .views import index ,homepage
 
+app_name = 'frontend'
+
 urlpatterns = [
 
-    path('',index),
+    path('',index , name= ''),
     path('home', homepage),
     path('join',index),
     path('create',index),
