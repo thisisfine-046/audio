@@ -7,6 +7,7 @@ urlpatterns = [
 
     path('',index , name= ''),
     path('home', homepage),
+    path('login',login),
     path('join',index),
     path('create',index),
     path('room/<str:roomCode>',index),
