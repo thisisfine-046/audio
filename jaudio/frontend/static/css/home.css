@@ -39,9 +39,10 @@
 
 }
 
-
-h3.brand{
+.sidebar-header-content{
   font-size: 1.6rem;
+  font-weight: bold;
+  margin-left: 6px;
 }
 
 .sidebar-menu{
@@ -145,17 +146,12 @@ header{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 10000;
-  transition: 0.7s;
-
+  transition: 0.8s ease-out;
 }
 
-header.sticky{
-  background-color: var(--text-grey);
-}
-
-.header-scroll{
-  background-color: var(--text-grey) !important;
+.nav-scrolled{
+  background: var(--text-grey);
+  transition: 0.8s ease-in;
 }
 
 .search-wrapper{
@@ -219,7 +215,6 @@ header.sticky{
   font-size: 20px;
   color: #fff;
   font-weight: lighter;
-  
 }
 
 .dash-cards-circle, .dash-cards-small,.dash-cards-title, .dash-title{
@@ -536,6 +531,7 @@ div{
 .logo{
   height: 40px;
 }
+
 
 
 ::-webkit-scrollbar{
