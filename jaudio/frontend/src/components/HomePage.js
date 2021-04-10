@@ -47,6 +47,7 @@ export default class HomePage extends Component{
           roomCode: null,
         });
     }
+
     render(){
         return (
             <Router>
@@ -54,6 +55,7 @@ export default class HomePage extends Component{
                     <Route 
                         exact path="/"
                         component={IndexPage}
+
                         />        
                     <Route path="/join" component={RoomJoinPage} />
                     <Route path="/create" component={CreateRoomPage} />
