@@ -11,7 +11,7 @@ import {
     Switch, 
     Link,
     Route,
-    Redict } 
+    Redirect } 
 from "react-router-dom";
 import { 
     Button, 
@@ -40,7 +40,27 @@ export default class HomePage extends Component{
             });
     }
     
-    
+    renderRoomPage(){
+        return (
+            <Grid container spacing={3}>
+                <Grid item xs={12} align="center">
+                    <Typography variant="h3" compact="h3">
+                        Room Discord
+                    </Typography>
+                </Grid>
+                <Grid item xs={12} align="center">
+                    <ButtonGroup disableElevation variant="contained" color="primary">
+                        <Button color="primary" to="/join" component={Link}>
+                        Join a Room
+                        </Button>
+                        <Button color="secondary" to="/create" component={Link}>
+                        Create a Room
+                        </Button>
+                    </ButtonGroup>
+                </Grid>
+            </Grid>
+        );
+    } 
     
     clearRoomCode() {
         this.setState({
@@ -54,7 +74,13 @@ export default class HomePage extends Component{
                 <Switch>
                     <Route 
                         exact path="/"
-                        component={IndexPage}
+                        render={() => {
+                            return this.state.roomCode ? (
+                              <Redirect to={`/room/${this.state.roomCode}`} />
+                            ) : (
+                              this.renderRoomPage()
+                            );
+                          }}
 
                         />        
                     <Route path="/join" component={RoomJoinPage} />

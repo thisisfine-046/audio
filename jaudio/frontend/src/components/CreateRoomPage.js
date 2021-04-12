@@ -1,14 +1,5 @@
 import React, { Component } from "react";
 
-//import Button from "@material-ui/core/Button";
-//import Grid from "@material-ui/core/Grid";
-//import Typography from "@material-ui/core/Typography";
-//import TextField from "@material-ui/core/TextField";
-//import FormHelperText from "@material-ui/core/FormHelperText";
-//import FormControl from "@material-ui/core/FormControl";
-//import Radio from "@material-ui/core/Radio";
-//import RadioGroup from "@material-ui/core/RadioGroup";
-//import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { 
     Button, 
     Grid, 
@@ -18,11 +9,11 @@ import {
     FormHelperText,
     Radio,
     RadioGroup,
-    FormControlLabel,
-    Collapse
+    FormControlLabel
 } from '@material-ui/core';
 
 import { Link } from "react-router-dom";
+import { Collapse } from "@material-ui/core";
 
 export default class CreateRoomPage extends Component {
   static defaultProps = {
@@ -76,19 +67,6 @@ export default class CreateRoomPage extends Component {
       .then((data) => this.props.history.push('/room/'+ data.code));
   }
 
-  renderUpdateButtons() {
-    return (
-      <Grid item xs={12} align="center">
-        <Button
-          color="primary"
-          variant="contained"
-          onClick={this.handleUpdateButtonPressed}
-        >
-          Update Room
-        </Button>
-      </Grid>
-    );
-  }
 
   handleUpdateButtonPressed() {
     const requestOptions = {
@@ -112,6 +90,21 @@ export default class CreateRoomPage extends Component {
       }
       this.props.updateCallback();
     });
+  }
+
+
+  renderUpdateButtons() {
+    return (
+      <Grid item xs={12} align="center">
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={this.handleUpdateButtonPressed}
+        >
+          Update Room
+        </Button>
+      </Grid>
+    );
   }
 
 
@@ -145,6 +138,7 @@ export default class CreateRoomPage extends Component {
     return (
       
       <Grid container spacing={1}>
+
 
         
         <Grid item xs={12} align="center">
@@ -203,6 +197,7 @@ export default class CreateRoomPage extends Component {
         {this.props.update
           ? this.renderUpdateButtons()
           : this.renderCreateButtons()}
+          
       </Grid>
     );
   }

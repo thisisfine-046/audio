@@ -10,9 +10,18 @@ import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import PauseIcon from "@material-ui/icons/Pause";
 import SkipNextIcon from "@material-ui/icons/SkipNext";
 
+
 export default class MusicPlayer extends Component {
   constructor(props) {
     super(props);
+  }
+
+  skipSong() {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    };
+    fetch("/spotify/skip", requestOptions);
   }
 
   pauseSong() {
@@ -31,12 +40,14 @@ export default class MusicPlayer extends Component {
     fetch("/spotify/play", requestOptions);
   }
 
+
   render() {
     const songProgress = (this.props.time / this.props.duration) * 100;
 
     return (
       <Card>
         <Grid container alignItems="center">
+
           <Grid item align="center" xs={4}>
             <img src={this.props.image_url} height="100%" width="100%" />
           </Grid>
@@ -51,19 +62,23 @@ export default class MusicPlayer extends Component {
             </Typography>
 
             <div>
-              <IconButton onClick={() => { 
-                this.props.is_playing ? this.pauseSong() : this.playSong();
-                }}  >
+              <IconButton
+                onClick={() => {
+                  this.props.is_playing ? this.pauseSong() : this.playSong();
+                }}
+              >
                 {this.props.is_playing ? <PauseIcon /> : <PlayArrowIcon />}
               </IconButton>
 
-              <IconButton>
+              <IconButton onClick={() => this.skipSong()}>
+                {this.props.votes} / {this.props.votes_required}
                 <SkipNextIcon />
               </IconButton>
-
             </div>
+
           </Grid>
         </Grid>
+        
         <LinearProgress variant="determinate" value={songProgress} />
       </Card>
     );
