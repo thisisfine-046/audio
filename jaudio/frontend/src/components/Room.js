@@ -33,7 +33,7 @@ export default class Room extends Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(this.getCurrentSong, 1000);
+    this.interval = setInterval(this.getCurrentSong, 3000);
   }
 
   componentWillUnmount() {
@@ -158,12 +158,16 @@ export default class Room extends Component {
     
     return (
       <Grid container spacing={1}>
+
         <Grid item xs={12} align="center">
           <Typography variant="h4" component="h4">
             Code: {this.roomCode}
           </Typography>
         </Grid>
+
         <MusicPlayer {...this.state.song} />
+
+        
         {this.state.isHost ? this.renderSettingsButton() : null}
         <Grid item xs={12} align="center">
           <Button
@@ -179,11 +183,11 @@ export default class Room extends Component {
   }
   
 
-    render(){
-        return ( 
-          this.renderRoomDetail()
-        );
-    }
+  render(){
+    return ( 
+      this.renderRoomDetail()
+    );
+  }
 }
 /*
 return (

@@ -5,11 +5,7 @@ import {
     Grid, 
     Typography, 
     TextField, 
-    FormControl ,
-    FormHelperText,
-    Radio,
-    RadioGroup,
-    FormControlLabel
+
 } from '@material-ui/core';
 
 import { Link } from "react-router-dom";
@@ -93,5 +89,5 @@ export default class RoomJoinPage extends Component{
           .catch((error) => {
             console.log(error);
           });
-      }
+    }
 }

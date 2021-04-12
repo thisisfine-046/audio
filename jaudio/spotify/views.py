@@ -8,7 +8,7 @@ from .util import *
 from api.models import Room
 from .models import Vote
 
-# Create your views here.
+
 class AuthURL(APIView):
     def get(self, request, fornat=None):
         scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing'
@@ -48,13 +48,14 @@ def spotify_callback(request, format=None):
         request.session.session_key, access_token, token_type, expires_in, refresh_token)
 
     return redirect('frontend:')
-  
+
 
 class IsAuthenticated(APIView):
     def get(self, request, format=None):
         is_authenticated = is_spotify_authenticated(
             self.request.session.session_key)
         return Response({'status': is_authenticated}, status=status.HTTP_200_OK)
+
 
 class CurrentSong(APIView):
     def get(self, request, format=None):
@@ -110,7 +111,8 @@ class CurrentSong(APIView):
             room.current_song = song_id
             room.save(update_fields=['current_song'])
             votes = Vote.objects.filter(room=room).delete()
-        
+
+
 class PauseSong(APIView):
     def put(self, response, format=None):
         room_code = self.request.session.get('room_code')
@@ -131,6 +133,7 @@ class PlaySong(APIView):
             return Response({}, status=status.HTTP_204_NO_CONTENT)
 
         return Response({}, status=status.HTTP_403_FORBIDDEN)
+
 
 class SkipSong(APIView):
     def post(self, request, format=None):
