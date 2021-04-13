@@ -11,7 +11,14 @@ from .models import Vote
 
 class AuthURL(APIView):
     def get(self, request, fornat=None):
-        scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing'
+        scopes =  "user-read-email " \
+        + "user-read-private user-modify-playback-state " \
+        + "user-top-read user-read-playback-state streaming " \
+        + "playlist-modify-public playlist-read-private playlist-modify-private " \
+        + "user-follow-read user-library-read user-read-recently-played " \
+        + "playlist-read-collaborative " \
+        + "user-read-currently-playing " \
+
 
         url = Request('GET', 'https://accounts.spotify.com/authorize', params={
             'scope': scopes,
