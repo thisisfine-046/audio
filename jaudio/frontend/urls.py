@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index , homepage , login
+from .views import index , homepage , login , loginspotify
 
 app_name = 'frontend'
 
@@ -7,7 +7,10 @@ urlpatterns = [
 
     path('', index , name= ''),
     path('home', homepage),
-    path('login',login),
+
+    path('roompage', index),
+
+    path('login',loginspotify),
     path('join',index),
     path('create',index),
     path('room/<str:roomCode>',index),

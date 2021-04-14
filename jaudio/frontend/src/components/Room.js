@@ -46,7 +46,7 @@ export default class Room extends Component {
       .then((response) => {
         if (!response.ok) {
           this.props.leaveRoomCallback();
-          this.props.history.push("/");
+          this.props.history.push("/roompage");
         }
         return response.json();
       })

@@ -6,6 +6,7 @@ import Room from "./Room"
 import LibraryPage from "./Library"
 import SearchPage from "./Search"
 import ExplorePage from "./Explore"
+import LoginPage from './Login'
 import { 
     BrowserRouter as Router,
     Switch, 
@@ -75,6 +76,10 @@ export default class HomePage extends Component{
                 <Switch>
                     <Route 
                         exact path="/"
+                        component={ExplorePage}
+                    />  
+                    <Route 
+                        path="/roompage"
                         render={() => {
                             return this.state.roomCode ? (
                               <Redirect to={`/room/${this.state.roomCode}`} />
@@ -83,7 +88,7 @@ export default class HomePage extends Component{
                             );
                           }}
 
-                        />        
+                    />        
                     <Route path="/join" component={RoomJoinPage} />
                     <Route path="/create" component={CreateRoomPage} />
                     <Route 
@@ -96,6 +101,8 @@ export default class HomePage extends Component{
                     <Route path="/explore" component={ExplorePage} />
                     <Route path="/search" component={SearchPage} />
                     <Route path="/library" component={LibraryPage} />
+
+                    <Route path="/login" component={LoginPage} />
                 </Switch>
 
             </Router>

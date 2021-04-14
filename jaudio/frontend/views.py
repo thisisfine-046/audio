@@ -11,3 +11,6 @@ def homepage(request , *args, **kwargs):
 
 def login(request , *args, **kwargs):
     return render(request,'frontend/login.html')
+
+def loginspotify(request , *args, **kwargs):
+    return render(request,'frontend/loginspotify.html')
