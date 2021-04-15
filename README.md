@@ -25,7 +25,8 @@ More install for package
 - \audio\jaudio\frontend> npm install react-router-dom
 - \audio\jaudio\frontend> npm install @material-ui/icons
 
-
+- \audio\jaudio\spotify>npm install express spotify-web-api-node
+- 
 Hit to run server
 - cd jaudio
 - python manage.py runserver
