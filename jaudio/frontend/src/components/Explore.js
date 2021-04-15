@@ -11,8 +11,9 @@ import {
     Route,
     Link,
     Redirect,
-  } from "react-router-dom";
+} from "react-router-dom";
 
+const code = new URLSearchParams(window.location.search).get("code")
 
   
 export default class ExplorePage extends Component{
@@ -26,10 +27,8 @@ export default class ExplorePage extends Component{
 
     renderExplorePage(){
         return (
-            
                 <div>
-                    <h3>Explore Tab</h3>
-
+                    {code}
                 </div>
             
         );
