@@ -27,6 +27,9 @@ More install for package
 
 - \audio\jaudio\spotify>npm install express spotify-web-api-node
 - \audio\jaudio\spotify>npm install nodemon --save-dev
+- \audio\jaudio> npm i axios
+- \audio\jaudio\spotify>npm install cors
+- \audio\jaudio\spotify>npm install body-parser
 Hit to run server
 - cd jaudio
 - python manage.py runserver
