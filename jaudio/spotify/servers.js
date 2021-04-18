@@ -3,6 +3,8 @@
 const express = require("express")
 const SpotifyWebApi = require("spotify-web-api-node")
 
+const cors = require("cors")
+const bodyParser = require("body-parser")
 
 app.post("/login", (req, res) => {
   const code = req.body.code
@@ -26,3 +28,6 @@ app.post("/login", (req, res) => {
       res.sendStatus(400)
     })  
 })
+app.use(cors())
+app.use(bodyParser.json())
+app.listen(8000)

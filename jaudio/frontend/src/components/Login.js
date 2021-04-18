@@ -18,6 +18,9 @@ import {
 export default class LoginPage extends Component{
     constructor(props){
         super(props);
+        this.state = {
+            spotifyCode : {}
+        };
         
     }
 
@@ -25,7 +28,10 @@ export default class LoginPage extends Component{
         fetch("/spotify/get-auth-url")
             .then((response) => response.json())
             .then((data) => {
-            window.location.replace(data.url);
+                this.setState({
+                    spotifyCode: data.url,
+                });
+                window.location.replace(data.url);
         });
     }
 
@@ -80,10 +86,11 @@ window.onload=function(){
 	const signInButton = document.getElementById('signIn');
 	const container = document.getElementById('container');
 	
-	signUpButton.addEventListener('click', () => {
-		container.classList.add("right-panel-active");
-	});
+	
 	signInButton.addEventListener('click', () => {
 		container.classList.remove("right-panel-active");
 	});
+    signUpButton.addEventListener('click', () => {
+		container.classList.add("right-panel-active");
+	});s
 }
