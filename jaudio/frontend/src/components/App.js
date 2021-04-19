@@ -6,6 +6,46 @@ import CreateRoomPage from "./CreateRoomPage"
 
 
 
+window.onload=function(){
+  const header = document.querySelector("header");
+  const sectionOne = document.querySelector(".header-content");
+
+  const sectionOneOptions = {
+    rootMargin: "-100px 0px 0px 0px"
+  };
+
+  const sectionOneObserver = new IntersectionObserver(function(
+    entries,
+    sectionOneObserver
+  ) {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        header.classList.add("nav-scrolled");
+      } else {
+        header.classList.remove("nav-scrolled");
+      }
+    });
+  },
+  sectionOneOptions);
+
+  sectionOneObserver.observe(sectionOne);
+}
+
+window.onload=function(){
+	const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
+}
+  
+
 export default class App extends Component{
     constructor(props){
         super(props);
@@ -21,6 +61,7 @@ export default class App extends Component{
 
 const appDiv = document.getElementById("app");
 render(<App  />,appDiv)
+
 
 particlesJS("particles-js", {
     particles: {
@@ -69,7 +110,7 @@ particlesJS("particles-js", {
       },
       modes: {
         grab: { distance: 140, line_linked: { opacity: 1 } },
-        bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+        bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 2 },
         repulse: { distance: 200, duration: 0.4 },
         push: { particles_nb: 4 },
         remove: { particles_nb: 2 }

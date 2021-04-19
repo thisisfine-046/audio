@@ -25,9 +25,15 @@ More install for package
 - \audio\jaudio\frontend> npm install react-router-dom
 - \audio\jaudio\frontend> npm install @material-ui/icons
 
-
+- \audio\jaudio\spotify>npm install express spotify-web-api-node
+- \audio\jaudio\spotify>npm install nodemon --save-dev
+- \audio\jaudio> npm i axios
+- \audio\jaudio\spotify>npm install cors
+- \audio\jaudio\spotify>npm install body-parser
 Hit to run server
 - cd jaudio
 - python manage.py runserver
-http://127.0.0.1:8000/api/room
+http://127.0.0.1:8000
+- cd jaudio/frontend
+- npm run dev 
 

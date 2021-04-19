@@ -5,11 +5,7 @@ import {
     Grid, 
     Typography, 
     TextField, 
-    FormControl ,
-    FormHelperText,
-    Radio,
-    RadioGroup,
-    FormControlLabel
+
 } from '@material-ui/core';
 
 import { Link } from "react-router-dom";
@@ -37,10 +33,14 @@ export default class RoomJoinPage extends Component{
                     <TextField
                         error={this.state.error}
                         label="Code"
+                        color="primary"
                         placeholder="Enter a Room Code"
                         value={this.state.roomCode}
                         helperText={this.state.error}
                         variant="outlined"
+                        inputProps={{
+                            style: { textAlign: "center" ,color:"white"},
+                        }}
                         onChange={this.handleTextFieldChange}
                     />
                 </Grid>
@@ -89,5 +89,5 @@ export default class RoomJoinPage extends Component{
           .catch((error) => {
             console.log(error);
           });
-      }
+    }
 }
