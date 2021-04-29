@@ -13,6 +13,7 @@ import {
     Link,
     Route,
     Redirect,
+    NavLink,
 } 
 from "react-router-dom";
 import { 
@@ -28,8 +29,10 @@ export default class HomePage extends Component{
         super(props);
         this.state = {
             roomCode: null,
+            data1: new URLSearchParams(window.location.search).get("code")
         };
         this.clearRoomCode = this.clearRoomCode.bind(this);
+
     }
 
     async componentDidMount() {
@@ -40,6 +43,7 @@ export default class HomePage extends Component{
                 roomCode: data.code,
                 });
             });
+ 
     }
     
     renderRoomPage(){
@@ -70,13 +74,26 @@ export default class HomePage extends Component{
         });
     }
 
+
     render(){
+        const hello = this.state.data1;
+        const loginpls = "please login"
         return (
             <Router>
                 <Switch>
                     <Route 
                         exact path="/"
-                        component={ExplorePage}
+                        render={() => {
+                            return <SearchPage data={hello}/>;
+                        }}
+
+                        /*
+                        render={() => {
+                            return <SearchPage  code={hello} />;
+                            }}
+                            */
+                        
+         
                     />  
                     <Route 
                         path="/roompage"
@@ -86,7 +103,7 @@ export default class HomePage extends Component{
                             ) : (
                               this.renderRoomPage()
                             );
-                          }}
+                        }}
 
                     />        
                     <Route path="/join" component={RoomJoinPage} />
