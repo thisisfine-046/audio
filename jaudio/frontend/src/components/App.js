@@ -6,6 +6,48 @@ import CreateRoomPage from "./CreateRoomPage"
 
 
 
+
+
+window.onload=function(){
+  const header = document.querySelector("header");
+  const sectionOne = document.querySelector(".header-content");
+
+  const sectionOneOptions = {
+    rootMargin: "-100px 0px 0px 0px"
+  };
+
+  const sectionOneObserver = new IntersectionObserver(function(
+    entries,
+    sectionOneObserver
+  ) {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        header.classList.add("nav-scrolled");
+      } else {
+        header.classList.remove("nav-scrolled");
+      }
+    });
+  },
+  sectionOneOptions);
+
+  sectionOneObserver.observe(sectionOne);
+}
+
+window.onload=function(){
+	const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
+}
+  
+
 export default class App extends Component{
     constructor(props){
         super(props);
