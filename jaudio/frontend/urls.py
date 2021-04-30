@@ -7,9 +7,7 @@ urlpatterns = [
 
     path('', index , name= ''),
     path('home', homepage),
-
     path('roompage', index),
-
     path('login',loginspotify),
     path('join',index),
     path('create',index),
