@@ -90,7 +90,7 @@ export default class LoginPage extends Component{
         return this.renderSpotifyLoginButton();
     }
 }
-<<<<<<< HEAD
+
 window.onload=function(){
 	const signUpButton = document.getElementById('signUp');
 	const signInButton = document.getElementById('signIn');
@@ -104,5 +104,3 @@ window.onload=function(){
 		container.classList.add("right-panel-active");
 	});
 }
-=======
->>>>>>> 47d2c3047d82650390551ce9f739c701f4ce829a
