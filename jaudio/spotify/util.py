@@ -6,7 +6,7 @@ from requests import post, put, get
 
 
 BASE_URL = "https://api.spotify.com/v1/me/"
-
+BASE_URL2 = "https://api.spotify.com/v1/"
 
 def get_user_tokens(session_id):
     user_tokens = SpotifyToken.objects.filter(user=session_id)
@@ -75,6 +75,23 @@ def execute_spotify_api_request(session_id, endpoint, post_=False, put_=False):
         put(BASE_URL + endpoint, headers=headers)
 
     response = get(BASE_URL + endpoint, {}, headers=headers)
+    try:
+        return response.json()
+    except:
+        return {'Error': 'Issue with request'}
+
+def execute_spotify_api_newrelease(session_id, endpoint, post_=False, put_=False):
+    tokens = get_user_tokens(session_id)
+    headers = {'Content-Type': 'application/json',
+               'Authorization': "Bearer " + tokens.access_token}
+
+    if post_:
+        post(BASE_URL2 + endpoint, headers=headers)
+    if put_:
+        put(BASE_URL2 + endpoint, headers=headers)
+
+    response = get(BASE_URL2 + endpoint, {}, headers=headers)
+    
     try:
         return response.json()
     except:

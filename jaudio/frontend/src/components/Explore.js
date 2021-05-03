@@ -39,6 +39,10 @@ export default class ExplorePage extends Component{
     renderExplorePage(){
         return (
             <div>
+            <div class ="header-content">
+                <h5>Discover new music every day</h5>
+                <h3>Millions of songs and podcasts. No credit card needed.</h3>
+            </div>    
             <div class="dash-title">
                 <h2 class="Overview" >Overview</h2>
                 <a class="see-all" href="">See All</a>
@@ -209,8 +213,8 @@ export default class ExplorePage extends Component{
                     
                 <div class="card-single">
                     <div class="overlayer-single">
-                            <i class="material-icons">play_circle</i>
-                    <i class="material-icons">favorite</i>
+                        <i class="material-icons">play_circle</i>
+                        <i class="material-icons">favorite</i>
                     
                         </div>
 
@@ -339,6 +343,8 @@ export default class ExplorePage extends Component{
                         <img src="https://www.dhresource.com/0x0/f2/albu/g7/M01/F8/E4/rBVaSVvkMNeAdPQRAARy8yBI2OU451.jpg/cardi-b-invasion-of-privacy-album-cover-music.jpg" alt=""/>
                     </div>
                 </div>
+                <footer>
+                </footer>
         </div>
             
         );

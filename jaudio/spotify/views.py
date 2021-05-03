@@ -7,6 +7,9 @@ from rest_framework.response import Response
 from .util import *
 from api.models import Room
 from .models import Vote
+from django.http import JsonResponse
+
+
 
 
 class AuthURL(APIView):
@@ -118,6 +121,60 @@ class CurrentSong(APIView):
             room.current_song = song_id
             room.save(update_fields=['current_song'])
             votes = Vote.objects.filter(room=room).delete()
+
+
+class NewReleases(APIView):
+    def get(self, request, format=None):
+        room_code = self.request.session.get('room_code')
+        room = Room.objects.filter(code=room_code)
+        if room.exists():
+            room = room[0]
+        else:
+            return Response({}, status=status.HTTP_404_NOT_FOUND)
+        host = room.host
+        endpoint = "browse/new-releases"
+        response = execute_spotify_api_newrelease(host, endpoint)
+
+        artist_string = ""
+
+
+        
+
+        return Response(response, status=status.HTTP_200_OK)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class PauseSong(APIView):

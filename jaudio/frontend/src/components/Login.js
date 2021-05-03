@@ -17,6 +17,22 @@ import {
 const AUTH_URL =
 "https://accounts.spotify.com/authorize?client_id=c83a7a91bb4743aaaaae481d65b7debd&response_type=code&redirect_uri=http://127.0.0.1:8000&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state"
 
+
+
+window.onload=function(){
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+  signUpButton.addEventListener('click', () => {
+      container.classList.add("right-panel-active");
+  });
+
+  signInButton.addEventListener('click', () => {
+      container.classList.remove("right-panel-active");
+  });
+}
+
 export default class LoginPage extends Component{
     constructor(props){
         super(props);
