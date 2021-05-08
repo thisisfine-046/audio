@@ -30,6 +30,8 @@ More install for package
 - \audio\jaudio> npm i axios
 - \audio\jaudio\spotify>npm install cors
 - \audio\jaudio\spotify>npm install body-parser
+
+- \audio\jaudio\frontend> npm i react-spotify-web-playback --legacy-peer-deps
 Hit to run server
 - cd jaudio
 - python manage.py runserver
