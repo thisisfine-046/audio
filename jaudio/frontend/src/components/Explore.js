@@ -215,7 +215,6 @@ export default class ExplorePage extends Component{
                     </div>
                 </div>
                 <footer>
-                    <h1 color="white">player</h1>
                 </footer>
         </div>
             

@@ -510,8 +510,10 @@ div{
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  display: inline-block;
+  width: 200px;
+  position: relative;
 }
-
 
 
 .overlayer .material-icons:nth-of-type(2){

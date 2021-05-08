@@ -377,37 +377,6 @@ class GlobalTop(APIView):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class PauseSong(APIView):
     def put(self, response, format=None):
         room_code = self.request.session.get('room_code')
