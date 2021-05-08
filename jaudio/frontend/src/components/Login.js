@@ -12,6 +12,8 @@ import {
     Link,
     Redirect,
 } from "react-router-dom";
+import SpotifyWebApi from "spotify-web-api-js";
+const spotify = new SpotifyWebApi();
 
 
 const AUTH_URL =

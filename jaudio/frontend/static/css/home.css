@@ -312,7 +312,7 @@ div{
 
 .dash-cards-small{
   display: grid;
-  grid-template-columns: repeat(8,1fr) ;
+  grid-template-columns: repeat(7,1fr) ;
   grid-gap: 1rem;
   margin-bottom: 40px;
 }
@@ -328,7 +328,7 @@ div{
   background:rgba(0, 0, 0, 0);
   border-radius: 0.3rem;
   width: 100%;
-  height: 240px;
+  height: 290px;
   backdrop-filter: blur(5px);
   display: flex;
   justify-content: center;
@@ -372,6 +372,12 @@ div{
 	position: flex;
 	background:(0,0,0,0) ;
 	text-align: left;
+}
+
+.card-small h5{
+  color:#b3b3b3;
+  overflow: hidden;
+
 }
 
 .card-single img{
@@ -463,9 +469,9 @@ div{
 	color: rgba(255,255,255,0.3);
   opacity: 0.5;
   position: absolute;
-  margin-top: 210px;
+  margin-top: 250px;
   right: 16px;
-	font-size: 25px;
+	font-size: 28px;
 	transition: 250ms ease-in-out;
 }
 
@@ -474,9 +480,9 @@ div{
 	color: rgba(255,255,255,0.5);
   opacity: 0.5;
   position: absolute;
-  margin-top: 210px;
+  margin-top: 250px;
   left: 16px;
-	font-size: 25px;
+	font-size: 28px;
 	transition: 250ms ease-in-out;
 }
 

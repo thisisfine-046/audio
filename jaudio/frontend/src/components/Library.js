@@ -13,15 +13,51 @@ import {
     Redirect,
 } from "react-router-dom";
 
-
+import NewReleases from "./NewReleases"
   
 export default class LibraryPage extends Component{
     constructor(props){
         super(props);
-        
+        this.state = {
+            newReleases: {},
+        };
+        this.authenticateSpotify = this.authenticateSpotify.bind(this);
+        this.getNewReleases = this.getNewReleases.bind(this);
+        this.getNewReleases();
     }
 
-    
+
+
+    authenticateSpotify() {
+        fetch("/spotify/is-authenticated")
+          .then((response) => response.json())
+          .then((data) => {
+            this.setState({ spotifyAuthenticated: data.status });
+            console.log(data.status);
+            if (!data.status) {
+              fetch("/spotify/get-auth-url")
+                .then((response) => response.json())
+                .then((data) => {
+                  window.location.replace(data.url);
+                });
+            }
+          });
+      }
+
+    getNewReleases() {
+        fetch("/spotify/new-release")
+          .then((response) => {
+            if (!response.ok) {
+              return {};
+            } else {
+              return response.json();
+            }
+          })
+          .then((data) => {
+            this.setState({ newReleases: data });
+            console.log(data);
+          });
+    }
     
 
     renderLibraryPage(){
@@ -36,84 +72,18 @@ export default class LibraryPage extends Component{
                     <h2 class="Overview"  href="" >Artists</h2>
                     <h2 class="Overview" href="" >Album</h2>
                 </div>
-                <div class="dash-cards-title">
-                    <div class="card-title">
-                        <div class="overlayer">
-                            <i class="material-icons">play_circle</i>
 
-                        </div>
-
-                        <div class="card">
-                            <img src="https://wallpapercave.com/wp/wp1828025.png" alt=""/>
-                            <span class="content">Something</span>
-                        </div>
-                    </div>
-
-                    <div class="card-title">
-                        <div class="overlayer">
-                            <i class="material-icons">play_circle</i>
-
-                        </div>
-
-                        <div class="card">
-                            <img src="https://images.unsplash.com/photo-1510216283985-18086caa8de4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt=""/>
-                            <span class="content">Something</span>
-                        </div>  
-                    </div>
-
-
-                    <div class="card-title">
-                        <div class="overlayer">
-                            <i class="material-icons">play_circle</i>
-
-                        </div>
-
-                        <div class="card">
-                            <img src="https://i.pinimg.com/originals/eb/a0/2a/eba02a7b3e4375b32f129c0a04bdd428.jpg" alt=""/>
-                            <span class="content">Something</span>
-                        </div>  
-                    </div>
+                <div>
+                  <div class="dash-cards-small">
+                    <NewReleases {...this.state.newReleases.song1} />
+                    <NewReleases {...this.state.newReleases.song2} />
+                    <NewReleases {...this.state.newReleases.song3} />
+                    <NewReleases {...this.state.newReleases.song4} />
+                    <NewReleases {...this.state.newReleases.song5} />
+                    <NewReleases {...this.state.newReleases.song6} />
+                    <NewReleases {...this.state.newReleases.song7} />
+                  </div>
                 </div>
-
-                <div class="dash-cards-title">
-                    <div class="card-title">
-                        <div class="overlayer">
-                            <i class="material-icons">play_circle</i>
-
-                        </div>
-
-                        <div class="card">
-                            <img src="https://wallpapercave.com/wp/wp1828025.png" alt=""/>
-                            <span class="content">Something</span>
-                        </div>
-                    </div>
-
-                    <div class="card-title">
-                        <div class="overlayer">
-                            <i class="material-icons">play_circle</i>
-
-                        </div>
-
-                        <div class="card">
-                            <img src="https://images.unsplash.com/photo-1510216283985-18086caa8de4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt=""/>
-                            <span class="content">Something</span>
-                        </div>  
-                    </div>
-
-
-                    <div class="card-title">
-                        <div class="overlayer">
-                            <i class="material-icons">play_circle</i>
-
-                        </div>
-
-                        <div class="card">
-                            <img src="https://i.pinimg.com/originals/eb/a0/2a/eba02a7b3e4375b32f129c0a04bdd428.jpg" alt=""/>
-                            <span class="content">Something</span>
-                        </div>  
-                    </div>
-                </div>
-
                 
                 <footer>
                 </footer>

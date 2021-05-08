@@ -135,12 +135,143 @@ class NewReleases(APIView):
         endpoint = "browse/new-releases"
         response = execute_spotify_api_newrelease(host, endpoint)
 
-        artist_string = ""
+        albums = response.get('albums')
+        href=albums.get('href')
+        # items = albums.get('items')
+        # artist=items.get('artists')
+
+        # a = 0
+
+        # for i in enumerate(albums.get('items')):
+        #     items = albums.get('items')
+        items1 = albums.get('items')[0]
+        artist1=items1.get('artists')[0]
+
+        song1 = {
+            'artist_name':artist1.get('name'),
+            'images':items1.get('images')[0].get('url'),
+            'song_name':items1.get('name'),
+            'song_id':items1.get('id'),
+            'song_uri':items1.get('uri')
+        }
+
+        items2 = albums.get('items')[1]
+        artist2=items2.get('artists')[0]
+
+        song2 = {
+            'artist_name':artist2.get('name'),
+            'images':items2.get('images')[0].get('url'),
+            'song_name':items2.get('name'),
+            'song_id':items2.get('id'),
+            'song_uri':items2.get('uri')
+        }
+
+        items3 = albums.get('items')[2]
+        artist3=items3.get('artists')[0]
+
+        song3 = {
+            'artist_name':artist3.get('name'),
+            'images':items3.get('images')[0].get('url'),
+            'song_name':items3.get('name'),
+            'song_id':items3.get('id'),
+            'song_uri':items3.get('uri')
+        }
+
+        items4 = albums.get('items')[3]
+        artist4=items4.get('artists')[0]
+
+        song4 = {
+            'artist_name':artist4.get('name'),
+            'images':items4.get('images')[0].get('url'),
+            'song_name':items4.get('name'),
+            'song_id':items4.get('id'),
+            'song_uri':items4.get('uri')
+        }
+
+        items5 = albums.get('items')[4]
+        artist5=items5.get('artists')[0]
+
+        song5 = {
+            'artist_name':artist5.get('name'),
+            'images':items5.get('images')[0].get('url'),
+            'song_name':items5.get('name'),
+            'song_id':items5.get('id'),
+            'song_uri':items5.get('uri')
+        }
+
+        items6 = albums.get('items')[5]
+        artist6=items6.get('artists')[0]
+
+        song6 = {
+            'artist_name':artist6.get('name'),
+            'images':items6.get('images')[0].get('url'),
+            'song_name':items6.get('name'),
+            'song_id':items6.get('id'),
+            'song_uri':items6.get('uri')
+        }
+
+        items7 = albums.get('items')[6]
+        artist7=items7.get('artists')[0]
+
+        song7 = {
+            'artist_name':artist7.get('name'),
+            'images':items7.get('images')[0].get('url'),
+            'song_name':items7.get('name'),
+            'song_id':items7.get('id'),
+            'song_uri':items7.get('uri')
+        }
 
 
-        
+        new_release = {
+            'song1':song1,
+            'song2': song2,
+            'song3': song3,
+            'song4':song4,
+            'song5': song5,
+            'song6': song6,
+            'song7':song7
+    
 
-        return Response(response, status=status.HTTP_200_OK)
+        }
+
+        return Response(new_release, status=status.HTTP_200_OK)
+
+class GlobalTop(APIView):
+    def get(self, request, format=None):
+        room_code = self.request.session.get('room_code')
+        room = Room.objects.filter(code=room_code)
+        if room.exists():
+            room = room[0]
+        else:
+            return Response({}, status=status.HTTP_404_NOT_FOUND)
+        host = room.host
+        playlistID = "37i9dQZEVXbMDoHDwVN2tF"
+        endpoint = "playlists/" + playlistID
+        response = execute_spotify_api_globaltop(host, endpoint)
+
+        tracks = response.get('tracks')
+        items= tracks.get('items')[0]
+        track=items.get('track')
+        album=track.get('album')
+        artist=album.get('artists')[0]
+        artist_name=artist.get('name')
+        artist_uri=artist.get('uri')
+        track_id=album.get('id')
+        song_name=album.get('name')
+        song_uri=album.get('uri')
+        song = {
+            'artist_name':artist_name,
+            'artist_uri':artist_uri,
+            'images':album.get('images')[0].get('url'),
+            'song_name':song_name,
+            'song_id':track_id,
+            'song_uri':song_uri
+            
+        }
+
+
+        return Response(song, status=status.HTTP_200_OK)
+
 
 
 

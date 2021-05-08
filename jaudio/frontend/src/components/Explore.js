@@ -15,6 +15,8 @@ import {
 import { useState, useEffect } from "react"
 import useAuth from "./useAuth"
 import LoginPage from "./Login"
+import MusicPlayer from "./MusicPlayer";
+import NewReleases from "./NewReleases"
 
 const code = new URLSearchParams(window.location.search).get("code")
 
@@ -22,11 +24,46 @@ const code = new URLSearchParams(window.location.search).get("code")
 export default class ExplorePage extends Component{
     constructor(props){
         super(props);
+        this.state = {
+            newReleases: {},
+        };
         this.SpotifyCode = this.props.match.params.SpotifyCode;
+        this.getNewReleases = this.getNewReleases.bind(this);
+        this.getNewReleases();
 
-        
     }
     
+    authenticateSpotify() {
+        fetch("/spotify/is-authenticated")
+          .then((response) => response.json())
+          .then((data) => {
+            this.setState({ spotifyAuthenticated: data.status });
+            console.log(data.status);
+            if (!data.status) {
+              fetch("/spotify/get-auth-url")
+                .then((response) => response.json())
+                .then((data) => {
+                  window.location.replace(data.url);
+                });
+            }
+          });
+      }
+
+    getNewReleases() {
+        fetch("/spotify/new-release")
+          .then((response) => {
+            if (!response.ok) {
+              return {};
+            } else {
+              return response.json();
+            }
+          })
+          .then((data) => {
+            this.setState({ newReleases: data });
+            console.log(data);
+          });
+    }
+
 
     Dashboard(){
         fetch("/spotify/get-auth-url")
@@ -93,103 +130,13 @@ export default class ExplorePage extends Component{
             </div>
                 
             <div class="dash-cards-small">
-                <div class="card-single">
-                    <div class="overlayer-single">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>    
-                    </div>
-
-                    <div class="card-small">
-                        <img src="http://static1.squarespace.com/static/597febe6725e2529bad5fc50/t/5a3b204253450af67d7d0d85/1513824339398/Flower+Boy+Album+Art+High+Resolution+Tyler+The+Creator?format=1500w" alt=""/>
-                        <span class="content">Something</span>
-                    </div>    
-                </div>
-
-                    
-                <div class="card-single">
-                    <div class="overlayer-single">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>
-                    </div>
-
-                    <div class="card-small">
-                        <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt=""/>
-                        <span class="content">Something</span>
-                    </div>    
-                </div>
-
-                <div class="card-single">
-                    <div class="overlayer-single">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>
-                    </div>
-                    <div class="card-small">
-                        <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt=""/>
-                        <span class="content">Something</span>
-                    </div>
-                </div>
-
-                <div class="card-single">
-                    <div class="overlayer-single">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>
-                    </div>
-
-                    <div class="card-small">
-                        <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt=""/>
-                        <span class="content">Something</span>
-                    </div>          
-                </div>
-
-                <div class="card-single">
-                    <div class="overlayer-single">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>
-                    </div>
-
-                    <div class="card-small">
-                        <img src="https://i.pinimg.com/originals/15/4b/3a/154b3a679c547316bb33ebe49b1ec517.jpg" alt=""/>
-                        <span class="content">Something</span>
-                    </div>    
-                </div>
-
-                    
-                <div class="card-single">
-                    <div class="overlayer-single">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>
-                    </div>
-
-                    <div class="card-small">
-                        <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt=""/>
-                        <span class="content">Something</span>
-                    </div>    
-                </div>
-
-                <div class="card-single">
-                    <div class="overlayer-single">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>
-                    </div>
-
-                    <div class="card-small">
-                        <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt=""/>
-                        <span class="content">Something</span>
-                    </div>    
-                </div>
-
-                    
-                <div class="card-single">
-                    <div class="overlayer-single">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>
-                    </div>
-
-                    <div class="card-small">
-                        <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt=""/>
-                        <span class="content">Something</span>
-                    </div>    
-                </div>
+                    <NewReleases {...this.state.newReleases.song1} />
+                    <NewReleases {...this.state.newReleases.song2} />
+                    <NewReleases {...this.state.newReleases.song3} />
+                    <NewReleases {...this.state.newReleases.song4} />
+                    <NewReleases {...this.state.newReleases.song5} />
+                    <NewReleases {...this.state.newReleases.song6} />
+                    <NewReleases {...this.state.newReleases.song7} />
             </div>
 
             <div class="dash-title">

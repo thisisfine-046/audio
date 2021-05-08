@@ -11,5 +11,8 @@ urlpatterns = [
 
     path('play', PlaySong.as_view()),
     path('skip', SkipSong.as_view()),
-    path('new-release', NewReleases.as_view())
+    path('new-release', NewReleases.as_view()),
+    path('global-top', GlobalTop.as_view())
+
+
 ]
