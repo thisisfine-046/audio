@@ -256,7 +256,6 @@ class GlobalTop(APIView):
         artist=album.get('artists')[0]
         artist_name=artist.get('name')
         artist_uri=artist.get('uri')
-        track_id=album.get('id')
         song_name=album.get('name')
         song_uri=album.get('uri')
         song = {
@@ -264,7 +263,6 @@ class GlobalTop(APIView):
             'artist_uri':artist_uri,
             'images':album.get('images')[0].get('url'),
             'song_name':song_name,
-            'song_id':track_id,
             'song_uri':song_uri
             
         }
