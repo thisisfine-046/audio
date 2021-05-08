@@ -36,8 +36,8 @@ export default class NewReleases extends Component {
 
              <div class="card-small">
               <img src={this.props.images} alt=""/>
-              <span class="content" data-tooltip={this.props.song_name} >{this.props.song_name}</span>
-              <h5 data-tooltip="{this.props.artist_name}" >{this.props.artist_name}</h5>
+              <span class="content"  >{this.props.song_name}</span>
+              <h5  >{this.props.artist_name}</h5>
             </div>    
           </div>
 
