@@ -15,7 +15,7 @@ const spotify = new SpotifyWebApi();
 
 
 
-export default class MusicPlayer extends Component {
+export default class Globaltop extends Component {
   constructor(props) {
     super(props);
   }

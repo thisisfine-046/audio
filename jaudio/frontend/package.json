@@ -26,6 +26,7 @@
     "@material-ui/icons": "^4.11.2",
     "particles.js": "^2.0.0",
     "react-router-dom": "^5.2.0",
+    "react-spotify-web-playback": "^0.8.1",
     "spotify-uri": "^2.2.0",
     "spotify-web-api-js": "^1.5.1"
   }

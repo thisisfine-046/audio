@@ -20,10 +20,12 @@ export default class LibraryPage extends Component{
         super(props);
         this.state = {
             newReleases: {},
+            
         };
         this.authenticateSpotify = this.authenticateSpotify.bind(this);
         this.getNewReleases = this.getNewReleases.bind(this);
         this.getNewReleases();
+        
     }
 
 

@@ -83,9 +83,7 @@ export default class HomePage extends Component{
                 <Switch>
                     <Route 
                         exact path="/"
-                        render={() => {
-                            return <SearchPage data={hello}/>;
-                        }}
+                        component={ExplorePage} 
 
                         /*
                         render={() => {
@@ -116,7 +114,11 @@ export default class HomePage extends Component{
                     />
 
                     <Route path="/explore" component={ExplorePage} />
-                    <Route path="/search" component={SearchPage} />
+                    <Route 
+                    path="/search" 
+                    render={() => {
+                        return <SearchPage data={hello}/>;
+                    }}                    />
                     <Route path="/library" component={LibraryPage} />
 
                     <Route path="/login" component={LoginPage} />

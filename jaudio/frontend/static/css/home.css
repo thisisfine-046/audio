@@ -372,6 +372,7 @@ div{
 	position: flex;
 	background:(0,0,0,0) ;
 	text-align: left;
+  overflow: hidden;
 }
 
 .card-small h5{
@@ -506,6 +507,9 @@ div{
 .content{
   color: #fff;
   font-weight: bold ;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 

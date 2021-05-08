@@ -17,6 +17,7 @@ import useAuth from "./useAuth"
 import LoginPage from "./Login"
 import MusicPlayer from "./MusicPlayer";
 import NewReleases from "./NewReleases"
+import Globaltop from "./Globaltop"
 
 const code = new URLSearchParams(window.location.search).get("code")
 
@@ -26,10 +27,14 @@ export default class ExplorePage extends Component{
         super(props);
         this.state = {
             newReleases: {},
+            globalTop:{},
         };
         this.SpotifyCode = this.props.match.params.SpotifyCode;
         this.getNewReleases = this.getNewReleases.bind(this);
         this.getNewReleases();
+        this.getGlobalTop = this.getGlobalTop.bind(this);
+        this.getGlobalTop();
+    
 
     }
     
@@ -62,17 +67,27 @@ export default class ExplorePage extends Component{
             this.setState({ newReleases: data });
             console.log(data);
           });
+          this.authenticateSpotify();
+    }
+
+    getGlobalTop() {
+        fetch("/spotify/global-top")
+          .then((response) => {
+            if (!response.ok) {
+              return {};
+            } else {
+              return response.json();
+            }
+          })
+          .then((data) => {
+            this.setState({ globalTop: data });
+            console.log(data);
+          });
+          this.authenticateSpotify();
     }
 
 
-    Dashboard(){
-        fetch("/spotify/get-auth-url")
-        .then((response) => response.json())
-        .then((data) => {
-            this.setState({ SpotifyCode: data.url });
-            console.log(data.url);
-        });
-    }
+
     renderExplorePage(){
         return (
             <div>
@@ -145,105 +160,14 @@ export default class ExplorePage extends Component{
             </div>
 
             <div class="dash-cards-small">
-                <div class="card-single">
-                    <div class="overlayer-single">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>
-                    </div>
-
-                    <div class="card-small">
-                        <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt=""/>
-                        <span class="content">Something</span>
-                    </div>    
-                </div>
-
-                    
-                <div class="card-single">
-                    <div class="overlayer-single">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>
-                    
-                        </div>
-
-                    <div class="card-small">
-                        <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt=""/>
-                        <span class="content">Something</span>
-                    </div>    
-                </div>
-
-                <div class="card-single">
-                    <div class="overlayer-single">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>
-                    </div>
-                    <div class="card-small">
-                        <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt=""/>
-                        <span class="content">Something</span>
-                    </div>
-                </div>
-
-                <div class="card-single">
-                    <div class="overlayer-single">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>
-                    </div>
-
-                    <div class="card-small">
-                        <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt=""/>
-                        <span class="content">Something</span>
-                    </div>          
-                </div>
-
-                <div class="card-single">
-                    <div class="overlayer-single">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>
-                    </div>
-
-                    <div class="card-small">
-                        <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt=""/>
-                        <span class="content">Something</span>
-                    </div>    
-                </div>
-
-                    
-                <div class="card-single">
-                    <div class="overlayer-single">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>
-                    </div>
-
-                    <div class="card-small">
-                        <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt=""/>
-                        <span class="content">Something</span>
-                    </div>    
-                </div>
-
-                <div class="card-single">
-                    <div class="overlayer-single">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>
-                    </div>
-
-                    <div class="card-small">
-                        <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt=""/>
-                        <span class="content">Something</span>
-                    </div>    
-                </div>
-
-                    
-                <div class="card-single">
-                    <div class="overlayer-single">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>
-                    </div>
-
-                    <div class="card-small">
-                        <img src="https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80" alt=""/>
-                        <span class="content">Something</span>  
-                    </div>    
-                </div>
-                </div>
+                    <Globaltop {...this.state.globalTop.song1} />
+                    <Globaltop {...this.state.globalTop.song2} />
+                    <Globaltop {...this.state.globalTop.song3} />
+                    <Globaltop {...this.state.globalTop.song4} />
+                    <Globaltop {...this.state.globalTop.song5} />
+                    <Globaltop {...this.state.globalTop.song6} />
+                    <Globaltop {...this.state.globalTop.song7} />
+            </div>
 
                 <div class="dash-title">
                 <h2 class="artists" >Artists</h2>
@@ -291,6 +215,7 @@ export default class ExplorePage extends Component{
                     </div>
                 </div>
                 <footer>
+                    <h1 color="white">player</h1>
                 </footer>
         </div>
             

@@ -15,19 +15,23 @@ const spotify = new SpotifyWebApi();
 
 
 
-export default class MusicPlayer extends Component {
+export default class NewReleases extends Component {
   constructor(props) {
     super(props);
   }
 
+  
   render() {
 
     return (
       <div>
           
-          <div class="card-single">
+          <div class="card-single" >
             <div class="overlayer-single">
-				      <i class="material-icons">play_circle</i>
+				      <i 
+                class="material-icons"
+              >
+                play_circle</i>
               <i class="material-icons">favorite</i>  
 			      </div>
 
