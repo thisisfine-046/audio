@@ -372,7 +372,84 @@ class GlobalTop(APIView):
 
         return Response(global_top, status=status.HTTP_200_OK)
 
+class TopToday(APIView):
+    def get(self, request, format=None):
+        room_code = self.request.session.get('room_code')
+        room = Room.objects.filter(code=room_code)
+        if room.exists():
+            room = room[0]
+        else:
+            return Response({}, status=status.HTTP_404_NOT_FOUND)
+        host = room.host
+        playlistID = "37i9dQZF1DXcBWIGoYBM5M"
+        endpoint = "playlists/" + playlistID
+        response = execute_spotify_api_globaltop(host, endpoint)
 
+        tracks = response.get('tracks')
+        items= tracks.get('items')[0]
+        track=items.get('track')
+        album=track.get('album')
+        artist=album.get('artists')[0]
+        artist_name=artist.get('name')
+        artist_uri=artist.get('uri')
+        song_name=album.get('name')
+        song_uri=album.get('uri')
+
+        
+        access_token = get_access_token(
+            self.request.session.session_key)
+
+
+        song1 = {
+            'access_token':access_token,
+            'artist_name':artist_name,
+            'artist_uri':artist_uri,
+            'images':album.get('images')[0].get('url'),
+            'song_name':song_name,
+            'song_uri':song_uri   
+        }
+
+        items2= tracks.get('items')[1]
+        track2=items2.get('track')
+        album2=track2.get('album')
+        artist2=album2.get('artists')[0]
+        artist_name2=artist2.get('name')
+        artist_uri2=artist2.get('uri')
+        song_name2=album2.get('name')
+        song_uri2=album2.get('uri')
+        song2 = {
+            'access_token':access_token,
+            'artist_name':artist_name2,
+            'artist_uri':artist_uri2,
+            'images':album2.get('images')[0].get('url'),
+            'song_name':song_name2,
+            'song_uri':song_uri2   
+        }
+
+        items3= tracks.get('items')[2]
+        track3=items3.get('track')
+        album3=track3.get('album')
+        artist3=album3.get('artists')[0]
+        artist_name3=artist3.get('name')
+        artist_uri3=artist3.get('uri')
+        song_name3=album3.get('name')
+        song_uri3=album3.get('uri')
+        song3 = {
+            'access_token':access_token,
+            'artist_name':artist_name3,
+            'artist_uri':artist_uri3,
+            'images':album3.get('images')[0].get('url'),
+            'song_name':song_name3,
+            'song_uri':song_uri3   
+        }
+
+        today_top = {
+            
+            'song1':song1,
+            'song2': song2,
+            'song3': song3,
+        }
+        return Response(today_top, status=status.HTTP_200_OK)
 
 
 

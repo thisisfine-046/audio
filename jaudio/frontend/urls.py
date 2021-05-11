@@ -14,6 +14,9 @@ urlpatterns = [
     path('room/<str:roomCode>',index),
     path('search',index),
     path('library',index),
-    path('explore',index)
+    path('explore',index),
+    path('global-top',index),
+    path('new-release',index),
+    path('top-today',index)
 ]
 

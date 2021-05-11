@@ -13,7 +13,7 @@ urlpatterns = [
     path('skip', SkipSong.as_view()),
     path('new-release', NewReleases.as_view()),
     path('global-top', GlobalTop.as_view()),
-
+    path('today-top', TopToday.as_view()),
     path('get-access_token', getAccessToken.as_view()),
 
 

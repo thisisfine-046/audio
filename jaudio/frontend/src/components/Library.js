@@ -14,7 +14,7 @@ import {
 } from "react-router-dom";
 
 import NewReleases from "./NewReleases"
-  
+import Player from "./Player"
 export default class LibraryPage extends Component{
     constructor(props){
         super(props);
@@ -47,7 +47,7 @@ export default class LibraryPage extends Component{
       }
 
     getNewReleases() {
-        fetch("/spotify/new-release")
+        fetch("/spotify/today-top")
           .then((response) => {
             if (!response.ok) {
               return {};
@@ -76,15 +76,7 @@ export default class LibraryPage extends Component{
                 </div>
 
                 <div>
-                  <div class="dash-cards-small">
-                    <NewReleases {...this.state.newReleases.song1} />
-                    <NewReleases {...this.state.newReleases.song2} />
-                    <NewReleases {...this.state.newReleases.song3} />
-                    <NewReleases {...this.state.newReleases.song4} />
-                    <NewReleases {...this.state.newReleases.song5} />
-                    <NewReleases {...this.state.newReleases.song6} />
-                    <NewReleases {...this.state.newReleases.song7} />
-                  </div>
+                <Player {...this.state.newReleases.song1} />
                 </div>
                 
                 <footer>

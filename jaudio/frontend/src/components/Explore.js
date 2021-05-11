@@ -15,29 +15,43 @@ import {
 import { useState, useEffect } from "react"
 import useAuth from "./useAuth"
 import LoginPage from "./Login"
-import MusicPlayer from "./MusicPlayer";
 import NewReleases from "./NewReleases"
 import Globaltop from "./Globaltop"
+import TodayTop from "./TopToday"
+import SpotifyPlayer from 'react-spotify-web-playback';
 
 const code = new URLSearchParams(window.location.search).get("code")
 
-  
+function myFunction() {
+  var x = document.getElementsByClassName("footer");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+
+  }
+}
+
+
 export default class ExplorePage extends Component{
     constructor(props){
         super(props);
         this.state = {
             newReleases: {},
             globalTop:{},
+            todaytop:{},
         };
         this.SpotifyCode = this.props.match.params.SpotifyCode;
         this.getNewReleases = this.getNewReleases.bind(this);
         this.getNewReleases();
         this.getGlobalTop = this.getGlobalTop.bind(this);
         this.getGlobalTop();
-    
+        this.getTodayTop = this.getTodayTop.bind(this);
+        this.getTodayTop();
+
 
     }
     
+    
+
     authenticateSpotify() {
         fetch("/spotify/is-authenticated")
           .then((response) => response.json())
@@ -86,9 +100,26 @@ export default class ExplorePage extends Component{
           this.authenticateSpotify();
     }
 
+    getTodayTop() {
+        fetch("/spotify/today-top")
+          .then((response) => {
+            if (!response.ok) {
+              return {};
+            } else {
+              return response.json();
+            }
+          })
+          .then((data) => {
+            this.setState({ todaytop: data });
+            console.log(data);
+          });
+          this.authenticateSpotify();
+    }
 
 
     renderExplorePage(){
+      const songs_uri = this.props.song_uri
+      const access_token = this.props.access_token
         return (
             <div>
             <div class ="header-content">
@@ -96,77 +127,44 @@ export default class ExplorePage extends Component{
                 <h3>Millions of songs and podcasts. No credit card needed.</h3>
             </div>    
             <div class="dash-title">
-                <h2 class="Overview" >Overview</h2>
-                <a class="see-all" href="">See All</a>
+                <h2 class="Overview" >Top hit today</h2>
+                <a class="see-all" href="/top-today">See All</a>
             </div>
 
             <div class="dash-cards-title">
-                <div class="card-title">
-                    <div class="overlayer">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>
-                    </div>
-
-                    <div class="card">
-                        <img src="https://wallpapercave.com/wp/wp1828025.png" alt=""/>
-                        <span class="content">Something</span>
-                    </div>
-                </div>
-
-                <div class="card-title">
-                    <div class="overlayer">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>
-                    </div>
-
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1510216283985-18086caa8de4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt=""/>
-                        <span class="content">Something</span>
-                    </div>  
-                </div>
-
-
-                <div class="card-title">
-                    <div class="overlayer">
-                        <i class="material-icons">play_circle</i>
-                        <i class="material-icons">favorite</i>
-                    </div>
-
-                    <div class="card">
-                        <img src="https://i.pinimg.com/originals/eb/a0/2a/eba02a7b3e4375b32f129c0a04bdd428.jpg" alt=""/>
-                        <span class="content">Something</span>
-                    </div>  
-                </div>
+                <TodayTop {...this.state.todaytop.song1} />
+                <TodayTop {...this.state.todaytop.song2} />
+                <TodayTop {...this.state.todaytop.song3} />
             </div>
 
             <div class="dash-title">
                 <h2 class="New-releases" >New releases</h2>
-                <a class="see-all" href="">See All</a>
+                <a class="see-all" href="/new-release">See All</a>
             </div>
                 
             <div class="dash-cards-small">
-                    <NewReleases {...this.state.newReleases.song1} />
-                    <NewReleases {...this.state.newReleases.song2} />
-                    <NewReleases {...this.state.newReleases.song3} />
-                    <NewReleases {...this.state.newReleases.song4} />
-                    <NewReleases {...this.state.newReleases.song5} />
-                    <NewReleases {...this.state.newReleases.song6} />
-                    <NewReleases {...this.state.newReleases.song7} />
+                <NewReleases {...this.state.newReleases.song1} />
+                <NewReleases {...this.state.newReleases.song2} />
+                <NewReleases {...this.state.newReleases.song3} />
+                <NewReleases {...this.state.newReleases.song4} />
+                <NewReleases {...this.state.newReleases.song5} />
+                <NewReleases {...this.state.newReleases.song6} />
+                <NewReleases {...this.state.newReleases.song7} />
             </div>
 
             <div class="dash-title">
-                <h2 class="trending" >Trending</h2>
-                <a class="see-all" href="">See All</a>
+                <h2 class="trending" >Global top</h2>
+                <a class="see-all" href="/global-top">See All</a>
             </div>
 
             <div class="dash-cards-small">
-                    <Globaltop {...this.state.globalTop.song1} />
-                    <Globaltop {...this.state.globalTop.song2} />
-                    <Globaltop {...this.state.globalTop.song3} />
-                    <Globaltop {...this.state.globalTop.song4} />
-                    <Globaltop {...this.state.globalTop.song5} />
-                    <Globaltop {...this.state.globalTop.song6} />
-                    <Globaltop {...this.state.globalTop.song7} />
+                <Globaltop {...this.state.globalTop.song1} />
+                <Globaltop {...this.state.globalTop.song2} />
+                <Globaltop {...this.state.globalTop.song3} />
+                <Globaltop {...this.state.globalTop.song4} />
+                <Globaltop {...this.state.globalTop.song5} />
+                <Globaltop {...this.state.globalTop.song6} />
+                <Globaltop {...this.state.globalTop.song7} />
             </div>
 
                 <div class="dash-title">
@@ -214,8 +212,25 @@ export default class ExplorePage extends Component{
                         <img src="https://www.dhresource.com/0x0/f2/albu/g7/M01/F8/E4/rBVaSVvkMNeAdPQRAARy8yBI2OU451.jpg/cardi-b-invasion-of-privacy-album-cover-music.jpg" alt=""/>
                     </div>
                 </div>
-                <footer>
-                </footer>
+
+                
+                
+                <div class='footer'>
+                <SpotifyPlayer
+                    token= {access_token}
+                    uris={songs_uri ? [songs_uri] : []}
+                    styles={{
+                      bgColor: '#1f1f1f',
+                      color: '#fff',
+                      sliderColor: '#1cb954',
+                      trackArtistColor: '#b3b3b3',
+                      trackNameColor: '#fff',
+                    }}
+                  />;
+                </div>
+                
+
+                
         </div>
             
         );
