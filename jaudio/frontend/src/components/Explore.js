@@ -22,13 +22,6 @@ import SpotifyPlayer from 'react-spotify-web-playback';
 
 const code = new URLSearchParams(window.location.search).get("code")
 
-function myFunction() {
-  var x = document.getElementsByClassName("footer");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-
-  }
-}
 
 
 export default class ExplorePage extends Component{
@@ -127,8 +120,8 @@ export default class ExplorePage extends Component{
                 <h3>Millions of songs and podcasts. No credit card needed.</h3>
             </div>    
             <div class="dash-title">
-                <h2 class="Overview" >Top hit today</h2>
-                <a class="see-all" href="/top-today">See All</a>
+                <h2 class="Overview" >Today's Top Hit</h2>
+                <a class="see-all" href="/today-top">See All</a>
             </div>
 
             <div class="dash-cards-title">
@@ -138,7 +131,7 @@ export default class ExplorePage extends Component{
             </div>
 
             <div class="dash-title">
-                <h2 class="New-releases" >New releases</h2>
+                <h2 class="New-releases" >New Releases</h2>
                 <a class="see-all" href="/new-release">See All</a>
             </div>
                 
@@ -153,7 +146,7 @@ export default class ExplorePage extends Component{
             </div>
 
             <div class="dash-title">
-                <h2 class="trending" >Global top</h2>
+                <h2 class="trending" >Top Global</h2>
                 <a class="see-all" href="/global-top">See All</a>
             </div>
 
@@ -213,8 +206,8 @@ export default class ExplorePage extends Component{
                     </div>
                 </div>
 
-                
-                
+                <div class='extra'>
+                </div>
                 <div class='footer'>
                 <SpotifyPlayer
                     token= {access_token}
@@ -222,6 +215,8 @@ export default class ExplorePage extends Component{
                     styles={{
                       bgColor: '#1f1f1f',
                       color: '#fff',
+                      height:55,
+                      play: true,
                       sliderColor: '#1cb954',
                       trackArtistColor: '#b3b3b3',
                       trackNameColor: '#fff',

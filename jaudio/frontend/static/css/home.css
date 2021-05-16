@@ -218,7 +218,7 @@ header{
   font-weight: lighter;
 }
 
-.dash-cards-circle, .dash-cards-small,.dash-cards-title, .dash-title, .dash-title1{
+.dash-cards-circle, .dash-cards-small,.dash-cards-title, .dash-title, .dash-title1 {
   margin-left: 3rem;
   margin-right: 3rem;
 }
@@ -383,7 +383,9 @@ div{
 .card-small h5{
   color:#b3b3b3;
   overflow: hidden;
-
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 200px;
 }
 
 .card-single img{
@@ -598,7 +600,141 @@ div{
   border-radius: 3rem;
 }
 
-.footer{
-  display:none;
+.extra{
+  height:80px;
 }
+
+.footer{
+  position:fixed;
+  bottom:0;
+  height:55px;
+  width: 100%;
+}
+
+.list-view{
+  display: flex;
+  justify-content:center;
+  flex-direction:column;
+  align-items:center;
+  width: 100%;
+  height:100%;
+}
+
+.list-title {
+  height:70px;
+  background-color: transparent;
+  display:flex;
+  color: #fff;
+  border-bottom: thin groove  #ffffff46;
+}
+
+.list-title > .number{
+  line-height:70px;
+  text-align:left;
+  width:60px;
+  margin-left:0.7rem;
+}
+
+.list-title > .song{
+  width:600px;
+  line-height: 70px;
+  text-align:left;
+}
+
+.list-title > .album{
+  width:500px;
+  line-height: 70px;
+  text-align:left;
+}
+
+.list-title > .artist{
+  width:400px;
+  line-height: 70px;
+  text-align:left;
+}
+
+.list-title > .time{
+  width:60px;
+  margin-right:0.7rem;
+  line-height:70px;
+  text-align: right;
+}
+
+
+.list-item {
+  height:60px;
+  background-color: transparent;
+  display:flex;
+  border-radius: 0.3rem;
+  color: #fff;
+}
+
+.list-item:hover {
+  background-color: hsla(0,0%,100%,.1);
+}
+
+.list-item > .list-view-number{
+  line-height:60px;
+  text-align:left;
+  width:40px;
+  margin-left:0.7rem;
+}
+
+.list-view-number {
+  visibility:hidden;
+  cursor:pointer;
+}
+
+.list-item:hover  .list-view-number{
+  visibility:visible;
+}
+
+
+.list-view-img{
+  height:60px;
+  width: 60px;
+  display:flex;
+  margin-right: 0.3rem;;
+}
+
+.list-item > .list-view-song{
+  width: 550px;
+  line-height:60px;
+  text-align:left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+}
+.list-item > .list-view-album{
+  width: 500px;
+  line-height:60px;
+  text-align:left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+}
+.list-item > .list-view-artist{
+  width: 400px;
+  line-height:60px;
+  text-align:left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+}
+.list-item > .list-view-duration{
+  width: 60px;
+  line-height:60px;
+  text-align:right;
+  margin-right: 0.7rem;
+}
+
+.list-view-song img {
+  height:50px;
+  width:50px;
+  margin-right:0.5rem;
+}
+
 

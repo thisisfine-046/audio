@@ -17,6 +17,7 @@ urlpatterns = [
     path('explore',index),
     path('global-top',index),
     path('new-release',index),
-    path('top-today',index)
+    path('today-top',index)
+    
 ]
 

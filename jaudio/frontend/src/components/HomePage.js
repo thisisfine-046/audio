@@ -7,6 +7,8 @@ import LibraryPage from "./Library"
 import SearchPage from "./Search"
 import ExplorePage from "./Explore"
 import LoginPage from './Login'
+import GlobalTopAllPage from './GlobalTopAllPage'
+import TopHitAllPage from './TopHitAllPage'
 import { 
     BrowserRouter as Router,
     Switch, 
@@ -85,12 +87,6 @@ export default class HomePage extends Component{
                         exact path="/"
                         component={ExplorePage} 
 
-                        /*
-                        render={() => {
-                            return <SearchPage  code={hello} />;
-                            }}
-                            */
-                        
          
                     />  
                     <Route 
@@ -118,10 +114,13 @@ export default class HomePage extends Component{
                     path="/search" 
                     render={() => {
                         return <SearchPage data={hello}/>;
-                    }}                    />
+                    }}                    
+                    />
                     <Route path="/library" component={LibraryPage} />
-
                     <Route path="/login" component={LoginPage} />
+                    <Route path="/global-top" component={GlobalTopAllPage} />
+                    <Route path="/today-top" component={TopHitAllPage} />
+ 
                 </Switch>
 
             </Router>
