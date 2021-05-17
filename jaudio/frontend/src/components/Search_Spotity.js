@@ -38,7 +38,6 @@ export default function Search_Spotity({datato}) {
         };
         fetchUsers();
     }, []);
-    console.log(data);
 
 
     const accessToken = data.access_token
@@ -85,6 +84,8 @@ export default function Search_Spotity({datato}) {
         return () => (cancel = true)
 
     }, [search, accessToken])
+
+    
     return (
         <div>
                 <div class ="header-content">
