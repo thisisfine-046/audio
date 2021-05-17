@@ -317,6 +317,14 @@ div{
   margin-bottom: 40px;
 }
 
+.dash-cards-show{
+  display: grid;
+  grid-template-columns: repeat(5,1fr) ;
+  grid-gap: 1rem;
+  margin-bottom: 60%;
+  margin-top: 5%;
+}
+
 .dash-cards-circle{
   display: grid;
   grid-template-columns: repeat(5,1fr) ;

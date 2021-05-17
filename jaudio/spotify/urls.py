@@ -13,5 +13,5 @@ urlpatterns = [
     path('global-top', GlobalTop.as_view()),
     path('today-top', TopToday.as_view()),
     path('get-access_token', getAccessToken.as_view()),
-    path('get-recommend', Recommend_TFIDF.as_view()),
+    # path('get-recommend', Recommend_TFIDF.as_view()),
 ]
