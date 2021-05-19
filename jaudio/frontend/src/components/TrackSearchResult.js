@@ -6,7 +6,7 @@ export default function TrackSearchResult({track, chooseTrack}) {
         chooseTrack(track)
     }
     return (
-        
+
     <div class="card-single" >
         <div class="overlayer-single" >
             <i class="material-icons" onClick={handlePlay}>play_circle</i>
@@ -18,11 +18,7 @@ export default function TrackSearchResult({track, chooseTrack}) {
             <h5>{track.artist}</h5>
         </div>   
                   
-    </div>
-            
-
-
-        
+    </div> 
     )    
     
 }

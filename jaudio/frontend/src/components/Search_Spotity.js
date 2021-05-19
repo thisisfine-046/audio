@@ -4,7 +4,7 @@ import SpotifyWebApi from "spotify-web-api-node";
 import SpotifyPlayer from 'react-spotify-web-playback';
 import TrackSearchResult from './TrackSearchResult';
 import Streaming from './Streaming';
-
+import Search_Afterthat from './Search_after'
 import { 
     Button, 
     Grid, 
@@ -12,7 +12,7 @@ import {
     TextField, 
 } from '@material-ui/core';
 
-
+import xTitle from './xTitle'
 
 
 
@@ -47,13 +47,21 @@ export default function Search_Spotity({datato}) {
 
     const [search, setSearch] = useState("")
     const [searchResults, setSearchResults] = useState([])
+    const [looking, setLooking] = useState("")
+
+    
     const [playingTrack, setPlayingTrack] = useState()
 
+    useEffect(() => {
+        if(!searchResults) return
 
+        setLooking(
+            "Your looking for ..."
+        )
+    }, [playingTrack])
 
     function chooseTrack(track) {
         setPlayingTrack(track)
-        setSearch("")
     }
 
     useEffect(() => {
@@ -61,6 +69,64 @@ export default function Search_Spotity({datato}) {
         spotifyApi.setAccessToken(accessToken)
     },[accessToken])
 
+
+    const [recommend, setRecommend] = useState([])
+
+    // get recommendation
+    useEffect(() => {
+        if(!playingTrack) return
+
+        spotifyApi.getRecommendations({
+            seed_artists: [playingTrack.artistID, playingTrack.trackID],
+            min_popularity: 50
+        })
+        .then(res => {
+            setRecommend(
+                res.body.tracks.map(track =>{
+                    return {
+                        artist : track.artists[0].name,
+                        artistID : track.artists[0].id,
+                        artistURI: track.artists[0].uri,
+                        title : track.name,
+                        uri: track.uri,
+                        trackID: track.id,
+                        albumUrl: track.album.images[0].url,
+                    }
+                })
+            )
+        })
+
+    }, [playingTrack, accessToken])
+
+
+    const [moreof , setMoreof] = useState([])
+    // get more of this artist
+    useEffect(() => {
+        if(!playingTrack) return
+
+        spotifyApi.getArtistTopTracks(playingTrack.artistID, 'US')
+        .then(res => {
+            console.log(res.body)
+            setMoreof(
+                res.body.tracks.map(track =>{
+                    return {
+                        artist : track.artists[0].name,
+                        artistID : track.artists[0].id,
+                        artistURI: track.artists[0].uri,
+                        title : track.name,
+                        uri: track.uri,
+                        trackID: track.id,
+                        albumUrl: track.album.images[0].url,
+                    }
+                })
+            )
+        })
+
+    }, [playingTrack, accessToken])
+
+  
+
+    // get search
     useEffect(() => {
 
 
@@ -73,10 +139,14 @@ export default function Search_Spotity({datato}) {
             if (cancel) return
             setSearchResults(
                 res.body.tracks.items.map(track => {
+                    
                     return {
                         artist : track.artists[0].name,
+                        artistID : track.artists[0].id,
+                        artistURI: track.artists[0].uri,
                         title : track.name,
                         uri: track.uri,
+                        trackID: track.id,
                         albumUrl: track.album.images[0].url,
                     }
                 })
@@ -86,8 +156,12 @@ export default function Search_Spotity({datato}) {
 
     }, [search, accessToken])
 
+
+
     
+
     return (
+        
         <div>
                 <div class ="header-content">
                         <h5>Search For things</h5>
@@ -98,16 +172,57 @@ export default function Search_Spotity({datato}) {
                     <input type="search" placeholder="What you're looking for" value={search}
                             onChange={e => setSearch(e.target.value)}/>
                 </div>
+                <div>
+                    <div class="dash-title">
+                    </div>
+                    <div class="dash-cards-small">
+                            {searchResults.map(track => (
+                                <TrackSearchResult 
+                                    track = {track} 
+                                    key ={track.uri}
+                                    chooseTrack={chooseTrack}
+                                />
+                            ))}
+                    </div> 
 
-                <div class="dash-cards-small">
-                        {searchResults.map(track => (
-                            <TrackSearchResult 
+
+                </div>
+
+                <div>
+                    <div class="dash-title">
+                            {playingTrack ? "Simmilar to " + playingTrack.title : ""}
+                    
+                    </div>
+                    <div class="dash-cards-small">                          
+                            {recommend.map(track => (
+                            <Search_Afterthat 
                                 track = {track} 
                                 key ={track.uri}
                                 chooseTrack={chooseTrack}
                             />
                         ))}
-                </div> 
+                    </div>
+
+                </div>
+
+                
+                <div>
+                    <div class="dash-title">
+                    {playingTrack ? "More of " + playingTrack.artist : ""}
+                    </div>
+                    <div class="dash-cards-small">                          
+                            {moreof.map(track => (
+                            <Search_Afterthat 
+                                track = {track} 
+                                key ={track.uri}
+                                chooseTrack={chooseTrack}
+                            />
+                        ))}
+                    </div>
+
+                </div>
+
+
                 <div class="extra">
                     </div>
                 <div class='progress'>
