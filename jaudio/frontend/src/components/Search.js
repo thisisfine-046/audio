@@ -73,17 +73,7 @@ export default class SearchPage extends Component{
         return this.renderSearchPagePage();
     }
 }
-/*
-export default function SearchPage({code}) {
 
-    return (
-        <div class="container" id="container"> 
-            <h1>hello</h1>
-            {code}
-        </div>
-    )
-}
-*/
 
 
 

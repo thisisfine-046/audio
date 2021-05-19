@@ -9,6 +9,10 @@ import ExplorePage from "./Explore"
 import LoginPage from './Login'
 import GlobalTopAllPage from './GlobalTopAllPage'
 import TopHitAllPage from './TopHitAllPage'
+
+
+
+
 import { 
     BrowserRouter as Router,
     Switch, 
@@ -25,6 +29,9 @@ import {
     Typography
 } from '@material-ui/core';
 
+import Explorev2 from "./Explorev2"
+import Search_Spotity from "./Search_Spotity"
+import Libraryv2 from "./Libraryv2"
 
 export default class HomePage extends Component{
     constructor(props){
@@ -85,7 +92,7 @@ export default class HomePage extends Component{
                 <Switch>
                     <Route 
                         exact path="/"
-                        component={ExplorePage} 
+                        component={Explorev2} 
 
          
                     />  
@@ -109,14 +116,14 @@ export default class HomePage extends Component{
                         }}
                     />
 
-                    <Route path="/explore" component={ExplorePage} />
+                    <Route path="/explore" component={Explorev2} />
                     <Route 
                     path="/search" 
                     render={() => {
-                        return <SearchPage data={hello}/>;
+                        return <Search_Spotity data={hello}/>;
                     }}                    
                     />
-                    <Route path="/library" component={LibraryPage} />
+                    <Route path="/library" component={Libraryv2} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/global-top" component={GlobalTopAllPage} />
                     <Route path="/today-top" component={TopHitAllPage} />
