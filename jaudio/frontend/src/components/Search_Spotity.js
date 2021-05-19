@@ -110,7 +110,7 @@ export default function Search_Spotity({datato}) {
                 </div> 
                 <div class="extra">
                     </div>
-                <div class='footer'>
+                <div class='progress'>
                     <Streaming  
                         accessToken = {accessToken}
                         trackUri = {playingTrack?.uri}

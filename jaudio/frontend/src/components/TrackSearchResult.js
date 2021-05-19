@@ -15,7 +15,7 @@ export default function TrackSearchResult({track, chooseTrack}) {
         <div className="card-small">
             <img src={track.albumUrl}  alt="" />
             <span class="content" >{track.title}</span>
-            <h5>{track.artists}</h5>
+            <h5>{track.artist}</h5>
         </div>   
                   
     </div>
