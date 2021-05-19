@@ -7,15 +7,14 @@ export default function MyPlaylist({item, choosePlaylist }) {
     }
 
     return (
-        <div 
-            class="card-title"
-            onClick={handlePlay}
-        >
-            <img src={item.playlistPic} style={{ height: "240px", width: "240px" }} />
-            <div className="ml-3">
-                <div>{item.playlistName}</div>
+        <div class="card-single" onClick={handlePlay}>
+            <div class="overlayer-playlist" >
+
             </div>
-                      
+            <div className="card-small">
+                <img src={item.playlistPic}  alt="" />
+                <span class="content" >{item.playlistName}</span>
+            </div>    
         </div>
     );
 }

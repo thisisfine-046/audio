@@ -64,9 +64,9 @@ export default class LoginPage extends Component{
                         <h1>Create Account</h1>
                         <span>Sign up with your email address</span>
                         <div class="social-container">
-                            <button href="https://www.spotify.com/us/signup/" class="spotify"><i class="fab fa-spotify"></i></button>
-                            <button href="https://soundcloud.com/signin" class="soundcloud"><i class="fab fa-soundcloud"></i></button>
-                            <button href="https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp" class="youtube"><i class="fab fa-youtube"></i></button>
+                            <a href="https://www.spotify.com/us/signup/" class="spotify"><button class="fab fa-spotify"></button></a>
+                            <a href="https://soundcloud.com/signin" class="soundcloud"><button class="fab fa-soundcloud"></button></a>
+                            <a href="https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp" class="youtube"><button class="fab fa-youtube"></button></a>
                         </div>
                         <span>We may use your email and devices for updates and tips on SoundCloud's, Spotify's and YouTube's products and services, and for activities notifications. You can unsubscribe for free at any time in your notification settings.</span>
                     </form>

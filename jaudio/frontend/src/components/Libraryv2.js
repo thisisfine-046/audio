@@ -82,19 +82,19 @@ export default function Libraryv2() {
     return (
         <div>
             <div class ="header-content">
-            <h5>Your Library</h5>
-        </div>
+                <h5>Your Library</h5>
+            </div>
             <div class="dash-title">
-                <h2 class="New-releases" >Library</h2>
+                <h2 >Library</h2>
             </div>
             <div class="dash-cards-small">
-                    {myPlaylist.map(item => (
-                        <MyPlaylist 
-                            item = {item}
-                            key = {item.id}
-                            choosePlaylist = {choosePlaylist}
-                        />
-                    ))}
+                {myPlaylist.map(item => (
+                    <MyPlaylist 
+                        item = {item}
+                        key = {item.id}
+                        choosePlaylist = {choosePlaylist}
+                    />
+                ))}
             </div>
         </div>
     )
