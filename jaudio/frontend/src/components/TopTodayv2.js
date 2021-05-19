@@ -7,7 +7,7 @@ export default function TopTodayv2({track, chooseTrack }) {
     }
 
     return (
-        <div class="card-title" >
+        <div class="card-title" onClick={handlePlay}>
             <div class="overlayer">
                 <i class="material-icons" onClick={handlePlay}>play_circle</i>
                 <i class="material-icons">favorite</i>

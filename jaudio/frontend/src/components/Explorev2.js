@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
-
 import axios from "axios";
 import SpotifyWebApi from "spotify-web-api-node";
-import SpotifyPlayer from 'react-spotify-web-playback';
 import TopTodayv2 from "./TopTodayv2"
 import Streaming from './Streaming';
 import Globaltopv2 from "./Globaltopv2"
@@ -336,12 +334,9 @@ export default function Explorev2() {
         <div class='progress'>
             <Streaming  
                 accessToken = {accessToken}
-                    trackUri = {playingTrack?.uri}  
+                trackUri = {playingTrack?.uri}  
             />
         </div>
-            
-
-            
     </div>
         
     );
