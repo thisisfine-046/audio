@@ -12,9 +12,10 @@ export default function MyPlaylist({item, choosePlaylist }) {
 
             </div>
             <div className="card-small">
-                <img src={item.playlistPic}  alt="" />
-                <span class="content" >{item.playlistName}</span>
-            </div>    
+                <img src={item.playlistPic} alt="" />
+                <span class="content" >{item.title}</span>
+
+            </div>          
         </div>
     );
 }

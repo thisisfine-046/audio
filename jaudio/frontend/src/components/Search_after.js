@@ -9,7 +9,7 @@ export default function Search_Afterthat({track, chooseTrack}) {
     <div>
         
     
-        <div class="card-single" >
+        <div class="card-single" onClick={handlePlay}>
             <div class="overlayer-single" >
                 <i class="material-icons" onClick={handlePlay}>play_circle</i>
                 <i class="material-icons">favorite</i>

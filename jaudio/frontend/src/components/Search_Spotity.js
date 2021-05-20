@@ -12,11 +12,6 @@ import {
     TextField, 
 } from '@material-ui/core';
 
-import xTitle from './xTitle'
-
-
-
-
 
 const spotifyApi = new SpotifyWebApi({
     clientId: "c83a7a91bb4743aaaaae481d65b7debd",
@@ -78,6 +73,7 @@ export default function Search_Spotity({datato}) {
 
         spotifyApi.getRecommendations({
             seed_artists: [playingTrack.artistID, playingTrack.trackID],
+            limit:21,
             min_popularity: 50
         })
         .then(res => {
@@ -128,8 +124,6 @@ export default function Search_Spotity({datato}) {
 
     // get search
     useEffect(() => {
-
-
         if(!search) return setSearchResults([])
         if(!accessToken) return 
 
@@ -156,9 +150,6 @@ export default function Search_Spotity({datato}) {
 
     }, [search, accessToken])
 
-
-
-    
 
     return (
         
