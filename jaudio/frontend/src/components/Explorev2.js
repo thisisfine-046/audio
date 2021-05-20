@@ -85,7 +85,7 @@ export default function Explorev2() {
             setTopTodayAll(
                 res.body.tracks.items.map(item =>{
                     return {
-                        artists : item.track.artists.map(x=>x.name+"ft "),
+                        artists : item.track.artists.map(x=>x.name+" "),
                         title : item.track.name,
                         uri: item.track.uri,
                         albumUrl: item.track.album.images[0].url,

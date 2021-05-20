@@ -17,7 +17,9 @@ export default function Streaming({ accessToken, trackUri }) {
                 if (!state.isPlaying) setPlay(false)
             }}
             play = {play}
+            magnifySliderOnHover={true}
             uris={trackUri ? [trackUri] : []}
+            volume={0}
             styles={{
                 bgColor: '#1f1f1f',
                 color: '#fff',

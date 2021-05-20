@@ -60,7 +60,7 @@ export default function Libraryv2() {
         if(!accessToken) return 
         spotifyApi.getUserPlaylists({ItMe})
         .then(res => {
-            // console.log(res.body.items)
+            console.log(res)
             setmyPlaylist(
                 res.body.items.map(item =>{
                     return{
@@ -68,6 +68,7 @@ export default function Libraryv2() {
                         playlistPic: item.images[0].url,
                         playlistID: item.id,
                         uri: item.uri,
+                        total_tracks:item.tracks.total
                     }
         
                 })
@@ -127,20 +128,25 @@ export default function Libraryv2() {
                     ))}
             </div>
             <div>
-                    <div class="dash-title">
+                <div class="dash-title">
                     <h2> {playingTrack ?  playingTrack.title   : ""}</h2>
-                    </div>
-                    <div class="dash-cards-small">                          
-                            {showplaylist.map(track => (
-                            <Globaltopv2 
-                                track = {track} 
-                                key ={track.uri}
-                                chooseTrack={choosePlaylist}
-                            />
-                        ))}
-                    </div>
-
                 </div>
+                <div class="dash-cards-small">                          
+                    {showplaylist.map(track => (
+                        <Globaltopv2 
+                            track = {track} 
+                            key ={track.uri}
+                            chooseTrack={choosePlaylist}
+                        />
+                    ))}
+                </div>
+
+            </div>
+
+            <div class="extra">
+
+            </div>
+
             <div class='progress'>
                 <Streaming  
                     accessToken = {accessToken}

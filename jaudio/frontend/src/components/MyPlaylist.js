@@ -14,7 +14,7 @@ export default function MyPlaylist({item, choosePlaylist }) {
             <div className="card-small">
                 <img src={item.playlistPic} alt="" />
                 <span class="content" >{item.title}</span>
-
+                <h5  >{item.total_tracks} Tracks</h5>
             </div>          
         </div>
     );

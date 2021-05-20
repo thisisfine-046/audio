@@ -80,7 +80,7 @@ export default function Search_Spotity({datato}) {
             setRecommend(
                 res.body.tracks.map(track =>{
                     return {
-                        artist : track.artists[0].name,
+                        artist : track.artists.map(x=>x.name+" "),
                         artistID : track.artists[0].id,
                         artistURI: track.artists[0].uri,
                         title : track.name,
@@ -106,7 +106,7 @@ export default function Search_Spotity({datato}) {
             setMoreof(
                 res.body.tracks.map(track =>{
                     return {
-                        artist : track.artists[0].name,
+                        artist : track.artists.map(x=>x.name+" "),
                         artistID : track.artists[0].id,
                         artistURI: track.artists[0].uri,
                         title : track.name,
@@ -135,7 +135,7 @@ export default function Search_Spotity({datato}) {
                 res.body.tracks.items.map(track => {
                     
                     return {
-                        artist : track.artists[0].name,
+                        artist : track.artists.map(x=>x.name+" "),
                         artistID : track.artists[0].id,
                         artistURI: track.artists[0].uri,
                         title : track.name,
@@ -181,7 +181,7 @@ export default function Search_Spotity({datato}) {
 
                 <div>
                     <div class="dash-title">
-                            {playingTrack ? "Simmilar to " + playingTrack.title : ""}
+                        <h2> {playingTrack ? "Simmilar to " + playingTrack.title : ""}</h2>
                     
                     </div>
                     <div class="dash-cards-small">                          
@@ -199,7 +199,7 @@ export default function Search_Spotity({datato}) {
                 
                 <div>
                     <div class="dash-title">
-                    {playingTrack ? "More of " + playingTrack.artist : ""}
+                        <h2>{playingTrack ? "More of " + playingTrack.artist : ""}</h2>
                     </div>
                     <div class="dash-cards-small">                          
                             {moreof.map(track => (
