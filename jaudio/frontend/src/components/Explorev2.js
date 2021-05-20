@@ -213,6 +213,30 @@ export default function Explorev2() {
         })
     },[accessToken])
 
+    //get my top
+    const [myTrack, setnmyTrack] = useState([])
+    useEffect(() => {
+        if(!accessToken) return 
+        spotifyApi.getMyTopTracks({
+            limit : 7
+        })
+        
+        .then(res => {
+            setnmyTrack(
+                res.body.items.map(item =>{
+                    return{
+                        artists : item.artists[0].name , 
+                        title : item.name,
+                        uri: item.uri,
+                        albumUrl: item.album.images[0].url,
+                    }
+                })
+           
+            )
+        })
+    },[accessToken])
+
+
     //get artists
     const [newArtists, setnewArtists] = useState([])
     useEffect(() => {
@@ -222,7 +246,6 @@ export default function Explorev2() {
         })
         
         .then(res => {
-            console.log(res)
             setnewArtists(
                 res.body.items.map(item =>{
                     return{
@@ -260,7 +283,7 @@ export default function Explorev2() {
         </div>
 
         <div class="dash-title">
-            <h2  >Your recently played</h2>
+            <h2  >Recently Played</h2>
             <a class="see-all" >See All</a>
         </div>
             
@@ -316,7 +339,20 @@ export default function Explorev2() {
         </div>
 
         <div class="dash-title">
-            <h2>User's Top Artists</h2>
+            <h2 > My Styles</h2>
+            <a class="see-all" >See All</a>
+        </div>
+        <div class="dash-cards-small">
+        {myTrack.map(item => (
+                    <Globaltopv2 
+                        track = {item}
+                        key ={item.uri}
+                        chooseTrack={chooseTrack}
+                    />
+            ))}
+        </div>
+        <div class="dash-title">
+            <h2>Top Artists</h2>
             <a class="see-all" >See All</a>
         </div>
         <div class="dash-cards-circle">
