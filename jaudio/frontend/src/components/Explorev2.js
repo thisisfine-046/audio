@@ -7,11 +7,13 @@ import Globaltopv2 from "./Globaltopv2"
 import RecentPlay from "./RecentPlay"
 import NewReleasesv2 from "./NewReleasesv2"
 import UserArtist from "./UserArtist"
+import FeaturePlaylist from "./FeaturePlaylist"
 import { 
     Button, 
     Grid, 
     Typography, 
-    TextField, 
+    TextField,
+    decomposeColor, 
 } from '@material-ui/core';
 
 // window.onload=function(){
@@ -228,6 +230,7 @@ export default function Explorev2() {
                         artists : item.artists[0].name , 
                         title : item.name,
                         uri: item.uri,
+                        id: item.id,
                         albumUrl: item.album.images[0].url,
                     }
                 })
@@ -235,6 +238,8 @@ export default function Explorev2() {
             )
         })
     },[accessToken])
+
+ 
 
 
     //get artists
@@ -252,11 +257,88 @@ export default function Explorev2() {
                         artists : item.name, 
                         uri: item.uri,
                         albumUrl: item.images[0].url,
+                        id : item.id,
                     }
                 })
            
             )
         })
+    },[accessToken])
+
+
+    //get saved tracks    
+    const [saveTracks, setSaveTrack] = useState([])
+    useEffect(() => {
+        if(!accessToken) return 
+        spotifyApi.getMySavedTracks({
+            limit : 7,
+            offset: 1
+        })
+        .then(res => {
+            setSaveTrack(
+                res.body.items.map(item => {
+                    return{
+                        artists : item.track.artists[0].name,
+                        artistsURI : item.track.artists[0].uri,
+                        artistsID : item.track.artists[0].id,
+                        uri : item.track.uri,
+                        title : item.track.name,
+                        albumUrl: item.track.album.images[0].url,
+                    }
+                })
+            )
+        })
+        
+    },[accessToken])
+
+    //back in time   
+    const [backintime, setBackintime] = useState([])
+    useEffect(() => {
+        if(!accessToken) return 
+        spotifyApi.getMySavedTracks({
+            limit : 7,
+            offset: 20
+        })
+        .then(res => {
+            setBackintime(
+                res.body.items.sort((a,b) => a.added_at < b.added_at).map(item => {
+                    return{
+                        addAt : item.added_at,
+                        artists : item.track.artists[0].name,
+                        artistsURI : item.track.artists[0].uri,
+                        artistsID : item.track.artists[0].id,
+                        uri : item.track.uri,
+                        title : item.track.name,
+                        albumUrl: item.track.album.images[0].url,
+                    }
+                })
+            )
+        })
+        
+    },[accessToken])
+
+
+    //get saved tracks    
+    const [TryToday, setTryToday] = useState([])
+    useEffect(() => {
+        if(!accessToken) return 
+        spotifyApi.getFeaturedPlaylists({ 
+            limit : 7
+            , offset: 1, country: 'US' })
+        .then(res => {
+            setTryToday(
+                res.body.playlists.items.map(item => {
+                    return{
+                        playlist : item.owner.display_name,
+                        
+                        uri : item.uri,
+                        title : item.name,
+                        albumUrl: item.images[0].url,
+                    }
+                })
+            )
+        })
+        
     },[accessToken])
 
 
@@ -268,7 +350,7 @@ export default function Explorev2() {
         </div>    
         <div class="dash-title">
             <h2 class="Overview" >Today's Top Hit</h2>
-            <a class="see-all" href="/today-top">See All</a>
+            <a class="see-all" href="/today-top">See More</a>
         </div>
 
         <div class="dash-cards-title">
@@ -282,9 +364,46 @@ export default function Explorev2() {
             ))}
         </div>
 
+
+        <div class="dash-title">
+            <h2  >Jump Back In</h2>
+            <a class="see-all" >See More</a>
+        </div>
+            
+        <div class="dash-cards-small">
+            {saveTracks.map(item =>(
+                <Globaltopv2
+                    track = {item}
+                    key ={item.uri}
+                    chooseTrack={chooseTrack}
+                />
+            ))}
+        </div>
+
+
+
+        <div class="dash-title">
+            <h2 class="New-releases" >New Releases</h2>
+            <a class="see-all" href="/new-release">See More</a>
+        </div>
+            
+        <div class="dash-cards-small">
+                
+
+            {newReleases.map(item =>(
+                <NewReleasesv2
+                    track = {item}
+                    key ={item.uri}
+                    chooseTrack={chooseTrack}
+                />
+            ))}
+
+        </div>
+
+
         <div class="dash-title">
             <h2  >Recently Played</h2>
-            <a class="see-all" >See All</a>
+            <a class="see-all" >See More</a>
         </div>
             
         <div class="dash-cards-small">
@@ -298,26 +417,8 @@ export default function Explorev2() {
         </div>
 
         <div class="dash-title">
-            <h2 class="New-releases" >New Releases</h2>
-            <a class="see-all" href="/new-release">See All</a>
-        </div>
-            
-        <div class="dash-cards-small">
-                
-
-            {newReleases.map(item =>(
-                            <NewReleasesv2
-                    track = {item}
-                    key ={item.uri}
-                    chooseTrack={chooseTrack}
-                />
-            ))}
-
-        </div>
-
-        <div class="dash-title">
             <h2 class="trending" >Top Global</h2>
-            <a class="see-all" href="/global-top">See All</a>
+            <a class="see-all" href="/global-top">See More</a>
         </div>
 
         <div class="dash-cards-small">
@@ -330,20 +431,14 @@ export default function Explorev2() {
             ))}
         </div>
 
-        <div class="dash-title">
-            <h2  >Recommendation</h2>
-            <a class="see-all" >See All</a>
-        </div>
-        <div class="dash-cards-small">
 
-        </div>
 
         <div class="dash-title">
             <h2 > My Styles</h2>
-            <a class="see-all" >See All</a>
+            <a class="see-all" >See More</a>
         </div>
         <div class="dash-cards-small">
-        {myTrack.map(item => (
+            {myTrack.map(item => (
                     <Globaltopv2 
                         track = {item}
                         key ={item.uri}
@@ -351,6 +446,38 @@ export default function Explorev2() {
                     />
             ))}
         </div>
+
+
+        <div class="dash-title">
+            <h2 > For Today</h2>
+            <a class="see-all" >See More</a>
+        </div>
+        <div class="dash-cards-small">
+            {TryToday.map(item => (
+                    <FeaturePlaylist 
+                        track = {item}
+                        key ={item.uri}
+                        chooseTrack={chooseTrack}
+                    />
+            ))}
+        </div>
+
+        <div class="dash-title">
+            <h2  >My Time Capture</h2>
+            <a class="see-all" >See More</a>
+        </div>
+            
+        <div class="dash-cards-small">
+            {backintime.map(item =>(
+                <Globaltopv2
+                    track = {item}
+                    key ={item.uri}
+                    chooseTrack={chooseTrack}
+                />
+            ))}
+        </div>
+
+
         <div class="dash-title">
             <h2>Top Artists</h2>
             <a class="see-all" >See All</a>
