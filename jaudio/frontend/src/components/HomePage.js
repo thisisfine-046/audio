@@ -9,9 +9,10 @@ import ExplorePage from "./Explore"
 import LoginPage from './Login'
 import GlobalTopAllPage from './GlobalTopAllPage'
 import TopHitAllPage from './TopHitAllPage'
-
-
-
+import NewReleaseAllPage from './NewReleaseAllPage'
+import RecentPlayAllPage from './RecentPlayAllPage'
+import UserTopArtistAllPage from './UserTopArtistAllPage'
+import UserTopTrackAllPage from './UserTopTrackAllPage'
 
 import { 
     BrowserRouter as Router,
@@ -32,6 +33,7 @@ import {
 import Explorev2 from "./Explorev2"
 import Search_Spotity from "./Search_Spotity"
 import Libraryv2 from "./Libraryv2"
+import NewReleasesv2 from './NewReleasesv2';
 
 export default class HomePage extends Component{
     constructor(props){
@@ -127,7 +129,10 @@ export default class HomePage extends Component{
                     <Route path="/login" component={LoginPage} />
                     <Route path="/global-top" component={GlobalTopAllPage} />
                     <Route path="/today-top" component={TopHitAllPage} />
- 
+                    <Route path="/new-release" component={NewReleaseAllPage} />
+                    <Route path="/recent-play" component={RecentPlayAllPage} />
+                    <Route path="/user-top-track" component={UserTopTrackAllPage} />
+                    <Route path="/user-top-artist" component={UserTopArtistAllPage} />
                 </Switch>
 
             </Router>

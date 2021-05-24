@@ -8,7 +8,7 @@ const spotifyApi = new SpotifyWebApi({
 })
 
 
-export default function TopHitAllPage() {
+export default function UserTopTrackAllPage() {
     const USER_SERVICE_URL = 'http://127.0.0.1:8000/spotify/get-access_token';
 
     const [data, setData] = useState({});
@@ -29,7 +29,6 @@ export default function TopHitAllPage() {
 
     const accessToken = data.access_token
     const [playingTrack, setPlayingTrack] = useState()
-    const [TopToday, setTopToday] = useState([])
 
     function chooseTrack(track) {
       setPlayingTrack(track)
@@ -41,45 +40,45 @@ export default function TopHitAllPage() {
     },[accessToken])
     
 
+    const [myTrack, setnmyTrack] = useState([])
     useEffect(() => {
-      if(!accessToken) return 
-      spotifyApi.getPlaylistTracks(
-          '37i9dQZF1DXcBWIGoYBM5M' , {
-             
-            })
-      .then(res => {
-          setTopToday(
-              res.body.items.map(item =>{
-                  return {
-                      artists : item.track.artists.map(x=>x.name+" "),
-                      title : item.track.name,
-                      uri: item.track.uri,
-                      albumUrl: item.track.album.images[0].url,
-                  }
-              })
-          )
-      })
-  },[accessToken])
+        if(!accessToken) return 
+        spotifyApi.getMyTopTracks({
+        })
+        
+        .then(res => {
+            setnmyTrack(
+                res.body.items.map(item =>{
+                    return{
+                        artists : item.artists[0].name , 
+                        title : item.name,
+                        uri: item.uri,
+                        albumUrl: item.album.images[0].url,
+                    }
+                })
+           
+            )
+        })
+    },[accessToken])
     
     
 
     return (
         <div>
             <div class ="header-content">
-                <h5>TODAY'S TOP HIT</h5>
+                <h5>YOUR TOP TRACK</h5>
             </div>
             <div class="dash-title">
             </div>
             <div class="dash-cards-small">
-              {TopToday.map(item => (
-                  <Globaltopv2 
-                      track = {item}
-                      key ={item.uri}
-                      chooseTrack={chooseTrack}
-                  />
-              ))}
+                {myTrack.map(item => (
+                        <Globaltopv2 
+                            track = {item}
+                            key ={item.uri}
+                            chooseTrack={chooseTrack}
+                        />
+                ))}
             </div>
-            
 
             <div class="extra">
 

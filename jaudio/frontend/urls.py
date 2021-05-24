@@ -17,7 +17,9 @@ urlpatterns = [
     path('explore',index),
     path('global-top',index),
     path('new-release',index),
-    path('today-top',index)
-    
+    path('today-top',index),
+    path('recent-play',index),
+    path('user-top-artist',index),
+    path('user-top-track',index)
 ]
 

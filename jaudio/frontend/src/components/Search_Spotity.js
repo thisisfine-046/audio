@@ -151,6 +151,7 @@ export default function Search_Spotity({datato}) {
     }, [search, accessToken])
 
 
+
     return (
         
         <div>
@@ -165,6 +166,8 @@ export default function Search_Spotity({datato}) {
                 </div>
                 <div>
                     <div class="dash-title">
+                        <h2> {search ? "Your Result: " + search :" "}</h2>
+                    
                     </div>
                     <div class="dash-cards-small">
                             {searchResults.map(track => (

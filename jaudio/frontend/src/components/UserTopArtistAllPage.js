@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import SpotifyWebApi from "spotify-web-api-node";
 import Streaming from './Streaming';
-import Globaltopv2 from "./Globaltopv2"
+import UserArtist from './UserArtist'
 const spotifyApi = new SpotifyWebApi({
     clientId: "c83a7a91bb4743aaaaae481d65b7debd",
 })
 
 
-export default function TopHitAllPage() {
+export default function UserTopArtistAllPage() {
     const USER_SERVICE_URL = 'http://127.0.0.1:8000/spotify/get-access_token';
 
     const [data, setData] = useState({});
@@ -29,7 +29,6 @@ export default function TopHitAllPage() {
 
     const accessToken = data.access_token
     const [playingTrack, setPlayingTrack] = useState()
-    const [TopToday, setTopToday] = useState([])
 
     function chooseTrack(track) {
       setPlayingTrack(track)
@@ -41,45 +40,44 @@ export default function TopHitAllPage() {
     },[accessToken])
     
 
+    const [newArtists, setnewArtists] = useState([])
     useEffect(() => {
-      if(!accessToken) return 
-      spotifyApi.getPlaylistTracks(
-          '37i9dQZF1DXcBWIGoYBM5M' , {
-             
-            })
-      .then(res => {
-          setTopToday(
-              res.body.items.map(item =>{
-                  return {
-                      artists : item.track.artists.map(x=>x.name+" "),
-                      title : item.track.name,
-                      uri: item.track.uri,
-                      albumUrl: item.track.album.images[0].url,
-                  }
-              })
-          )
-      })
-  },[accessToken])
+        if(!accessToken) return 
+        spotifyApi.getMyTopArtists({
+        })
+        
+        .then(res => {
+            setnewArtists(
+                res.body.items.map(item =>{
+                    return{
+                        artists : item.name, 
+                        uri: item.uri,
+                        albumUrl: item.images[0].url,
+                    }
+                })
+           
+            )
+        })
+    },[accessToken])
     
     
 
     return (
         <div>
             <div class ="header-content">
-                <h5>TODAY'S TOP HIT</h5>
+                <h5>YOUR TOP ARTIST</h5>
             </div>
             <div class="dash-title">
             </div>
-            <div class="dash-cards-small">
-              {TopToday.map(item => (
-                  <Globaltopv2 
-                      track = {item}
-                      key ={item.uri}
-                      chooseTrack={chooseTrack}
-                  />
-              ))}
+            <div class="dash-cards-circle">
+                {newArtists.map(item => (
+                        <UserArtist 
+                            track = {item}
+                            key ={item.uri}
+                            chooseTrack={chooseTrack}
+                        />
+                ))}
             </div>
-            
 
             <div class="extra">
 

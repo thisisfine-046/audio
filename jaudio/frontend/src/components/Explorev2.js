@@ -64,7 +64,6 @@ export default function Explorev2() {
 
     const accessToken = data.access_token
     const [TopToday, setTopToday] = useState([])
-    const [TopTodayAll, setTopTodayAll] = useState([])
     const [playingTrack, setPlayingTrack] = useState()
 
     function chooseTrack(track) {
@@ -101,7 +100,7 @@ export default function Explorev2() {
         spotifyApi.getPlaylistTracks(
             '37i9dQZF1DXcBWIGoYBM5M' , {
                 offset: 1,
-                limit: 3,
+                limit: 4,
                 fields: 'items'
               })
         .then(res => {
@@ -122,7 +121,6 @@ export default function Explorev2() {
 
     // get GlobalTop
     const [GlobalTop, setGlobalTop] = useState([])
-    const [GlobalTopAll, setGlobalTopAll] = useState([])
     useEffect(() => {
         if(!accessToken) return 
         spotifyApi.getPlaylist(
@@ -284,7 +282,7 @@ export default function Explorev2() {
 
         <div class="dash-title">
             <h2  >Recently Played</h2>
-            <a class="see-all" >See All</a>
+            <a class="see-all"  href="/recent-play">See All</a>
         </div>
             
         <div class="dash-cards-small">
@@ -340,10 +338,10 @@ export default function Explorev2() {
 
         <div class="dash-title">
             <h2 > My Styles</h2>
-            <a class="see-all" >See All</a>
+            <a class="see-all" href="/user-top-track">See All</a>
         </div>
         <div class="dash-cards-small">
-        {myTrack.map(item => (
+            {myTrack.map(item => (
                     <Globaltopv2 
                         track = {item}
                         key ={item.uri}
@@ -352,8 +350,8 @@ export default function Explorev2() {
             ))}
         </div>
         <div class="dash-title">
-            <h2>Top Artists</h2>
-            <a class="see-all" >See All</a>
+            <h2> Your Top Artists</h2>
+            <a class="see-all" href="/user-top-artist">See All</a>
         </div>
         <div class="dash-cards-circle">
             {newArtists.map(item => (
