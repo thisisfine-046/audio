@@ -13,6 +13,9 @@ import NewReleaseAllPage from './NewReleaseAllPage'
 import RecentPlayAllPage from './RecentPlayAllPage'
 import UserTopArtistAllPage from './UserTopArtistAllPage'
 import UserTopTrackAllPage from './UserTopTrackAllPage'
+import JumpBackAllPage from './JumpBackAllPage'
+import UserTimeCapsuleAllPage from './UserTimeCapsule'
+import UserTodayAllPage from './UserTodayAllPage'
 
 import { 
     BrowserRouter as Router,
@@ -133,6 +136,9 @@ export default class HomePage extends Component{
                     <Route path="/recent-play" component={RecentPlayAllPage} />
                     <Route path="/user-top-track" component={UserTopTrackAllPage} />
                     <Route path="/user-top-artist" component={UserTopArtistAllPage} />
+                    <Route path="/jump-back" component={JumpBackAllPage} />
+                    <Route path="/user-time-capsule" component={UserTimeCapsuleAllPage} />
+                    <Route path="/user-today" component={UserTodayAllPage} />
                 </Switch>
 
             </Router>

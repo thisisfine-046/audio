@@ -77,24 +77,7 @@ export default function Explorev2() {
         spotifyApi.setAccessToken(accessToken)
     },[accessToken])
 
-    // today top all
-    useEffect(() => {
-        if(!accessToken) return 
-        spotifyApi.getPlaylist(
-            '37i9dQZF1DXcBWIGoYBM5M' )
-        .then(res => {
-            setTopTodayAll(
-                res.body.tracks.items.map(item =>{
-                    return {
-                        artists : item.track.artists.map(x=>x.name+" "),
-                        title : item.track.name,
-                        uri: item.track.uri,
-                        albumUrl: item.track.album.images[0].url,
-                    }
-                })
-            )
-        })
-    },[accessToken])
+
 
     // today top 3
     useEffect(() => {
@@ -123,23 +106,7 @@ export default function Explorev2() {
 
     // get GlobalTop
     const [GlobalTop, setGlobalTop] = useState([])
-    useEffect(() => {
-        if(!accessToken) return 
-        spotifyApi.getPlaylist(
-            '37i9dQZEVXbMDoHDwVN2tF' )
-        .then(res => {
-            setGlobalTopAll(
-                res.body.tracks.items.map(item =>{
-                    return {
-                        artists : item.track.artists.map(x=>x.name+" "),
-                        title : item.track.name,
-                        uri: item.track.uri,
-                        albumUrl: item.track.album.images[0].url,
-                    }
-                })
-            )
-        })
-    },[accessToken])
+    
 
 
     useEffect(() => {
@@ -316,7 +283,7 @@ export default function Explorev2() {
     },[accessToken])
 
 
-    //get saved tracks    
+    //get user-today    
     const [TryToday, setTryToday] = useState([])
     useEffect(() => {
         if(!accessToken) return 
@@ -342,176 +309,163 @@ export default function Explorev2() {
 
     return (
         <div>
-        <div class ="header-content">
-            <h5>Discover new music every day</h5>
-            <h3>Millions of songs and podcasts. No credit card needed.</h3>
-        </div>    
-        <div class="dash-title">
-            <h2 class="Overview" >Today's Top Hit</h2>
-            <a class="see-all" href="/today-top">See More</a>
-        </div>
+            <div class ="header-content">
+                <h5>Discover new music every day</h5>
+                <h3>Millions of songs and podcasts. No credit card needed.</h3>
+            </div>    
 
-        <div class="dash-cards-title">
-            
-            {TopToday.map(item => (
-                <TopTodayv2 
-                    track = {item}
-                    key ={item.uri}
-                    chooseTrack={chooseTrack}
-                />
-            ))}
-        </div>
+            <div class="dash-title">
+                <h2 class="Overview" >Today's Top Hit</h2>
+                <a class="see-all" href="/today-top">See More</a>
+            </div>
 
-
-        <div class="dash-title">
-<<<<<<< HEAD
-            <h2  >Recently Played</h2>
-            <a class="see-all"  href="/recent-play">See All</a>
-=======
-            <h2  >Jump Back In</h2>
-            <a class="see-all" >See More</a>
->>>>>>> 1d28c2b004af426927c752bab8b193890819116b
-        </div>
-            
-        <div class="dash-cards-small">
-            {saveTracks.map(item =>(
-                <Globaltopv2
-                    track = {item}
-                    key ={item.uri}
-                    chooseTrack={chooseTrack}
-                />
-            ))}
-        </div>
+            <div class="dash-cards-title">
+                {TopToday.map(item => (
+                    <TopTodayv2 
+                        track = {item}
+                        key ={item.uri}
+                        chooseTrack={chooseTrack}
+                    />
+                ))}
+            </div>
 
 
-
-        <div class="dash-title">
-            <h2 class="New-releases" >New Releases</h2>
-            <a class="see-all" href="/new-release">See More</a>
-        </div>
-            
-        <div class="dash-cards-small">
+            <div class="dash-title">
+                <h2  >Jump Back In</h2>
+                <a class="see-all" href="/jump-back" >See More</a>
+            </div>
                 
+            <div class="dash-cards-small">
+                {saveTracks.map(item =>(
+                    <Globaltopv2
+                        track = {item}
+                        key ={item.uri}
+                        chooseTrack={chooseTrack}
+                    />
+                ))}
+            </div>
 
-            {newReleases.map(item =>(
-                <NewReleasesv2
-                    track = {item}
-                    key ={item.uri}
-                    chooseTrack={chooseTrack}
+
+            <div class="dash-title">
+                <h2 class="New-releases" >New Releases</h2>
+                <a class="see-all" href="/new-release">See More</a>
+            </div>
+                
+            <div class="dash-cards-small">
+                    
+                {newReleases.map(item =>(
+                    <NewReleasesv2
+                        track = {item}
+                        key ={item.uri}
+                        chooseTrack={chooseTrack}
+                    />
+                ))}
+
+            </div>
+
+
+            <div class="dash-title">
+                <h2  >Recently Played</h2>
+                <a class="see-all" >See More</a>
+            </div>
+                
+            <div class="dash-cards-small">
+                {recentPlay.map(item =>(
+                    <RecentPlay
+                        track = {item}
+                        key ={item.uri}
+                        chooseTrack={chooseTrack}
+                    />
+                ))}
+            </div>
+
+            <div class="dash-title">
+                <h2 class="trending" >Top Global</h2>
+                <a class="see-all" href="/global-top">See More</a>
+            </div>
+
+            <div class="dash-cards-small">
+                {GlobalTop.map(item => (
+                        <Globaltopv2 
+                            track = {item}
+                            key ={item.uri}
+                            chooseTrack={chooseTrack}
+                        />
+                ))}
+            </div>
+
+            <div class="dash-title">
+                <h2> Your Top Artists</h2>
+                <a class="see-all" href="/user-top-artist">See All</a>
+            </div>
+            <div class="dash-cards-circle">
+                {newArtists.map(item => (
+                        <UserArtist 
+                            track = {item}
+                            key ={item.uri}
+                            chooseTrack={chooseTrack}
+                        />
+                ))}
+            </div>
+
+
+
+            <div class="dash-title">
+                <h2 > My Styles</h2>
+                <a class="see-all" href="/user-top-track">See More</a>
+            </div>
+
+            <div class="dash-cards-small">
+                {myTrack.map(item => (
+                        <Globaltopv2 
+                            track = {item}
+                            key ={item.uri}
+                            chooseTrack={chooseTrack}
+                        />
+                ))}
+            </div>
+
+
+            <div class="dash-title">
+                <h2 >For Today</h2>
+                <a class="see-all" href="/user-today">See All</a>
+            </div>
+
+            <div class="dash-cards-small">
+                {TryToday.map(item => (
+                        <FeaturePlaylist 
+                            track = {item}
+                            key ={item.uri}
+                            chooseTrack={chooseTrack}
+                        />
+                ))}
+            </div>
+
+            <div class="dash-title">
+                <h2  >My Time Capsule</h2>
+                <a class="see-all" href="/user-time-capsule">See More</a>
+            </div>
+                
+            <div class="dash-cards-small">
+                {backintime.map(item =>(
+                    <Globaltopv2
+                        track = {item}
+                        key ={item.uri}
+                        chooseTrack={chooseTrack}
+                    />
+                ))}
+            </div>
+
+
+
+            <div class='extra'>
+            </div>
+            <div class='progress'>
+                <Streaming  
+                    accessToken = {accessToken}
+                    trackUri = {playingTrack?.uri}  
                 />
-            ))}
-
-        </div>
-
-
-        <div class="dash-title">
-            <h2  >Recently Played</h2>
-            <a class="see-all" >See More</a>
-        </div>
-            
-        <div class="dash-cards-small">
-            {recentPlay.map(item =>(
-                <RecentPlay
-                    track = {item}
-                    key ={item.uri}
-                    chooseTrack={chooseTrack}
-                />
-            ))}
-        </div>
-
-        <div class="dash-title">
-            <h2 class="trending" >Top Global</h2>
-            <a class="see-all" href="/global-top">See More</a>
-        </div>
-
-        <div class="dash-cards-small">
-            {GlobalTop.map(item => (
-                    <Globaltopv2 
-                        track = {item}
-                        key ={item.uri}
-                        chooseTrack={chooseTrack}
-                    />
-            ))}
-        </div>
-
-
-
-        <div class="dash-title">
-            <h2 > My Styles</h2>
-            <a class="see-all" >See More</a>
-        </div>
-        <div class="dash-cards-small">
-            {myTrack.map(item => (
-                    <Globaltopv2 
-                        track = {item}
-                        key ={item.uri}
-                        chooseTrack={chooseTrack}
-                    />
-            ))}
-        </div>
-
-
-        <div class="dash-title">
-<<<<<<< HEAD
-            <h2 > My Styles</h2>
-            <a class="see-all" href="/user-top-track">See All</a>
-        </div>
-        <div class="dash-cards-small">
-            {myTrack.map(item => (
-                    <Globaltopv2 
-=======
-            <h2 > For Today</h2>
-            <a class="see-all" >See More</a>
-        </div>
-        <div class="dash-cards-small">
-            {TryToday.map(item => (
-                    <FeaturePlaylist 
->>>>>>> 1d28c2b004af426927c752bab8b193890819116b
-                        track = {item}
-                        key ={item.uri}
-                        chooseTrack={chooseTrack}
-                    />
-            ))}
-        </div>
-
-        <div class="dash-title">
-            <h2  >My Time Capture</h2>
-            <a class="see-all" >See More</a>
-        </div>
-            
-        <div class="dash-cards-small">
-            {backintime.map(item =>(
-                <Globaltopv2
-                    track = {item}
-                    key ={item.uri}
-                    chooseTrack={chooseTrack}
-                />
-            ))}
-        </div>
-
-
-        <div class="dash-title">
-            <h2> Your Top Artists</h2>
-            <a class="see-all" href="/user-top-artist">See All</a>
-        </div>
-        <div class="dash-cards-circle">
-            {newArtists.map(item => (
-                    <UserArtist 
-                        track = {item}
-                        key ={item.uri}
-                        chooseTrack={chooseTrack}
-                    />
-            ))}
-        </div>
-
-        <div class='extra'>
-        </div>
-        <div class='progress'>
-            <Streaming  
-                accessToken = {accessToken}
-                trackUri = {playingTrack?.uri}  
-            />
-        </div>
+            </div>
     </div>
         
     );

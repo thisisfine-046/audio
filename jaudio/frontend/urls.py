@@ -20,6 +20,9 @@ urlpatterns = [
     path('today-top',index),
     path('recent-play',index),
     path('user-top-artist',index),
-    path('user-top-track',index)
+    path('user-top-track',index),
+    path('jump-back',index),
+    path('user-today',index),
+    path('user-time-capsule',index)
 ]
 
