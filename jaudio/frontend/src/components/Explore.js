@@ -222,10 +222,7 @@ export default class ExplorePage extends Component{
                       trackNameColor: '#fff',
                     }}
                   />;
-                </div>
-                
-
-                
+                </div>  
         </div>
             
         );

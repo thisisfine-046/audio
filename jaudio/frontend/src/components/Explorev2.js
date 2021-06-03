@@ -78,7 +78,7 @@ export default function Explorev2() {
     },[accessToken])
 
 
-
+   
     // today top 3
     useEffect(() => {
         if(!accessToken) return 
@@ -103,11 +103,8 @@ export default function Explorev2() {
     },[accessToken])
 
 
-
     // get GlobalTop
     const [GlobalTop, setGlobalTop] = useState([])
-    
-
 
     useEffect(() => {
         if(!accessToken) return 

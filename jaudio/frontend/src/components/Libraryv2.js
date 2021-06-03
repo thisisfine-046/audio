@@ -30,7 +30,6 @@ export default function Libraryv2() {
     }, []);
 
     const accessToken = data.access_token
-    const songs_uri = "spotify:track:5cvbog6wen3r3bBbcwL16U";
     const ItMe = "31nejoonlzakyigpwzopswci2sri"
     const [getMe, setGetMe] = useState([])
     const [playingTrack, setPlayingTrack] = useState()
@@ -82,7 +81,6 @@ export default function Libraryv2() {
         setPlayingTrack(playlistclick)
         setPlayListName(myPlaylist)
     }
-    
     
 
     const [showplaylist , setShowPlaylist]=useState([])

@@ -8,9 +8,9 @@ from .util import *
 from api.models import Room
 from .models import Vote
 from django.http import JsonResponse
-
-
-
+from .recommendTFIDF import *
+import string
+import re
 
 class AuthURL(APIView):
     def get(self, request, fornat=None):
@@ -65,12 +65,6 @@ class IsAuthenticated(APIView):
         is_authenticated = is_spotify_authenticated(
             self.request.session.session_key)
         return Response({'status': is_authenticated}, status=status.HTTP_200_OK)
-
-class getAccessToken(APIView):
-    def get(self, request, format=None):
-        access_token = get_access_token(
-            self.request.session.session_key)
-        return Response({'access_token': access_token}, status=status.HTTP_200_OK)
 
 
 
@@ -1563,3 +1557,111 @@ class SkipSong(APIView):
             vote.save()
 
         return Response({}, status.HTTP_204_NO_CONTENT)
+
+
+class GetRecommended(APIView):
+    def get(self, request, format=None):
+        
+        
+        access_token = get_access_token(
+            self.request.session.session_key)
+
+
+        response = get_recommended(access_token)
+        
+        data=response.get('data')[0]
+
+        artist_string =''
+        for i,dat1 in enumerate(data.get('artists_upd')):
+            if i > 0:
+                artist_string += ", "
+            name= dat1
+            artist_string += name
+
+        rec1={
+            'name':data.get('name'),
+            'artist':artist_string ,
+            'img':data.get('url')
+        }
+
+        data2=response.get('data')[1]
+
+        artist_string2 =''
+        for i,dat2 in enumerate(data2.get('artists_upd')):
+            if i > 0:
+                artist_string2 += ", "
+            name2= dat2
+            artist_string2 += name2
+
+        rec2={
+            'name':data2.get('name'),
+            'artist':artist_string2 ,
+            'img':data2.get('url')
+        }
+
+
+        data3=response.get('data')[2]
+
+        artist_string3 =''
+        for i,dat3 in enumerate(data3.get('artists_upd')):
+            if i > 0:
+                artist_string3 += ", "
+            name3= dat3
+            artist_string3 += name3
+
+        rec3={
+            'name':data3.get('name'),
+            'artist':artist_string3 ,
+            'img':data3.get('url')
+        }
+
+
+        data4=response.get('data')[3]
+
+        artist_string4 =''
+        for i,dat4 in enumerate(data4.get('artists_upd')):
+            if i > 0:
+                artist_string += ", "
+            name4= dat4
+            artist_string4 += name4
+
+        rec4={
+            'name':data.get('name'),
+            'artist':artist_string ,
+            'img':data.get('url')
+        }
+
+
+        data5=response.get('data')[4]
+
+        artist_string5 =''
+        for i,dat5 in enumerate(data5.get('artists_upd')):
+            if i > 0:
+                artist_string5 += ", "
+            name5= dat5
+            artist_string5 += name5
+
+        rec5={
+            'name':data.get('name'),
+            'artist':artist_string ,
+            'img':data.get('url')
+        }
+
+        rec = {
+            'rec1':rec1,
+            'rec2':rec2,
+            'rec3':rec3,
+            'rec4':rec4,
+            'rec5':rec5,
+
+        }
+        return Response(rec, status=status.HTTP_200_OK)
+
+class getAccessToken(APIView):
+    def get(self, request, format=None):
+        access_token = get_access_token(
+            self.request.session.session_key)
+        return Response({'access_token': access_token}, status=status.HTTP_200_OK)
+
+
+

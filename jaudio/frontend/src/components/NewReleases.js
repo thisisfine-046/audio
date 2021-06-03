@@ -24,13 +24,9 @@ export default class NewReleases extends Component {
 
     return (
       <div>
-          
           <div class="card-single" >
             <div class="overlayer-single">
-				      <i 
-                class="material-icons"
-              >
-                play_circle</i>
+				      <i  class="material-icons">play_circle</i>
               <i class="material-icons">favorite</i>  
 			      </div>
 
