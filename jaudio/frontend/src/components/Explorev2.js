@@ -69,7 +69,7 @@ export default function Explorev2() {
     const [recommend, setRecommend] = useState({});
     
     useEffect(() => {
-        const fetchUsers = async () => {
+        const fetchRecommend = async () => {
             try {
                 const response = await axios.get(USER_RECOMMEND);
                 console.log(response);
@@ -79,7 +79,7 @@ export default function Explorev2() {
                 setRecommend(data);
             }
         };
-        fetchUsers();
+        fetchRecommend();
     }, []);
     
 
