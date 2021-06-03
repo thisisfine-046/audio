@@ -26,8 +26,9 @@ from django.shortcuts import render, redirect
 from .credentials import *
 
 def get_recommended(access_token):
-    spotify_df = pd.read_csv('C:/Users/Admin/Desktop/spotify-recommendation-system-main/data.csv')
-    data_w_genre = pd.read_csv('C:/Users/Admin/Desktop/spotify-recommendation-system-main/data_w_genres.csv')
+    base = "C:/Users/Arceltius/Desktop/archive/"
+    spotify_df = pd.read_csv(base +'data.csv')
+    data_w_genre = pd.read_csv(base +'data_w_genres.csv')
     data_w_genre['genres_upd'] = data_w_genre['genres'].apply(lambda x: [re.sub(' ','_',i) for i in re.findall(r"'([^']*)'", x)])
     spotify_df['artists_upd_v1'] = spotify_df['artists'].apply(lambda x: re.findall(r"'([^']*)'", x))
     spotify_df['artists_upd_v2'] = spotify_df['artists'].apply(lambda x: re.findall('\"(.*?)\"',x))

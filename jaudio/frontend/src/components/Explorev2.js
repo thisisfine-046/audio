@@ -64,7 +64,26 @@ export default function Explorev2() {
         fetchUsers();
     }, []);
 
-    const accessToken = data.access_token
+
+    const USER_RECOMMEND = 'http://127.0.0.1:8000/spotify/get-recommend';
+    const [recommend, setRecommend] = useState({});
+    
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await axios.get(USER_RECOMMEND);
+                console.log(response);
+                setRecommend(response);
+            } catch (e) {
+                console.log(e);
+                setRecommend(data);
+            }
+        };
+        fetchUsers();
+    }, []);
+    
+
+
     const [TopToday, setTopToday] = useState([])
     const [playingTrack, setPlayingTrack] = useState()
 
