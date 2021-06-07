@@ -1570,7 +1570,7 @@ class GetRecommended(APIView):
         response = get_recommended(access_token)
         
         data=response.get('data')[0]
-
+        uri='spotify:track:'
         artist_string =''
         for i,dat1 in enumerate(data.get('artists_upd')):
             if i > 0:
@@ -1581,7 +1581,8 @@ class GetRecommended(APIView):
         rec1={
             'name':data.get('name'),
             'artist':artist_string ,
-            'img':data.get('url')
+            'img':data.get('url'),
+            'uri':uri+data.get('id')
         }
 
         data2=response.get('data')[1]
@@ -1596,7 +1597,8 @@ class GetRecommended(APIView):
         rec2={
             'name':data2.get('name'),
             'artist':artist_string2 ,
-            'img':data2.get('url')
+            'img':data2.get('url'),
+            'uri':uri+data2.get('id')
         }
 
 
@@ -1612,7 +1614,8 @@ class GetRecommended(APIView):
         rec3={
             'name':data3.get('name'),
             'artist':artist_string3 ,
-            'img':data3.get('url')
+            'img':data3.get('url'),
+            'uri':uri+data3.get('id')
         }
 
 
@@ -1621,14 +1624,15 @@ class GetRecommended(APIView):
         artist_string4 =''
         for i,dat4 in enumerate(data4.get('artists_upd')):
             if i > 0:
-                artist_string += ", "
+                artist_string4 += ", "
             name4= dat4
             artist_string4 += name4
 
         rec4={
-            'name':data.get('name'),
+            'name':data4.get('name'),
             'artist':artist_string ,
-            'img':data.get('url')
+            'img':data4.get('url'),
+            'uri':uri+data4.get('id'),
         }
 
 
@@ -1642,20 +1646,59 @@ class GetRecommended(APIView):
             artist_string5 += name5
 
         rec5={
-            'name':data.get('name'),
+            'name':data5.get('name'),
             'artist':artist_string ,
-            'img':data.get('url')
+            'img':data5.get('url'),
+            'uri':uri+data5.get('id')
         }
+
+        # data6=response.get('data')[5]
+
+        # artist_string6 =''
+        # for i,dat6 in enumerate(data6.get('artists_upd')):
+        #     if i > 0:
+        #         artist_string6 += ", "
+        #     name6= dat6
+        #     artist_string6 += name6
+
+        # rec6={
+        #     'name':data6.get('name'),
+        #     'artist':artist_string6 ,
+        #     'img':data6.get('url'),
+        #     'uri':uri+data6.get('id')
+        # }
+
+        # data7=response.get('data')[6]
+
+        # artist_string7 =''
+        # for i,dat7 in enumerate(data7.get('artists_upd')):
+        #     if i > 0:
+        #         artist_string7 += ", "
+        #     name7= dat7
+        #     artist_string7 += name7
+
+        # rec7={
+        #     'name':data7.get('name'),
+        #     'artist':artist_string7 ,
+        #     'img':data7.get('url'),
+        #     'uri':uri+data7.get('id')
+        # }
 
         rec = {
-            'rec1':rec1,
-            'rec2':rec2,
-            'rec3':rec3,
-            'rec4':rec4,
-            'rec5':rec5,
-
+            '0':rec1,
+            '1':rec2,
+            '2':rec3,
+            '3':rec4,
+            '4':rec5,
+            # '5':rec6,
+            # '7':rec7
         }
-        return Response(rec, status=status.HTTP_200_OK)
+
+        resr = []
+        for key,value in rec.items():
+            resr.append(value)
+
+        return Response(response, status=status.HTTP_200_OK)
 
 class getAccessToken(APIView):
     def get(self, request, format=None):

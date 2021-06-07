@@ -8,6 +8,8 @@ import RecentPlay from "./RecentPlay"
 import NewReleasesv2 from "./NewReleasesv2"
 import UserArtist from "./UserArtist"
 import FeaturePlaylist from "./FeaturePlaylist"
+import ContentBase from "./ContentBase"
+
 import { 
     Button, 
     Grid, 
@@ -64,26 +66,41 @@ export default function Explorev2() {
         fetchUsers();
     }, []);
 
-
-    const USER_RECOMMEND = 'http://127.0.0.1:8000/spotify/get-recommend';
-    const [recommend, setRecommend] = useState({});
     
-    useEffect(() => {
-        const fetchRecommend = async () => {
-            try {
-                const response = await axios.get(USER_RECOMMEND);
-                console.log(response);
-                setRecommend(response);
-            } catch (e) {
-                console.log(e);
-                setRecommend(data);
-            }
-        };
-        fetchRecommend();
-    }, []);
+    // useEffect(() => {
+    //     const fetchRecommend = async () => {
+    //         try {
+    //             const res = await axios.get(USER_RECOMMEND);
+    //             console.log(res);
+    //             setRecommend(res.data);
+    //         } catch (e) {
+    //             console.log(e);
+    //             setRecommend(data);
+    //         }
+    //     };
+    //     fetchRecommend();
+    // }, []);
+    // console.log(recommend)
+
+    // .then(res => {
+    //     setTopToday(
+    //         res.body.items.map(item =>{
+    //             return {
+    //                 artists : item.track.artists.map(x=>x.name+" "),
+    //                 title : item.track.name,
+    //                 uri: item.track.uri,
+    //                 albumUrl: item.track.album.images[0].url,
+    //             }
+    //         })
+    //     )
+    // })
     
 
 
+
+
+
+    const accessToken = data.access_token
     const [TopToday, setTopToday] = useState([])
     const [playingTrack, setPlayingTrack] = useState()
 
@@ -108,6 +125,7 @@ export default function Explorev2() {
                 fields: 'items'
               })
         .then(res => {
+            // console.log(res.body)
             setTopToday(
                 res.body.items.map(item =>{
                     return {
@@ -121,6 +139,39 @@ export default function Explorev2() {
         })
     },[accessToken])
 
+    const USER_RECOMMEND = 'http://127.0.0.1:8000/spotify/get-recommend';
+    const [recommend, setRecommend] = useState([])
+    const [GetEecommend, setGetRecommend] = useState([])
+
+    useEffect(() => {
+        fetch(USER_RECOMMEND)
+          .then(res => res.json())
+          .then(
+            (result) => {
+                // console.log(result)
+                // setRecommend(result);
+                setGetRecommend(
+                    result.map( item => {
+                        return {
+                            artist: item.artist,
+                            img: item.img,
+                            title: item.name,
+                            uri: item.uri,
+                        }
+                    })
+                )
+            },  
+            (error) => {
+              setError(error);
+            }
+          )
+    }, [GetEecommend])
+
+
+
+    // console.log(recommend)
+    console.log(GetEecommend)
+    
 
     // get GlobalTop
     const [GlobalTop, setGlobalTop] = useState([])
@@ -323,6 +374,41 @@ export default function Explorev2() {
     },[accessToken])
 
 
+    //get first playlist
+    const [myPlaylist, setmyPlaylist] = useState([])
+    //get me
+    //const ItMe = "31nejoonlzakyigpwzopswci2sri"
+
+    const [getMe, setGetMe] = useState([])
+    useEffect(() => {
+        if(!accessToken) return 
+        spotifyApi.getMe()
+        .then(res => {
+            //console.log(res.body)
+            setGetMe(res.body.id)  
+        })
+    },[accessToken])
+
+    // get User Library
+    useEffect(() => {
+        if(!accessToken) return 
+        spotifyApi.getUserPlaylists({getMe})
+        .then(res => {
+            setmyPlaylist(
+                res.body.items[0].name
+            )
+        })
+    },[accessToken])
+    // console.log(myPlaylist)
+
+    // const [firstPlaylist, lastPlaylistsetLooking] = useState()
+    // useEffect(() => {
+    //     lastPlaylistsetLooking(myPlaylist)
+    // }, [myPlaylist])
+
+
+
+
     return (
         <div>
             <div class ="header-content">
@@ -410,21 +496,6 @@ export default function Explorev2() {
                 ))}
             </div>
 
-            <div class="dash-title">
-                <h2> Your Top Artists</h2>
-                <a class="see-all" href="/user-top-artist">See All</a>
-            </div>
-            <div class="dash-cards-circle">
-                {newArtists.map(item => (
-                        <UserArtist 
-                            track = {item}
-                            key ={item.uri}
-                            chooseTrack={chooseTrack}
-                        />
-                ))}
-            </div>
-
-
 
             <div class="dash-title">
                 <h2 > My Styles</h2>
@@ -471,8 +542,38 @@ export default function Explorev2() {
                     />
                 ))}
             </div>
+            
+
+            <div class="dash-title">
+                <h2> Base on your playlist: {myPlaylist}</h2>
+                <a class="see-all" href="/user-time-capsule">See More</a>
+            </div>
+                
+            <div class="dash-cards-small">
+                {GetEecommend.map(item =>(
+                    <ContentBase
+                        track = {item}
+                        key ={item.uri}
+                        chooseTrack={chooseTrack}
+                    />
+                ))}
+            </div> 
 
 
+
+            <div class="dash-title">
+                <h2> Your Top Artists</h2>
+                <a class="see-all" href="/user-top-artist">See All</a>
+            </div>
+            <div class="dash-cards-circle">
+                {newArtists.map(item => (
+                        <UserArtist 
+                            track = {item}
+                            key ={item.uri}
+                            chooseTrack={chooseTrack}
+                        />
+                ))}
+            </div>
 
             <div class='extra'>
             </div>
@@ -486,4 +587,3 @@ export default function Explorev2() {
         
     );
 }
-

@@ -46,7 +46,7 @@ export default function Libraryv2() {
         spotifyApi.getMe()
         .then(res => {
             // console.log(res.body)
-            setGetMe(res.body)  
+            setGetMe(res.body.id)  
         })
     },[accessToken])
 
@@ -57,7 +57,7 @@ export default function Libraryv2() {
     // get User Library
     useEffect(() => {
         if(!accessToken) return 
-        spotifyApi.getUserPlaylists({ItMe})
+        spotifyApi.getUserPlaylists({getMe})
         .then(res => {
             console.log(res)
             setmyPlaylist(
