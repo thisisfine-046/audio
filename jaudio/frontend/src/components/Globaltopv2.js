@@ -7,7 +7,7 @@ export default function Globaltopv2({track, chooseTrack }) {
     }
 
     return (
-        <div class="card-single" onClick={handlePlay}>
+        <div class="card-single" >
             <div class="overlayer-single" >
                 <i class="material-icons" onClick={handlePlay}>play_circle</i>
                 <i class="material-icons">favorite</i>

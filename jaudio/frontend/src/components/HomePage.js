@@ -37,7 +37,7 @@ import Explorev2 from "./Explorev2"
 import Search_Spotity from "./Search_Spotity"
 import Libraryv2 from "./Libraryv2"
 import NewReleasesv2 from './NewReleasesv2';
-
+import { withStyles } from "@material-ui/core/styles";
 export default class HomePage extends Component{
     constructor(props){
         super(props);
@@ -61,12 +61,26 @@ export default class HomePage extends Component{
     }
     
     renderRoomPage(){
+        const WhiteTextTypography = withStyles({
+            root: {
+              color: "#FFF",
+              fontFamily:"Montserrat,sans-serif"
+            }
+        })(Typography);
         return (
+        <div>
+            <div class ="header-content">
+                <h5>Discover new music every day</h5>
+                <h3>Millions of songs and podcasts. No credit card needed.</h3>
+            </div>  
+
+            <div class='extra'>
+            </div>
             <Grid container spacing={3}>
                 <Grid item xs={12} align="center">
-                    <Typography variant="h3" compact="h3">
+                    <WhiteTextTypography variant="h3" compact="h3">
                         Room Discord
-                    </Typography>
+                    </WhiteTextTypography>
                 </Grid>
                 <Grid item xs={12} align="center">
                     <ButtonGroup disableElevation variant="contained" color="primary">
@@ -79,6 +93,8 @@ export default class HomePage extends Component{
                     </ButtonGroup>
                 </Grid>
             </Grid>
+            <div class="extra"></div>
+        </div>
         );
     } 
     

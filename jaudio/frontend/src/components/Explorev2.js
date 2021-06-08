@@ -478,7 +478,7 @@ export default function Explorev2() {
 
             <div class="dash-title">
                 <h2 >For Today</h2>
-                <a class="see-all" href="/user-today">See All</a>
+                <a class="see-all" href="/user-today">See More</a>
             </div>
 
             <div class="dash-cards-small">
@@ -526,7 +526,7 @@ export default function Explorev2() {
 
             <div class="dash-title">
                 <h2> Your Top Artists</h2>
-                <a class="see-all" href="/user-top-artist">See All</a>
+                <a class="see-all" href="/user-top-artist">See More</a>
             </div>
             <div class="dash-cards-circle">
                 {newArtists.map(item => (

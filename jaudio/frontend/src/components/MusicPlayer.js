@@ -9,6 +9,7 @@ import {
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import PauseIcon from "@material-ui/icons/Pause";
 import SkipNextIcon from "@material-ui/icons/SkipNext";
+import { withStyles } from "@material-ui/core/styles";
 
 export default class MusicPlayer extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ export default class MusicPlayer extends Component {
     const songProgress = (this.props.time / this.props.duration) * 200;
 
     return (
-      <Card>
+      <Card item align="center" xs={12}>
         <Grid container alignItems="center">
           <Grid item align="center" xs={4}>
             <img src={this.props.image_url} height="100%" width="100%" />

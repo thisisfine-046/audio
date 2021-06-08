@@ -8,7 +8,7 @@ import {
 
 import CreateRoomPage from './CreateRoomPage'
 import MusicPlayer from "./MusicPlayer";
-
+import { withStyles } from "@material-ui/core/styles";
 export default class Room extends Component {
   constructor(props) {
     super(props);
@@ -139,7 +139,7 @@ export default class Room extends Component {
 
   renderSettingsButton() {
     return (
-      <Grid item xs={12} align="center">
+
         <Button
           variant="contained"
           color="primary"
@@ -147,7 +147,7 @@ export default class Room extends Component {
         >
           Settings
         </Button>
-      </Grid>
+
     );
   }
 
@@ -155,21 +155,38 @@ export default class Room extends Component {
     if (this.state.showSettings){
       return this.renderSettings();
     }
-    
+    const WhiteTextTypography = withStyles({
+      root: {
+        color: "#FFF",
+        fontFamily:"Montserrat,sans-serif"
+      }
+    })(Typography);
     return (
-      <Grid container spacing={1}>
+    <div> 
+      <div class ="header-content">
+          <h5>Discover new music every day</h5>
+          <h3>Millions of songs and podcasts. No credit card needed.</h3>
+      </div>  
+
+      <div class='extra'>
+      </div>
+      <Grid container spacing={2}>
 
         <Grid item xs={12} align="center">
-          <Typography variant="h4" component="h4">
+          <WhiteTextTypography variant="h4" component="h4">
             Code: {this.roomCode}
-          </Typography>
+          </WhiteTextTypography>
+        </Grid>
+ 
+
+        <Grid item xs={12} align="center">
+          <MusicPlayer {...this.state.song} />
         </Grid>
 
-        <MusicPlayer {...this.state.song} />
-
         
-        {this.state.isHost ? this.renderSettingsButton() : null}
+        
         <Grid item xs={12} align="center">
+          {this.state.isHost ? this.renderSettingsButton() : null}
           <Button
             variant="contained"
             color="secondary"
@@ -179,6 +196,8 @@ export default class Room extends Component {
           </Button>
         </Grid>
       </Grid>
+      <div class="extra"></div>
+    </div>
     );
   }
   
@@ -189,32 +208,3 @@ export default class Room extends Component {
     );
   }
 }
-/*
-return (
-            <div>
-                <h3>{this.roomCode}</h3>
-                <p>Votes: {this.state.votesToSkip}</p>
-                <p>Guest Can Pause: {this.state.guestCanPause.toString()}</p>
-                <p>Host: {this.state.isHost.toString()}</p>
-            </div>
-        );
-        <Grid item xs={12} align="center">
-              <Typography variant="h6" component="h6">
-                Votes: {this.state.votesToSkip}
-              </Typography>
-            </Grid>
-
-
-            <Grid item xs={12} align="center">
-              <Typography variant="h6" component="h6">
-                Guest Can Pause: {this.state.guestCanPause.toString()}
-              </Typography>
-            </Grid>
-
-
-            <Grid item xs={12} align="center">
-              <Typography variant="h6" component="h6">
-                Host: {this.state.isHost.toString()}
-              </Typography>
-            </Grid>
-*/

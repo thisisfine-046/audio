@@ -120,8 +120,6 @@ export default class CreateRoomPage extends Component {
           >
             Create A Room
           </Button>
-        </Grid>
-        <Grid item xs={12} align="center">
           <Button color="secondary" variant="contained" to="/" component={Link}>
             Back
           </Button>
@@ -150,7 +148,7 @@ export default class CreateRoomPage extends Component {
 
       <div class='extra'>
       </div>
-      <Grid container spacing={1}>
+      <Grid container spacing={3}>
 
         <Grid item xs={12} align="center">
           <WhiteTextTypography  variant="h4">
@@ -211,6 +209,8 @@ export default class CreateRoomPage extends Component {
         }
           
       </Grid>
+      <div class="extra">
+      </div>
     </div>
     );
   }
