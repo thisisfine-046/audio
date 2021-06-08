@@ -1,16 +1,19 @@
 import React from 'react'
 
-export default function Globaltopv2({track, chooseTrack }) {
+export default function Globaltopv2({track, chooseTrack ,saveChooseTrack}) {
 
     function handlePlay() {
         chooseTrack(track)
+    }
+    function saveTrack() {
+        saveChooseTrack(track)
     }
 
     return (
         <div class="card-single" onClick={handlePlay}>
             <div class="overlayer-single" >
                 <i class="material-icons" onClick={handlePlay}>play_circle</i>
-                <i class="material-icons">favorite</i>
+                <i class="material-icons" onClick={saveTrack}>favorite</i>
             </div>   
             <div className="card-small">
                 <img src={track.albumUrl}  alt="" />

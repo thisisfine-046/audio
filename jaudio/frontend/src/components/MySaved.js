@@ -7,6 +7,7 @@ export default function MySaved({track, chooseTrack ,RemoveChooseTrack}) {
     }
     function RemoveSave() {
         RemoveChooseTrack(track)
+        window.location.reload();
     }
 
     return (

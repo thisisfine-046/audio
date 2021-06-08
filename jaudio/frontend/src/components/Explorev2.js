@@ -471,6 +471,7 @@ export default function Explorev2() {
                         track = {item}
                         key ={item.uri}
                         chooseTrack={chooseTrack}
+                        saveChooseTrack={SavedTrack}
                     />
                 ))}
 
@@ -488,6 +489,8 @@ export default function Explorev2() {
                         track = {item}
                         key ={item.uri}
                         chooseTrack={chooseTrack}
+                        saveChooseTrack={SavedTrack}
+
                     />
                 ))}
             </div>
@@ -503,6 +506,8 @@ export default function Explorev2() {
                             track = {item}
                             key ={item.uri}
                             chooseTrack={chooseTrack}
+                            saveChooseTrack={SavedTrack}
+
                         />
                 ))}
             </div>
@@ -519,6 +524,7 @@ export default function Explorev2() {
                             track = {item}
                             key ={item.uri}
                             chooseTrack={chooseTrack}
+                            saveChooseTrack={SavedTrack}
                         />
                 ))}
             </div>
@@ -550,6 +556,7 @@ export default function Explorev2() {
                         track = {item}
                         key ={item.uri}
                         chooseTrack={chooseTrack}
+                        saveChooseTrack={SavedTrack}
                     />
                 ))}
             </div>
