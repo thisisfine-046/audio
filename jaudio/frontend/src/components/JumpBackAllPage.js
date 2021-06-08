@@ -3,6 +3,9 @@ import axios from "axios";
 import SpotifyWebApi from "spotify-web-api-node";
 import Streaming from './Streaming';
 import NewReleasesv2 from './NewReleasesv2'
+
+import MySaved from "./MySaved"
+
 const spotifyApi = new SpotifyWebApi({
     clientId: "c83a7a91bb4743aaaaae481d65b7debd",
 })
@@ -53,6 +56,7 @@ export default function JumpBackAllPage() {
                         artistsURI : item.track.artists[0].uri,
                         artistsID : item.track.artists[0].id,
                         uri : item.track.uri,
+                        id : item.track.id ,
                         title : item.track.name,
                         albumUrl: item.track.album.images[0].url,
                     }
@@ -61,6 +65,24 @@ export default function JumpBackAllPage() {
         })
         
     },[accessToken])
+
+
+    const [WannaSaveTrack, setWannaSaveTrack] = useState()
+
+    function SavedTrack(track) {
+        setWannaSaveTrack(track)
+    }
+
+    useEffect(()=>{
+        if (!WannaSaveTrack) return
+        spotifyApi.removeFromMySavedTracks([WannaSaveTrack.id])
+        .then(function(data) {
+            console.log('Removed!');
+        }, function(err) {
+            console.log('Something went wrong!', err);
+        });       
+
+    },[WannaSaveTrack])
     
     
 
@@ -73,10 +95,12 @@ export default function JumpBackAllPage() {
             </div>
             <div class="dash-cards-small">
                 {saveTracks.map(item =>(
-                    <NewReleasesv2
+                    <MySaved
                         track = {item}
                         key ={item.uri}
                         chooseTrack={chooseTrack}
+                        RemoveChooseTrack={SavedTrack}
+
                     />
                 ))}
             </div>
