@@ -10,6 +10,8 @@ import UserArtist from "./UserArtist"
 import FeaturePlaylist from "./FeaturePlaylist"
 import ContentBase from "./ContentBase"
 
+import MySaved from "./MySaved"
+
 import { 
     Button, 
     Grid, 
@@ -81,13 +83,55 @@ export default function Explorev2() {
     },[accessToken])
 
 
+
+    const [WannaSaveTrack, setWannaSaveTrack] = useState()
+    const [checkSaved, setCheckSaved] = useState(false)
+
+    function SavedTrack(track) {
+        setWannaSaveTrack(track)
+    }
+    //console.log(WannaSaveTrack)
+    // // check if added yet ?
+    useEffect(() =>{
+        if (!WannaSaveTrack) return
+        spotifyApi.containsMySavedTracks([WannaSaveTrack.id])
+        .then(function(data) {
+
+            // An array is returned, where the first element corresponds to the first track ID in the query
+            var trackIsInYourMusic = data.body[0];
+
+            if (trackIsInYourMusic) {
+            setCheckSaved(true)
+            } else {
+            setCheckSaved(false)
+            }
+        }, function(err) {
+            console.log('Something went wrong!', err);
+        });
+
+    },[WannaSaveTrack])
+    console.log(checkSaved)
+    // add to Saved Tracks
+    useEffect(()=>{
+        if (!WannaSaveTrack) return
+        if(checkSaved) return
+        spotifyApi.addToMySavedTracks([WannaSaveTrack.id])
+        .then(function(data) {
+            console.log('Added track!');
+        }, function(err) {
+            console.log('Something went wrong!', err);
+        });       
+
+    },[WannaSaveTrack])
+
+
+
    
     // today top 3
     useEffect(() => {
         if(!accessToken) return 
         spotifyApi.getPlaylistTracks(
             '37i9dQZF1DXcBWIGoYBM5M' , {
-                offset: 1,
                 limit: 4,
                 fields: 'items'
               })
@@ -97,6 +141,7 @@ export default function Explorev2() {
                     return {
                         artists : item.track.artists.map(x=>x.name+" "),
                         title : item.track.name,
+                        id: item.track.id,
                         uri: item.track.uri,
                         albumUrl: item.track.album.images[0].url,
                     }
@@ -105,35 +150,33 @@ export default function Explorev2() {
         })
     },[accessToken])
 
-    const USER_RECOMMEND = 'http://127.0.0.1:8000/spotify/get-recommend';
-    const [GetEecommend, setGetRecommend] = useState([])
+    // const USER_RECOMMEND = 'http://127.0.0.1:8000/spotify/get-recommend';
+    // const [GetEecommend, setGetRecommend] = useState([])
 
-    useEffect(() => {
-        fetch(USER_RECOMMEND)
-          .then(res => res.json())
-          .then(
-            (result) => {
-                setGetRecommend(
-                    result.map( item => {
-                        return {
-                            artist: item.artist,
-                            img: item.img,
-                            title: item.name,
-                            uri: item.uri,
-                        }
-                    })
-                )
-            },  
-            (error) => {
-              setError(error);
-            }
-          )
-    }, [GetEecommend])
+    // useEffect(() => {
+    //     fetch(USER_RECOMMEND)
+    //       .then(res => res.json())
+    //       .then(
+    //         (result) => {
+    //             setGetRecommend(
+    //                 result.map( item => {
+    //                     return {
+    //                         artist: item.artist,
+    //                         img: item.img,
+    //                         title: item.name,
+    //                         uri: item.uri,
+    //                     }
+    //                 })
+    //             )
+    //         },  
+    //         (error) => {
+    //           setError(error);
+    //         }
+    //       )
+    // }, [GetEecommend])
 
-
-
-    // console.log(recommend)
-    console.log(GetEecommend)
+    // // console.log(recommend)
+    // console.log(GetEecommend)
     
 
     // get GlobalTop
@@ -143,7 +186,6 @@ export default function Explorev2() {
         if(!accessToken) return 
         spotifyApi.getPlaylistTracks(
             '37i9dQZEVXbMDoHDwVN2tF' , {
-                offset: 1,
                 limit: 7,
                 fields: 'items'
               })
@@ -155,6 +197,7 @@ export default function Explorev2() {
                         artists : item.track.artists.map(x=>x.name+" ") , 
                         title : item.track.name,
                         uri: item.track.uri,
+                        id: item.track.id,
                         albumUrl: item.track.album.images[0].url,
                     }
                 })
@@ -178,6 +221,7 @@ export default function Explorev2() {
                         artists : item.track.artists.map(x=>x.name+" ") , 
                         title : item.track.name,
                         uri: item.track.uri,
+                        id: item.track.id,
                         albumUrl: item.track.album.images[0].url,
                     }
                 })
@@ -202,6 +246,7 @@ export default function Explorev2() {
                         artists : item.artists.map(x=>x.name+" ") , 
                         title : item.name,
                         uri: item.uri,
+                        id: item.id,
                         albumUrl: item.images[0].url,
                     }
                 })
@@ -267,7 +312,6 @@ export default function Explorev2() {
         if(!accessToken) return 
         spotifyApi.getMySavedTracks({
             limit : 7,
-            offset: 1
         })
         .then(res => {
             setSaveTrack(
@@ -277,6 +321,7 @@ export default function Explorev2() {
                         artistsURI : item.track.artists[0].uri,
                         artistsID : item.track.artists[0].id,
                         uri : item.track.uri,
+                        id: item.track.id,
                         title : item.track.name,
                         albumUrl: item.track.album.images[0].url,
                     }
@@ -303,6 +348,7 @@ export default function Explorev2() {
                         artistsURI : item.track.artists[0].uri,
                         artistsID : item.track.artists[0].id,
                         uri : item.track.uri,
+                        id: item.track.id,
                         title : item.track.name,
                         albumUrl: item.track.album.images[0].url,
                     }
@@ -325,7 +371,7 @@ export default function Explorev2() {
                 res.body.playlists.items.map(item => {
                     return{
                         playlist : item.owner.display_name,
-                        
+                        id: item.id,
                         uri : item.uri,
                         title : item.name,
                         albumUrl: item.images[0].url,
@@ -390,6 +436,7 @@ export default function Explorev2() {
                         track = {item}
                         key ={item.uri}
                         chooseTrack={chooseTrack}
+                        saveChooseTrack={SavedTrack}
                     />
                 ))}
             </div>
@@ -402,10 +449,11 @@ export default function Explorev2() {
                 
             <div class="dash-cards-small">
                 {saveTracks.map(item =>(
-                    <Globaltopv2
+                    <MySaved
                         track = {item}
                         key ={item.uri}
                         chooseTrack={chooseTrack}
+                        RemoveChooseTrack={SavedTrack}
                     />
                 ))}
             </div>
@@ -423,6 +471,7 @@ export default function Explorev2() {
                         track = {item}
                         key ={item.uri}
                         chooseTrack={chooseTrack}
+                        saveChooseTrack={SavedTrack}
                     />
                 ))}
 
@@ -440,6 +489,8 @@ export default function Explorev2() {
                         track = {item}
                         key ={item.uri}
                         chooseTrack={chooseTrack}
+                        saveChooseTrack={SavedTrack}
+
                     />
                 ))}
             </div>
@@ -455,6 +506,8 @@ export default function Explorev2() {
                             track = {item}
                             key ={item.uri}
                             chooseTrack={chooseTrack}
+                            saveChooseTrack={SavedTrack}
+
                         />
                 ))}
             </div>
@@ -471,6 +524,7 @@ export default function Explorev2() {
                             track = {item}
                             key ={item.uri}
                             chooseTrack={chooseTrack}
+                            saveChooseTrack={SavedTrack}
                         />
                 ))}
             </div>
@@ -502,17 +556,18 @@ export default function Explorev2() {
                         track = {item}
                         key ={item.uri}
                         chooseTrack={chooseTrack}
+                        saveChooseTrack={SavedTrack}
                     />
                 ))}
             </div>
             
 
             <div class="dash-title">
-                <h2> Base on your playlist: {myPlaylist}</h2>
+                <h2> Base on: {myPlaylist}</h2>
                 <a class="see-all" href="/get-recommend">See More</a>
             </div>
                 
-            <div class="dash-cards-small">
+            {/* <div class="dash-cards-small">
                 {GetEecommend.map(item =>(
                     <ContentBase
                         track = {item}
@@ -520,7 +575,7 @@ export default function Explorev2() {
                         chooseTrack={chooseTrack}
                     />
                 ))}
-            </div> 
+            </div>  */}
 
 
 

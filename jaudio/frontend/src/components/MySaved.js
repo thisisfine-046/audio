@@ -1,19 +1,20 @@
 import React from 'react'
 
-export default function Globaltopv2({track, chooseTrack ,saveChooseTrack}) {
+export default function MySaved({track, chooseTrack ,RemoveChooseTrack}) {
 
     function handlePlay() {
         chooseTrack(track)
     }
-    function saveTrack() {
-        saveChooseTrack(track)
+    function RemoveSave() {
+        RemoveChooseTrack(track)
+        window.location.reload();
     }
 
     return (
-        <div class="card-single" >
+        <div class="card-single" onClick={handlePlay}>
             <div class="overlayer-single" >
                 <i class="material-icons" onClick={handlePlay}>play_circle</i>
-                <i class="material-icons" onClick={saveTrack}>favorite</i>
+                <i class="material-icons" onClick={RemoveSave}>favorite</i>
             </div>   
             <div className="card-small">
                 <img src={track.albumUrl}  alt="" />
