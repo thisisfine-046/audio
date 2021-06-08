@@ -219,7 +219,7 @@ def get_recommended(access_token):
         
         non_playlist_df = df[df['id'].isin(nonplaylist_features['id'].values)]
         non_playlist_df['sim'] = cosine_similarity(nonplaylist_features.drop('id', axis = 1).values, features.values.reshape(1, -1))[:,0]
-        non_playlist_df_top_40 = non_playlist_df.sort_values('sim',ascending = False).head(5)
+        non_playlist_df_top_40 = non_playlist_df.sort_values('sim',ascending = False).head(20)
         non_playlist_df_top_40['url'] = non_playlist_df_top_40['id'].apply(lambda x: sp.track(x)['album']['images'][1]['url'])
         
         return non_playlist_df_top_40

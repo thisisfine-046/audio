@@ -14,6 +14,7 @@ import {
 
 import { Link } from "react-router-dom";
 import { Collapse } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
 export default class CreateRoomPage extends Component {
   static defaultProps = {
@@ -134,25 +135,35 @@ export default class CreateRoomPage extends Component {
   renderCreateRoom(){
 
     const title = this.props.update ? "Update Room" : "Create a Room";
-
+    const WhiteTextTypography = withStyles({
+      root: {
+        color: "#FFF",
+        fontFamily:"Montserrat,sans-serif"
+      }
+    })(Typography);
     return (
-      
+    <div>  
+      <div class ="header-content">
+        <h5>Discover new music every day</h5>
+        <h3>Millions of songs and podcasts. No credit card needed.</h3>
+      </div>  
+
+      <div class='extra'>
+      </div>
       <Grid container spacing={1}>
 
-
-        
         <Grid item xs={12} align="center">
-          <Typography component="h4" variant="h4">
+          <WhiteTextTypography  variant="h4">
             {title}
-          </Typography>
+          </WhiteTextTypography>
         </Grid>
 
 
         <Grid item xs={12} align="center">
           <FormControl component="fieldset">
-            <FormHelperText>
+            <WhiteTextTypography >
               <div align="center" class="notecolor">Guest Control of Playback State</div>
-            </FormHelperText>
+            </WhiteTextTypography>
             <RadioGroup
               row
               defaultValue={this.props.guestCanPause.toString()}
@@ -188,17 +199,19 @@ export default class CreateRoomPage extends Component {
                 style: { textAlign: "center" ,color:"white"},
               }}
             />
-            <FormHelperText>
+            <WhiteTextTypography>
               <div align="center" class="notecolor">Votes Required To Skip Song</div>
-            </FormHelperText>
+            </WhiteTextTypography>
           </FormControl>
         </Grid>
 
         {this.props.update
           ? this.renderUpdateButtons()
-          : this.renderCreateButtons()}
+          : this.renderCreateButtons()
+        }
           
       </Grid>
+    </div>
     );
   }
 

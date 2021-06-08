@@ -16,7 +16,7 @@ import UserTopTrackAllPage from './UserTopTrackAllPage'
 import JumpBackAllPage from './JumpBackAllPage'
 import UserTimeCapsuleAllPage from './UserTimeCapsule'
 import UserTodayAllPage from './UserTodayAllPage'
-
+import GetRecommendPage from "./GetRecommend"
 import { 
     BrowserRouter as Router,
     Switch, 
@@ -139,6 +139,7 @@ export default class HomePage extends Component{
                     <Route path="/jump-back" component={JumpBackAllPage} />
                     <Route path="/user-time-capsule" component={UserTimeCapsuleAllPage} />
                     <Route path="/user-today" component={UserTodayAllPage} />
+                    <Route path="/get-recommend" component={GetRecommendPage} />
                 </Switch>
 
             </Router>

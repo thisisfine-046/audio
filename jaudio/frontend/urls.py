@@ -23,6 +23,7 @@ urlpatterns = [
     path('user-top-track',index),
     path('jump-back',index),
     path('user-today',index),
-    path('user-time-capsule',index)
+    path('user-time-capsule',index),
+    path('get-recommend',index)
 ]
 

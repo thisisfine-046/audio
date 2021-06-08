@@ -59,45 +59,12 @@ export default function Explorev2() {
                 const response = await axios.get(USER_SERVICE_URL);
                 setData( response.data);
             } catch (e) {
-                console.log(e);
+                //console.log(e);
                 setData(data);
             }
         };
         fetchUsers();
     }, []);
-
-    
-    // useEffect(() => {
-    //     const fetchRecommend = async () => {
-    //         try {
-    //             const res = await axios.get(USER_RECOMMEND);
-    //             console.log(res);
-    //             setRecommend(res.data);
-    //         } catch (e) {
-    //             console.log(e);
-    //             setRecommend(data);
-    //         }
-    //     };
-    //     fetchRecommend();
-    // }, []);
-    // console.log(recommend)
-
-    // .then(res => {
-    //     setTopToday(
-    //         res.body.items.map(item =>{
-    //             return {
-    //                 artists : item.track.artists.map(x=>x.name+" "),
-    //                 title : item.track.name,
-    //                 uri: item.track.uri,
-    //                 albumUrl: item.track.album.images[0].url,
-    //             }
-    //         })
-    //     )
-    // })
-    
-
-
-
 
 
     const accessToken = data.access_token
@@ -125,7 +92,6 @@ export default function Explorev2() {
                 fields: 'items'
               })
         .then(res => {
-            // console.log(res.body)
             setTopToday(
                 res.body.items.map(item =>{
                     return {
@@ -140,7 +106,6 @@ export default function Explorev2() {
     },[accessToken])
 
     const USER_RECOMMEND = 'http://127.0.0.1:8000/spotify/get-recommend';
-    const [recommend, setRecommend] = useState([])
     const [GetEecommend, setGetRecommend] = useState([])
 
     useEffect(() => {
@@ -148,8 +113,6 @@ export default function Explorev2() {
           .then(res => res.json())
           .then(
             (result) => {
-                // console.log(result)
-                // setRecommend(result);
                 setGetRecommend(
                     result.map( item => {
                         return {
@@ -546,7 +509,7 @@ export default function Explorev2() {
 
             <div class="dash-title">
                 <h2> Base on your playlist: {myPlaylist}</h2>
-                <a class="see-all" href="/user-time-capsule">See More</a>
+                <a class="see-all" href="/get-recommend">See More</a>
             </div>
                 
             <div class="dash-cards-small">

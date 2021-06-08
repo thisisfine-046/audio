@@ -1559,6 +1559,374 @@ class SkipSong(APIView):
         return Response({}, status.HTTP_204_NO_CONTENT)
 
 
+class GetRecommended1(APIView):
+    def get(self, request, format=None):
+        
+        
+        access_token = get_access_token(
+            self.request.session.session_key)
+
+
+        response = get_recommended(access_token)
+        
+        data=response.get('data')[0]
+        uri='spotify:track:'
+        artist_string =''
+        for i,dat1 in enumerate(data.get('artists_upd')):
+            if i > 0:
+                artist_string += ", "
+            name= dat1
+            artist_string += name
+
+        rec1={
+            'name':data.get('name'),
+            'artist':artist_string ,
+            'img':data.get('url'),
+            'uri':uri+data.get('id')
+        }
+
+        data2=response.get('data')[1]
+
+        artist_string2 =''
+        for i,dat2 in enumerate(data2.get('artists_upd')):
+            if i > 0:
+                artist_string2 += ", "
+            name2= dat2
+            artist_string2 += name2
+
+        rec2={
+            'name':data2.get('name'),
+            'artist':artist_string2 ,
+            'img':data2.get('url'),
+            'uri':uri+data2.get('id')
+        }
+
+
+        data3=response.get('data')[2]
+
+        artist_string3 =''
+        for i,dat3 in enumerate(data3.get('artists_upd')):
+            if i > 0:
+                artist_string3 += ", "
+            name3= dat3
+            artist_string3 += name3
+
+        rec3={
+            'name':data3.get('name'),
+            'artist':artist_string3 ,
+            'img':data3.get('url'),
+            'uri':uri+data3.get('id')
+        }
+
+
+        data4=response.get('data')[3]
+
+        artist_string4 =''
+        for i,dat4 in enumerate(data4.get('artists_upd')):
+            if i > 0:
+                artist_string4 += ", "
+            name4= dat4
+            artist_string4 += name4
+
+        rec4={
+            'name':data4.get('name'),
+            'artist':artist_string ,
+            'img':data4.get('url'),
+            'uri':uri+data4.get('id'),
+        }
+
+
+        data5=response.get('data')[4]
+
+        artist_string5 =''
+        for i,dat5 in enumerate(data5.get('artists_upd')):
+            if i > 0:
+                artist_string5 += ", "
+            name5= dat5
+            artist_string5 += name5
+
+        rec5={
+            'name':data5.get('name'),
+            'artist':artist_string ,
+            'img':data5.get('url'),
+            'uri':uri+data5.get('id')
+        }
+
+        data6=response.get('data')[5]
+
+        artist_string6 =''
+        for i,dat6 in enumerate(data6.get('artists_upd')):
+            if i > 0:
+                artist_string6 += ", "
+            name6= dat6
+            artist_string6 += name6
+
+        rec6={
+            'name':data6.get('name'),
+            'artist':artist_string6 ,
+            'img':data6.get('url'),
+            'uri':uri+data6.get('id')
+        }
+
+        data7=response.get('data')[6]
+
+        artist_string7 =''
+        for i,dat7 in enumerate(data7.get('artists_upd')):
+            if i > 0:
+                artist_string7 += ", "
+            name7= dat7
+            artist_string7 += name7
+
+        rec7={
+            'name':data7.get('name'),
+            'artist':artist_string7 ,
+            'img':data7.get('url'),
+            'uri':uri+data7.get('id')
+        }
+        
+        data8=response.get('data')[7]
+        artist_string8 =''
+        for i,dat8 in enumerate(data8.get('artists_upd')):
+            if i > 0:
+                artist_string8 += ", "
+            name8= dat8
+            artist_string8 += name8
+
+        rec8={
+            'name':data8.get('name'),
+            'artist':artist_string8 ,
+            'img':data8.get('url'),
+            'uri':uri+data8.get('id')
+        }
+
+        data9=response.get('data')[8]
+
+        artist_string9 =''
+        for i,dat9 in enumerate(data9.get('artists_upd')):
+            if i > 0:
+                artist_string9 += ", "
+            name9= dat9
+            artist_string9 += name9
+
+        rec9={
+            'name':data9.get('name'),
+            'artist':artist_string9 ,
+            'img':data9.get('url'),
+            'uri':uri+data9.get('id')
+        }
+
+
+        data10=response.get('data')[9]
+
+        artist_string10 =''
+        for i,dat10 in enumerate(data10.get('artists_upd')):
+            if i > 0:
+                artist_string10 += ", "
+            name10= dat10
+            artist_string10 += name10
+
+        rec10={
+            'name':data10.get('name'),
+            'artist':artist_string10 ,
+            'img':data10.get('url'),
+            'uri':uri+data10.get('id')
+        }
+
+
+        data11=response.get('data')[10]
+
+        artist_string11 =''
+        for i,dat11 in enumerate(data11.get('artists_upd')):
+            if i > 0:
+                artist_string11 += ", "
+            name11= dat11
+            artist_string11 += name11
+
+        rec11={
+            'name':data11.get('name'),
+            'artist':artist_string11 ,
+            'img':data11.get('url'),
+            'uri':uri+data11.get('id'),
+        }
+
+
+        data12=response.get('data')[11]
+
+        artist_string12 =''
+        for i,dat12 in enumerate(data12.get('artists_upd')):
+            if i > 0:
+                artist_string12 += ", "
+            name12= dat12
+            artist_string12 += name12
+
+        rec12={
+            'name':data12.get('name'),
+            'artist':artist_string12 ,
+            'img':data12.get('url'),
+            'uri':uri+data12.get('id')
+        }
+
+        data13=response.get('data')[12]
+
+        artist_string13 =''
+        for i,dat13 in enumerate(data13.get('artists_upd')):
+            if i > 0:
+                artist_string13 += ", "
+            name13= dat13
+            artist_string13 += name13
+
+        rec13={
+            'name':data13.get('name'),
+            'artist':artist_string13 ,
+            'img':data13.get('url'),
+            'uri':uri+data13.get('id')
+        }
+
+        data14=response.get('data')[13]
+
+        artist_string14 =''
+        for i,dat14 in enumerate(data14.get('artists_upd')):
+            if i > 0:
+                artist_string14 += ", "
+            name14= dat14
+            artist_string14 += name14
+
+        rec14={
+            'name':data14.get('name'),
+            'artist':artist_string14 ,
+            'img':data14.get('url'),
+            'uri':uri+data14.get('id')
+        }
+
+        data15=response.get('data')[14]
+        artist_string15 =''
+        for i,dat15 in enumerate(data15.get('artists_upd')):
+            if i > 0:
+                artist_string15 += ", "
+            name15= dat15
+            artist_string15 += name15
+
+        rec15={
+            'name':data15.get('name'),
+            'artist':artist_string15 ,
+            'img':data15.get('url'),
+            'uri':uri+data15.get('id')
+        }
+
+        data16=response.get('data')[15]
+
+        artist_string16 =''
+        for i,dat16 in enumerate(data16.get('artists_upd')):
+            if i > 0:
+                artist_string16 += ", "
+            name16= dat16
+            artist_string16 += name16
+
+        rec16={
+            'name':data16.get('name'),
+            'artist':artist_string16 ,
+            'img':data16.get('url'),
+            'uri':uri+data16.get('id')
+        }
+
+
+        data17=response.get('data')[16]
+
+        artist_string17 =''
+        for i,dat17 in enumerate(data17.get('artists_upd')):
+            if i > 0:
+                artist_string17 += ", "
+            name17= dat17
+            artist_string17 += name17
+
+        rec17={
+            'name':data17.get('name'),
+            'artist':artist_string17 ,
+            'img':data17.get('url'),
+            'uri':uri+data17.get('id')
+        }
+
+
+        data18=response.get('data')[17]
+
+        artist_string18 =''
+        for i,dat18 in enumerate(data18.get('artists_upd')):
+            if i > 0:
+                artist_string18 += ", "
+            name18= dat18
+            artist_string18 += name18
+
+        rec18={
+            'name':data18.get('name'),
+            'artist':artist_string18 ,
+            'img':data18.get('url'),
+            'uri':uri+data18.get('id'),
+        }
+
+
+        data19=response.get('data')[18]
+
+        artist_string19 =''
+        for i,dat19 in enumerate(data19.get('artists_upd')):
+            if i > 0:
+                artist_string19 += ", "
+            name19= dat19
+            artist_string19 += name19
+
+        rec19={
+            'name':data19.get('name'),
+            'artist':artist_string19 ,
+            'img':data19.get('url'),
+            'uri':uri+data19.get('id')
+        }
+
+        data20=response.get('data')[19]
+
+        artist_string20 =''
+        for i,dat20 in enumerate(data6.get('artists_upd')):
+            if i > 0:
+                artist_string20 += ", "
+            name20= dat20
+            artist_string20 += name20
+
+        rec20={
+            'name':data20.get('name'),
+            'artist':artist_string20 ,
+            'img':data20.get('url'),
+            'uri':uri+data20.get('id')
+        }
+
+        
+        rec = {
+            '0':rec1,
+            '1':rec2,
+            '2':rec3,
+            '3':rec4,
+            '4':rec5,
+            '5':rec6,
+            '7':rec7,
+            '8':rec8,
+            '9':rec9,
+            '10':rec10,
+            '11':rec11,
+            '12':rec12,
+            '13':rec13,
+            '14':rec14,
+            '15':rec15,
+            '16':rec16,
+            '17':rec17,
+            '18':rec18,
+            '19':rec19,
+            '20':rec20
+            
+        }
+
+        resr = []
+        for key,value in rec.items():
+            resr.append(value)
+
+        return Response(resr, status=status.HTTP_200_OK)
+
 class GetRecommended(APIView):
     def get(self, request, format=None):
         
@@ -1652,53 +2020,56 @@ class GetRecommended(APIView):
             'uri':uri+data5.get('id')
         }
 
-        # data6=response.get('data')[5]
+        data6=response.get('data')[5]
 
-        # artist_string6 =''
-        # for i,dat6 in enumerate(data6.get('artists_upd')):
-        #     if i > 0:
-        #         artist_string6 += ", "
-        #     name6= dat6
-        #     artist_string6 += name6
+        artist_string6 =''
+        for i,dat6 in enumerate(data6.get('artists_upd')):
+            if i > 0:
+                artist_string6 += ", "
+            name6= dat6
+            artist_string6 += name6
 
-        # rec6={
-        #     'name':data6.get('name'),
-        #     'artist':artist_string6 ,
-        #     'img':data6.get('url'),
-        #     'uri':uri+data6.get('id')
-        # }
+        rec6={
+            'name':data6.get('name'),
+            'artist':artist_string6 ,
+            'img':data6.get('url'),
+            'uri':uri+data6.get('id')
+        }
 
-        # data7=response.get('data')[6]
+        data7=response.get('data')[6]
 
-        # artist_string7 =''
-        # for i,dat7 in enumerate(data7.get('artists_upd')):
-        #     if i > 0:
-        #         artist_string7 += ", "
-        #     name7= dat7
-        #     artist_string7 += name7
+        artist_string7 =''
+        for i,dat7 in enumerate(data7.get('artists_upd')):
+            if i > 0:
+                artist_string7 += ", "
+            name7= dat7
+            artist_string7 += name7
 
-        # rec7={
-        #     'name':data7.get('name'),
-        #     'artist':artist_string7 ,
-        #     'img':data7.get('url'),
-        #     'uri':uri+data7.get('id')
-        # }
+        rec7={
+            'name':data7.get('name'),
+            'artist':artist_string7 ,
+            'img':data7.get('url'),
+            'uri':uri+data7.get('id')
+        }
 
+        
         rec = {
             '0':rec1,
             '1':rec2,
             '2':rec3,
             '3':rec4,
             '4':rec5,
-            # '5':rec6,
-            # '7':rec7
+            '5':rec6,
+            '7':rec7,
+
+            
         }
 
         resr = []
         for key,value in rec.items():
             resr.append(value)
 
-        return Response(response, status=status.HTTP_200_OK)
+        return Response(resr, status=status.HTTP_200_OK)
 
 class getAccessToken(APIView):
     def get(self, request, format=None):
