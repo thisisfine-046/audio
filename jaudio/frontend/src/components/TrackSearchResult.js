@@ -1,9 +1,12 @@
 import React from 'react'
 
-export default function TrackSearchResult({track, chooseTrack}) {
+export default function TrackSearchResult({track, chooseTrack ,saveChooseTrack}) {
 
     function handlePlay() {
         chooseTrack(track)
+    }
+    function saveTrack() {
+        saveChooseTrack(track)
     }
     return (
     <div>
@@ -12,7 +15,7 @@ export default function TrackSearchResult({track, chooseTrack}) {
         <div class="card-single" onClick={handlePlay}>
             <div class="overlayer-single" >
                 <i class="material-icons" onClick={handlePlay}>play_circle</i>
-                <i class="material-icons">favorite</i>
+                <i class="material-icons" onClick={saveTrack}>favorite</i>
             </div>   
             <div className="card-small">
                 <img src={track.albumUrl}  alt="" />

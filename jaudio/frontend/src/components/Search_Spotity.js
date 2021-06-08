@@ -85,7 +85,7 @@ export default function Search_Spotity({datato}) {
                         artistURI: track.artists[0].uri,
                         title : track.name,
                         uri: track.uri,
-                        trackID: track.id,
+                        id: track.id,
                         albumUrl: track.album.images[0].url,
                     }
                 })
@@ -111,7 +111,7 @@ export default function Search_Spotity({datato}) {
                         artistURI: track.artists[0].uri,
                         title : track.name,
                         uri: track.uri,
-                        trackID: track.id,
+                        id: track.id,
                         albumUrl: track.album.images[0].url,
                     }
                 })
@@ -140,7 +140,7 @@ export default function Search_Spotity({datato}) {
                         artistURI: track.artists[0].uri,
                         title : track.name,
                         uri: track.uri,
-                        trackID: track.id,
+                        id: track.id,
                         albumUrl: track.album.images[0].url,
                     }
                 })
@@ -149,6 +149,48 @@ export default function Search_Spotity({datato}) {
         return () => (cancel = true)
 
     }, [search, accessToken])
+
+
+    const [WannaSaveTrack, setWannaSaveTrack] = useState()
+    const [checkSaved, setCheckSaved] = useState(false)
+
+    function SavedTrack(track) {
+        setWannaSaveTrack(track)
+        
+    }
+    //console.log(WannaSaveTrack)
+    // // check if added yet ?
+    useEffect(() =>{
+        if (!WannaSaveTrack) return
+        spotifyApi.containsMySavedTracks([WannaSaveTrack.id])
+        .then(function(data) {
+
+            // An array is returned, where the first element corresponds to the first track ID in the query
+            var trackIsInYourMusic = data.body[0];
+
+            if (trackIsInYourMusic) {
+            setCheckSaved(true)
+            } else {
+            setCheckSaved(false)
+            }
+        }, function(err) {
+            console.log('Something went wrong!', err);
+        });
+
+    },[WannaSaveTrack])
+    
+    // add to Saved Tracks
+    useEffect(()=>{
+        if (!WannaSaveTrack) return
+        if(checkSaved) return
+        spotifyApi.addToMySavedTracks([WannaSaveTrack.id])
+        .then(function(data) {
+            console.log('Added track!');
+        }, function(err) {
+            console.log('Something went wrong!', err);
+        });      
+
+    },[WannaSaveTrack])
 
 
 
@@ -175,6 +217,7 @@ export default function Search_Spotity({datato}) {
                                     track = {track} 
                                     key ={track.uri}
                                     chooseTrack={chooseTrack}
+                                    saveChooseTrack={SavedTrack}
                                 />
                             ))}
                     </div> 
@@ -193,6 +236,7 @@ export default function Search_Spotity({datato}) {
                                 track = {track} 
                                 key ={track.uri}
                                 chooseTrack={chooseTrack}
+                                saveChooseTrack={SavedTrack}
                             />
                         ))}
                     </div>
