@@ -71,8 +71,7 @@ export default class RoomJoinPage extends Component{
                         Back
                     </Button>
                 </Grid>
-                <div class='extra'>
-                </div>
+
           </Grid>
         </div>
         );

@@ -150,33 +150,30 @@ export default function Explorev2() {
         })
     },[accessToken])
 
-    // const USER_RECOMMEND = 'http://127.0.0.1:8000/spotify/get-recommend';
-    // const [GetEecommend, setGetRecommend] = useState([])
+    const USER_RECOMMEND = 'http://127.0.0.1:8000/spotify/get-recommend';
+    const [GetEecommend, setGetRecommend] = useState([])
 
-    // useEffect(() => {
-    //     fetch(USER_RECOMMEND)
-    //       .then(res => res.json())
-    //       .then(
-    //         (result) => {
-    //             setGetRecommend(
-    //                 result.map( item => {
-    //                     return {
-    //                         artist: item.artist,
-    //                         img: item.img,
-    //                         title: item.name,
-    //                         uri: item.uri,
-    //                     }
-    //                 })
-    //             )
-    //         },  
-    //         (error) => {
-    //           setError(error);
-    //         }
-    //       )
-    // }, [GetEecommend])
-
-    // // console.log(recommend)
-    // console.log(GetEecommend)
+    useEffect(() => {
+        fetch(USER_RECOMMEND)
+          .then(res => res.json())
+          .then(
+            (result) => {
+                setGetRecommend(
+                    result.map( item => {
+                        return {
+                            artist: item.artist,
+                            img: item.img,
+                            title: item.name,
+                            uri: item.uri,
+                        }
+                    })
+                )
+            },  
+            (error) => {
+              setError(error);
+            }
+          )
+    }, [GetEecommend])
     
 
     // get GlobalTop
@@ -567,7 +564,7 @@ export default function Explorev2() {
                 <a class="see-all" href="/get-recommend">See More</a>
             </div>
                 
-            {/* <div class="dash-cards-small">
+            <div class="dash-cards-small">
                 {GetEecommend.map(item =>(
                     <ContentBase
                         track = {item}
@@ -575,7 +572,7 @@ export default function Explorev2() {
                         chooseTrack={chooseTrack}
                     />
                 ))}
-            </div>  */}
+            </div> 
 
 
 

@@ -93,7 +93,7 @@ export default class HomePage extends Component{
                     </ButtonGroup>
                 </Grid>
             </Grid>
-            <div class="extra"></div>
+
         </div>
         );
     } 

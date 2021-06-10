@@ -1918,7 +1918,6 @@ class GetRecommended1(APIView):
             '18':rec18,
             '19':rec19,
             '20':rec20
-            
         }
 
         resr = []
@@ -2060,9 +2059,7 @@ class GetRecommended(APIView):
             '3':rec4,
             '4':rec5,
             '5':rec6,
-            '7':rec7,
-
-            
+            '7':rec7
         }
 
         resr = []

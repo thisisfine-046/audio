@@ -141,10 +141,6 @@ export default function Libraryv2() {
 
             </div>
 
-            <div class="extra">
-
-            </div>
-
             <div class='progress'>
                 <Streaming  
                     accessToken = {accessToken}

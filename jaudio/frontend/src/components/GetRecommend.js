@@ -29,7 +29,6 @@ export default function GetRecommendPage() {
 
     const accessToken = data.access_token
     const [playingTrack, setPlayingTrack] = useState()
-    const [GlobalTop, setGlobalTop] = useState([])
 
     function chooseTrack(track) {
       setPlayingTrack(track)
@@ -71,7 +70,7 @@ export default function GetRecommendPage() {
     return (
         <div>
             <div class ="header-content">
-                <h5>Recommend for your Playlist</h5>
+                <h5>RECOMMEND FOR YOUR PLAYLIST</h5>
             </div>
             <div class="dash-title">
             </div>
@@ -85,7 +84,6 @@ export default function GetRecommendPage() {
                 ))}
             </div> 
             
-
             <div class="extra">
 
             </div>

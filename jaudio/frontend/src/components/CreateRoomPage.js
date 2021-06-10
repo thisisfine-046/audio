@@ -209,8 +209,7 @@ export default class CreateRoomPage extends Component {
         }
           
       </Grid>
-      <div class="extra">
-      </div>
+      
     </div>
     );
   }
