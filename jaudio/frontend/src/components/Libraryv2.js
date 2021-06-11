@@ -59,7 +59,7 @@ export default function Libraryv2() {
         if(!accessToken) return 
         spotifyApi.getUserPlaylists({getMe})
         .then(res => {
-            console.log(res)
+            //console.log(res)
             setmyPlaylist(
                 res.body.items.map(item =>{
                     return{
@@ -80,8 +80,18 @@ export default function Libraryv2() {
     function choosePlaylist(playlistclick) {
         setPlayingTrack(playlistclick)
         setPlayListName(myPlaylist)
+        handleUpdateButtonPressed()
     }
+    //console.log(playingTrack)
+    const [playlistclickName , setplaylistclickName]=useState([])
     
+    useEffect(() => {
+        if (!playingTrack) return
+        setplaylistclickName(playingTrack.title)
+    },[playingTrack])
+
+    console.log(playlistclickName)
+
 
     const [showplaylist , setShowPlaylist]=useState([])
 
@@ -90,7 +100,7 @@ export default function Libraryv2() {
         if (!playingTrack) return
         spotifyApi.getPlaylist(playingTrack.playlistID)
         .then(res => {
-            console.log(res)
+            //console.log(res)
             setShowPlaylist(
                 res.body.tracks.items.map(item =>{
                     return {
@@ -105,7 +115,25 @@ export default function Libraryv2() {
         })
     },[playingTrack,accessToken])
 
-    console.log(showplaylist)
+    //console.log(showplaylist)
+
+
+    function handleUpdateButtonPressed() {
+        const requestOptions = {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            PlayListName: playlistclickName,
+          }),
+        };
+        fetch("/api/playlist-nameup", requestOptions).then((response) => {
+          if (response.ok) {
+            console.log("ok")
+          } else {
+            console.log("error")
+          }
+        });
+      }
 
 
     return (
@@ -140,6 +168,8 @@ export default function Libraryv2() {
                 </div>
 
             </div>
+
+            <div class="extra"></div>
 
             <div class='progress'>
                 <Streaming  

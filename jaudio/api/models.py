@@ -26,4 +26,8 @@ class Room(models.Model):
     
     current_song = models.CharField(max_length=50, null=True)
 
+class PlayListName(models.Model):
+    PlayListName = models.CharField(max_length=50,null=True)
+
+
 

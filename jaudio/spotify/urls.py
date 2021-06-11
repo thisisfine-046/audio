@@ -15,4 +15,5 @@ urlpatterns = [
     path('get-access_token', getAccessToken.as_view()),
     path('get-recommend', GetRecommended.as_view()),
     path('get-recommend1', GetRecommended1.as_view()),
+    path('get-recommendplaylist', GetRecommendedPlaylist.as_view()),
 ]

@@ -12,6 +12,7 @@ from .recommendTFIDF import *
 import string
 import re
 
+from .recommmendForPlaylist import *
 class AuthURL(APIView):
     def get(self, request, fornat=None):
         scopes =  "user-read-email " \
@@ -2076,3 +2077,145 @@ class getAccessToken(APIView):
 
 
 
+class GetRecommendedPlaylist(APIView):
+    def get(self, request, format=None):
+        
+        
+        access_token = get_access_token(
+            self.request.session.session_key)
+
+        
+
+        response = get_recommendedplaylist(access_token,click_playlist)
+        
+        data=response.get('data')[0]
+        uri='spotify:track:'
+        artist_string =''
+        for i,dat1 in enumerate(data.get('artists_upd')):
+            if i > 0:
+                artist_string += ", "
+            name= dat1
+            artist_string += name
+
+        rec1={
+            'name':data.get('name'),
+            'artist':artist_string ,
+            'img':data.get('url'),
+            'uri':uri+data.get('id')
+        }
+
+        data2=response.get('data')[1]
+
+        artist_string2 =''
+        for i,dat2 in enumerate(data2.get('artists_upd')):
+            if i > 0:
+                artist_string2 += ", "
+            name2= dat2
+            artist_string2 += name2
+
+        rec2={
+            'name':data2.get('name'),
+            'artist':artist_string2 ,
+            'img':data2.get('url'),
+            'uri':uri+data2.get('id')
+        }
+
+
+        data3=response.get('data')[2]
+
+        artist_string3 =''
+        for i,dat3 in enumerate(data3.get('artists_upd')):
+            if i > 0:
+                artist_string3 += ", "
+            name3= dat3
+            artist_string3 += name3
+
+        rec3={
+            'name':data3.get('name'),
+            'artist':artist_string3 ,
+            'img':data3.get('url'),
+            'uri':uri+data3.get('id')
+        }
+
+
+        data4=response.get('data')[3]
+
+        artist_string4 =''
+        for i,dat4 in enumerate(data4.get('artists_upd')):
+            if i > 0:
+                artist_string4 += ", "
+            name4= dat4
+            artist_string4 += name4
+
+        rec4={
+            'name':data4.get('name'),
+            'artist':artist_string ,
+            'img':data4.get('url'),
+            'uri':uri+data4.get('id'),
+        }
+
+
+        data5=response.get('data')[4]
+
+        artist_string5 =''
+        for i,dat5 in enumerate(data5.get('artists_upd')):
+            if i > 0:
+                artist_string5 += ", "
+            name5= dat5
+            artist_string5 += name5
+
+        rec5={
+            'name':data5.get('name'),
+            'artist':artist_string ,
+            'img':data5.get('url'),
+            'uri':uri+data5.get('id')
+        }
+
+        data6=response.get('data')[5]
+
+        artist_string6 =''
+        for i,dat6 in enumerate(data6.get('artists_upd')):
+            if i > 0:
+                artist_string6 += ", "
+            name6= dat6
+            artist_string6 += name6
+
+        rec6={
+            'name':data6.get('name'),
+            'artist':artist_string6 ,
+            'img':data6.get('url'),
+            'uri':uri+data6.get('id')
+        }
+
+        data7=response.get('data')[6]
+
+        artist_string7 =''
+        for i,dat7 in enumerate(data7.get('artists_upd')):
+            if i > 0:
+                artist_string7 += ", "
+            name7= dat7
+            artist_string7 += name7
+
+        rec7={
+            'name':data7.get('name'),
+            'artist':artist_string7 ,
+            'img':data7.get('url'),
+            'uri':uri+data7.get('id')
+        }
+
+        
+        rec = {
+            '0':rec1,
+            '1':rec2,
+            '2':rec3,
+            '3':rec4,
+            '4':rec5,
+            '5':rec6,
+            '7':rec7
+        }
+
+        resr = []
+        for key,value in rec.items():
+            resr.append(value)
+
+        return Response(resr, status=status.HTTP_200_OK)
