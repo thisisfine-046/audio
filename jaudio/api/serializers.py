@@ -24,13 +24,3 @@ class UpdateRoomSerializer(serializers.ModelSerializer):
         fields = ('guest_can_pause', 'votes_to_skip', 'code')
 
 
-
-class PlaylistNameSerializer(serializers.ModelSerializer):
-    class Meta:
-        model= PlayListName
-        fields = ('PlayListName')
-
-class UpdatePlaylistNameSerializer(serializers.ModelSerializer):
-    class Meta:
-        model= PlayListName
-        fields = ('PlayListName')

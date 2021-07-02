@@ -139,26 +139,3 @@ class UpdateRoom(APIView):
 
         return Response({'Bad Request': "Invalid Data..."}, status=status.HTTP_400_BAD_REQUEST)
 
-
-class PlaylistView(generics.ListAPIView):
-    queryset = PlayListName.objects.all()
-    serializer_class = PlaylistNameSerializer
-
-class UpdatePlaylistView(APIView):
-    serializer_class = UpdatePlaylistNameSerializer
-
-    def patch(self, request, format=None):
-        if not self.request.session.exists(self.request.session.session_key):
-            self.request.session.create()
-
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            PlayList_Name = serializer.data.get('PlayListName')
- 
-            PlayListName.PlayListName = PlayList_Name
- 
-            PlayListName.save(update_fields=['PlayListName'])
-            return Response(PlaylistNameSerializer(PlayListName).data, status=status.HTTP_200_OK)
-
-        return Response({'Bad Request': "Invalid Data..."}, status=status.HTTP_400_BAD_REQUEST)
-

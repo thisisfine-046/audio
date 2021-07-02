@@ -155,8 +155,7 @@ export default function Search_Spotity({datato}) {
     const [checkSaved, setCheckSaved] = useState(false)
 
     function SavedTrack(track) {
-        setWannaSaveTrack(track)
-        
+        setWannaSaveTrack(track)   
     }
     //console.log(WannaSaveTrack)
     // // check if added yet ?

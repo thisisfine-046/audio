@@ -70,7 +70,7 @@ export default function GetRecommendPage() {
     return (
         <div>
             <div class ="header-content">
-                <h5>RECOMMEND FOR YOUR PLAYLIST</h5>
+                <h5>Recommend For Your Playlist</h5>
             </div>
             <div class="dash-title">
             </div>

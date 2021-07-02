@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function MyPlaylist({item, choosePlaylist }) {
+export default function MyPlaylist({item, choosePlaylist2 }) {
 
     function handlePlay() {
-        choosePlaylist(item)
+        choosePlaylist2(item)
     }
 
     return (

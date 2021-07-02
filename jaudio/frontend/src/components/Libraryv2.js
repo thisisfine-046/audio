@@ -22,7 +22,6 @@ export default function Libraryv2() {
                 const response = await axios.get(USER_SERVICE_URL);
                 setData( response.data);
             } catch (e) {
-                console.log(e);
                 setData(data);
             }
         };
@@ -75,30 +74,23 @@ export default function Libraryv2() {
         })
     },[accessToken])
 
-
-    const [playlistName, setPlayListName]  = useState([])
     function choosePlaylist(playlistclick) {
         setPlayingTrack(playlistclick)
-        setPlayListName(myPlaylist)
-        handleUpdateButtonPressed()
     }
-    //console.log(playingTrack)
-    const [playlistclickName , setplaylistclickName]=useState([])
-    
-    useEffect(() => {
-        if (!playingTrack) return
-        setplaylistclickName(playingTrack.title)
-    },[playingTrack])
 
-    console.log(playlistclickName)
+    const [playingPlaylist, setPlayingPlaylist] = useState()
+
+    function choosePlaylist2(playlistclick) {
+        setPlayingPlaylist(playlistclick)
+    }
 
 
     const [showplaylist , setShowPlaylist]=useState([])
 
     useEffect(() => {
         if(!accessToken) return 
-        if (!playingTrack) return
-        spotifyApi.getPlaylist(playingTrack.playlistID)
+        if (!playingPlaylist) return
+        spotifyApi.getPlaylist(playingPlaylist.playlistID)
         .then(res => {
             //console.log(res)
             setShowPlaylist(
@@ -113,27 +105,52 @@ export default function Libraryv2() {
                 })
             )
         })
-    },[playingTrack,accessToken])
+    },[playingPlaylist,accessToken])
 
-    //console.log(showplaylist)
+    const USER_RECOMMEND = 'http://127.0.0.1:8000/spotify/get-recommend2';
+    const [GetEecommend, setGetRecommend] = useState([])
 
+    useEffect(() => {
+        fetch(USER_RECOMMEND)
+          .then(res => res.json())
+          .then(
+            (res) => {
+                setGetRecommend(
+                    res.id
+                )
+            },  
+            (error) => {
+              setError(error);
+            }
+          )      
+    }, [])
+    
 
-    function handleUpdateButtonPressed() {
-        const requestOptions = {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            PlayListName: playlistclickName,
-          }),
-        };
-        fetch("/api/playlist-nameup", requestOptions).then((response) => {
-          if (response.ok) {
-            console.log("ok")
-          } else {
-            console.log("error")
-          }
-        });
-      }
+    //get recommend
+    const [Recommend, setRecommend] = useState([])
+
+    useEffect(() => {
+        if(!accessToken) return 
+        if (!GetEecommend) return
+        spotifyApi.getTracks([GetEecommend])
+        .then(res => {
+ 
+            setRecommend(
+                res.body.tracks.map(item =>{
+                    return{
+                        id: item.id,
+                        uri : item.uri,
+                        title : item.name,
+                        albumUrl: item.album.images[0].url
+                    
+                    }
+                })
+            )
+        })
+        
+    },[GetEecommend,accessToken])
+    
+
 
 
     return (
@@ -142,14 +159,14 @@ export default function Libraryv2() {
                 <h5>Your Library</h5>
             </div>
             <div class="dash-title">
-                <h2 >Library</h2>
+                <h2 >Playlist</h2>
             </div>
             <div class="dash-cards-small">
                     {myPlaylist.map(item => (
                         <MyPlaylist 
                             item = {item}
-                            key = {item.uri}
-                            choosePlaylist = {choosePlaylist}
+                            key = {item.playlistID}
+                            choosePlaylist2 = {choosePlaylist2}
                         />
                     ))}
             </div>
@@ -159,6 +176,22 @@ export default function Libraryv2() {
                 </div>
                 <div class="dash-cards-small">                          
                     {showplaylist.map(track => (
+                        <Globaltopv2 
+                            track = {track} 
+                            key ={track.uri}
+                            chooseTrack={choosePlaylist}
+                        />
+                    ))}
+                </div>
+
+            </div>
+
+            <div>
+                <div class="dash-title">
+                    <h2> {playingTrack ? "Simmilar to " + playingTrack.title   : ""}</h2>
+                </div>
+                <div class="dash-cards-small">                          
+                    {Recommend.map(track => (
                         <Globaltopv2 
                             track = {track} 
                             key ={track.uri}

@@ -3,9 +3,6 @@ import RoomJoinPage from "./RoomJoinPage"
 import CreateRoomPage from "./CreateRoomPage"
 import IndexPage from "./IndexPage"
 import Room from "./Room"
-import LibraryPage from "./Library"
-import SearchPage from "./Search"
-import ExplorePage from "./Explore"
 import LoginPage from './Login'
 import GlobalTopAllPage from './GlobalTopAllPage'
 import TopHitAllPage from './TopHitAllPage'
@@ -36,7 +33,7 @@ import {
 import Explorev2 from "./Explorev2"
 import Search_Spotity from "./Search_Spotity"
 import Libraryv2 from "./Libraryv2"
-import NewReleasesv2 from './NewReleasesv2';
+
 import { withStyles } from "@material-ui/core/styles";
 export default class HomePage extends Component{
     constructor(props){

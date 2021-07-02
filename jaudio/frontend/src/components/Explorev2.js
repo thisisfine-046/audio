@@ -477,7 +477,7 @@ export default function Explorev2() {
 
             <div class="dash-title">
                 <h2  >Recently Played</h2>
-                <a class="see-all" >See More</a>
+                <a class="see-all" href="/recent-play" >See More</a>
             </div>
                 
             <div class="dash-cards-small">

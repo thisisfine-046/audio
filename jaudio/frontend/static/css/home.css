@@ -219,7 +219,7 @@ header{
 
 
 .header-content h5{
-  font-size: 55px;
+  font-size: 3vw;
   color: #fff;
   font-weight: bold;
   padding: 10rem 0 1rem 0 ;
@@ -228,7 +228,7 @@ header{
 
 
 .header-content h3{
-  font-size: 20px;
+  font-size: 1.5vw;
   color: #fff;
   font-weight: lighter;
 }
@@ -343,7 +343,7 @@ div{
   display: grid;
   grid-template-columns: repeat(5,1fr) ;
   grid-gap: 8rem;
-  margin-bottom: 40px;
+  margin-bottom: 80px;
 }
 
 .card-single{
