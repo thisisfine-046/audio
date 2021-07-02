@@ -150,30 +150,30 @@ export default function Explorev2() {
         })
     },[accessToken])
 
-    const USER_RECOMMEND = 'http://127.0.0.1:8000/spotify/get-recommend';
-    const [GetEecommend, setGetRecommend] = useState([])
+    // const USER_RECOMMEND = 'http://127.0.0.1:8000/spotify/get-recommend';
+    // const [GetEecommend, setGetRecommend] = useState([])
 
-    useEffect(() => {
-        fetch(USER_RECOMMEND)
-          .then(res => res.json())
-          .then(
-            (result) => {
-                setGetRecommend(
-                    result.map( item => {
-                        return {
-                            artist: item.artist,
-                            img: item.img,
-                            title: item.name,
-                            uri: item.uri,
-                        }
-                    })
-                )
-            },  
-            (error) => {
-              setError(error);
-            }
-          )
-    }, [GetEecommend])
+    // useEffect(() => {
+    //     fetch(USER_RECOMMEND)
+    //       .then(res => res.json())
+    //       .then(
+    //         (result) => {
+    //             setGetRecommend(
+    //                 result.map( item => {
+    //                     return {
+    //                         artist: item.artist,
+    //                         img: item.img,
+    //                         title: item.name,
+    //                         uri: item.uri,
+    //                     }
+    //                 })
+    //             )
+    //         },  
+    //         (error) => {
+    //           setError(error);
+    //         }
+    //       )
+    // }, [GetEecommend])
     
 
     // get GlobalTop
@@ -543,7 +543,7 @@ export default function Explorev2() {
             </div>
 
             <div class="dash-title">
-                <h2  >My Time Capsule</h2>
+                <h2  >Time Capsule</h2>
                 <a class="see-all" href="/user-time-capsule">See More</a>
             </div>
                 
@@ -564,7 +564,7 @@ export default function Explorev2() {
                 <a class="see-all" href="/get-recommend">See More</a>
             </div>
                 
-            <div class="dash-cards-small">
+            {/* <div class="dash-cards-small">
                 {GetEecommend.map(item =>(
                     <ContentBase
                         track = {item}
@@ -572,12 +572,12 @@ export default function Explorev2() {
                         chooseTrack={chooseTrack}
                     />
                 ))}
-            </div> 
+            </div>  */}
 
 
 
             <div class="dash-title">
-                <h2> Your Top Artists</h2>
+                <h2>Top Artists</h2>
                 <a class="see-all" href="/user-top-artist">See More</a>
             </div>
             <div class="dash-cards-circle">
