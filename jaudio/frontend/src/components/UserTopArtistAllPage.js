@@ -50,6 +50,7 @@ export default function UserTopArtistAllPage() {
             setnewArtists(
                 res.body.items.map(item =>{
                     return{
+                        id: item.id,
                         artists : item.name, 
                         uri: item.uri,
                         albumUrl: item.images[0].url,
@@ -59,8 +60,30 @@ export default function UserTopArtistAllPage() {
             )
         })
     },[accessToken])
-    
-    
+
+
+
+    const [relatedArtists, setrelatedArtists] = useState([])
+    useEffect(() => {
+        if(!playingTrack) return 
+        spotifyApi.getArtistRelatedArtists([playingTrack.id])
+        .then(result => {
+            setrelatedArtists(
+                result.body.artists.map(item =>{
+                    return{
+                        id:item.id,
+                        artists : item.name, 
+                        uri: item.uri,
+                        albumUrl: item.images[0].url,
+                    }
+
+                })
+
+            )
+        })
+    },[playingTrack,accessToken])
+
+    console.log(relatedArtists)
 
     return (
         <div>
@@ -71,6 +94,20 @@ export default function UserTopArtistAllPage() {
             </div>
             <div class="dash-cards-circle">
                 {newArtists.map(item => (
+                        <UserArtist 
+                            track = {item}
+                            key ={item.uri}
+                            chooseTrack={chooseTrack}
+                        />
+                ))}
+            </div>
+            
+            <div class="dash-title">
+                <h2> {playingTrack ?  "Simmilar to " + playingTrack.artists   : ""}</h2>
+            </div>
+            <div class="dash-cards-circle">
+
+                {relatedArtists.map(item => (
                         <UserArtist 
                             track = {item}
                             key ={item.uri}

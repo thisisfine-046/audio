@@ -67,7 +67,7 @@ export default function UserTodayAllPage() {
     return (
         <div>
             <div class ="header-content">
-                <h5>YOUR TIME CAPSULE</h5>
+                <h5>FOR YOU TODAY</h5>
             </div>
             <div class="dash-title">
             </div>

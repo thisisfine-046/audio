@@ -559,12 +559,12 @@ export default function Explorev2() {
             </div>
             
 
-            <div class="dash-title">
+            {/* <div class="dash-title">
                 <h2> Base on: {myPlaylist}</h2>
                 <a class="see-all" href="/get-recommend">See More</a>
             </div>
                 
-            {/* <div class="dash-cards-small">
+            <div class="dash-cards-small">
                 {GetEecommend.map(item =>(
                     <ContentBase
                         track = {item}

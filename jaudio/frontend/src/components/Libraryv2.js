@@ -5,6 +5,7 @@ import Streaming from './Streaming';
 import MyPlaylist from './MyPlaylist'
 import Search_Afterthat from './Search_after'
 import Globaltopv2 from './Globaltopv2'
+
 const spotifyApi = new SpotifyWebApi({
     clientId: "c83a7a91bb4743aaaaae481d65b7debd",
 })
@@ -110,10 +111,12 @@ export default function Libraryv2() {
     const USER_RECOMMEND = 'http://127.0.0.1:8000/spotify/get-recommend2';
     const [GetEecommend, setGetRecommend] = useState([])
 
+    console.log(playingTrack)
     useEffect(() => {
+        if(!playingTrack) return;
         fetch(USER_RECOMMEND)
           .then(res => res.json())
-          .then(
+          .then( 
             (res) => {
                 setGetRecommend(
                     res.id
@@ -123,33 +126,33 @@ export default function Libraryv2() {
               setError(error);
             }
           )      
-    }, [])
-    
+    }, [playingTrack])
+    console.log(GetEecommend)
+
 
     //get recommend
     const [Recommend, setRecommend] = useState([])
 
     useEffect(() => {
-        if(!accessToken) return 
         if (!GetEecommend) return
         spotifyApi.getTracks([GetEecommend])
         .then(res => {
- 
             setRecommend(
                 res.body.tracks.map(item =>{
                     return{
                         id: item.id,
                         uri : item.uri,
                         title : item.name,
-                        albumUrl: item.album.images[0].url
-                    
+                        albumUrl: item.album.images[0].url,
+                        artists : item.artists.map(x=>x.name+" "),
                     }
                 })
             )
         })
         
-    },[GetEecommend,accessToken])
-    
+    },[GetEecommend])
+
+    console.log(Recommend)
 
 
 
@@ -200,7 +203,7 @@ export default function Libraryv2() {
                     ))}
                 </div>
 
-            </div>
+            </div> 
 
             <div class="extra"></div>
 
