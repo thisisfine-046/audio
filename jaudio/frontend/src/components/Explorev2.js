@@ -20,36 +20,41 @@ import {
     decomposeColor, 
 } from '@material-ui/core';
 
-// window.onload=function(){
-//     const header = document.querySelector("header");
-//     const sectionOne = document.querySelector(".header-content");
-  
-//     const sectionOneOptions = {
-//       rootMargin: "-100px 0px 0px 0px"
-//     };
-  
-//     const sectionOneObserver = new IntersectionObserver(function(
-//       entries,
-//       sectionOneObserver
-//     ) {
-//       entries.forEach(entry => {
-//         if (!entry.isIntersecting) {
-//           header.classList.add("nav-scrolled");
-//         } else {
-//           header.classList.remove("nav-scrolled");
-//         }
-//       });
-//     },
-//     sectionOneOptions);
-  
-//     sectionOneObserver.observe(sectionOne);
-// }
+
 const spotifyApi = new SpotifyWebApi({
     clientId: "c83a7a91bb4743aaaaae481d65b7debd",
 })
 
 
 export default function Explorev2() {
+
+    window.onload=function navbar () {
+        const header = document.querySelector("header");
+        const sectionOne = document.querySelector(".header-content");
+        
+        const sectionOneOptions = {
+          rootMargin: "-100px 0px 0px 0px"
+        };
+      
+        const sectionOneObserver = new IntersectionObserver(function(
+          entries,
+          sectionOneObserver
+        ) {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+              header.classList.add("nav-scrolled");
+            } else {
+              header.classList.remove("nav-scrolled");
+            }
+          });
+        },
+        sectionOneOptions);
+      
+        sectionOneObserver.observe(sectionOne);
+    }
+
+
+
     const USER_SERVICE_URL = 'http://127.0.0.1:8000/spotify/get-access_token';
 
     const [data, setData] = useState({});
@@ -85,18 +90,17 @@ export default function Explorev2() {
 
 
     const [WannaSaveTrack, setWannaSaveTrack] = useState()
-    const [checkSaved, setCheckSaved] = useState(false)
+    const [checkSaved, setCheckSaved] = useState()
 
     function SavedTrack(track) {
         setWannaSaveTrack(track)
     }
-    //console.log(WannaSaveTrack)
+    console.log(WannaSaveTrack)
     // // check if added yet ?
     useEffect(() =>{
         if (!WannaSaveTrack) return
         spotifyApi.containsMySavedTracks([WannaSaveTrack.id])
         .then(function(data) {
-
             // An array is returned, where the first element corresponds to the first track ID in the query
             var trackIsInYourMusic = data.body[0];
 
@@ -110,11 +114,11 @@ export default function Explorev2() {
         });
 
     },[WannaSaveTrack])
+
     console.log(checkSaved)
     // add to Saved Tracks
     useEffect(()=>{
         if (!WannaSaveTrack) return
-        if(checkSaved) return
         spotifyApi.addToMySavedTracks([WannaSaveTrack.id])
         .then(function(data) {
             console.log('Added track!');

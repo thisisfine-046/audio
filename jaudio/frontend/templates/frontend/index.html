@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="icon" 
+          type="image/png" 
+          href="https://juliebenahmed-designer.go.yj.fr/wp-content/uploads/2021/03/cropped-j.png"/>
     {% csrf_token %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>J - Sound</title>
-    <link rel="shortcut icon" href="/C:/Users/Admin/Desktop/audio/favicon.png" />
+    
     {% load static %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link
@@ -52,10 +55,18 @@
             
             <li>
               <a href="library">
-                <span  class="fas fa-cog"></span>
+                <span  class="fas fa-record-vinyl"></span>
                 <span> Library</span>
               </a>
             </li>
+
+             <li>
+              <a href="roompage">
+                <span  class="fas fa-people-arrows"></span>
+                <span> Room</span>
+              </a>
+            </li>
+
           </ul>
         </div>
 
@@ -72,9 +83,10 @@
       <header >
         <a class="login" href="/login">
           <button class="ghost" href="login">
-            Sign In
+            <i class="fas fa-user"></i>
+            Get Access
           </button>
-        </a>
+        </a> 
       </header>
       
       <main>
