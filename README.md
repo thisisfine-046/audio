@@ -44,3 +44,5 @@ http://127.0.0.1:8000
 - cd jaudio/frontend
 - npm run dev 
 
+# Web application
+![image](https://user-images.githubusercontent.com/79801291/124785089-c0dd6c80-df70-11eb-8da9-0e02621f7cee.png)
