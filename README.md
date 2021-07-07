@@ -2,7 +2,7 @@
 # J - Sound
 ![image](https://user-images.githubusercontent.com/79801291/124775189-9a1b3800-df68-11eb-916d-723070b3dd1f.png)
 
-You need to install this
+#You need to install this
 
 Python 
 - 3.9.2
@@ -37,7 +37,7 @@ More install for package
 
 - \audio\jaudio\frontend> npm i react-spotify-web-playback --legacy-peer-deps
 
-Hit to run server
+#Hit to run server
 - cd jaudio
 - python manage.py runserver
 http://127.0.0.1:8000
