@@ -58,16 +58,16 @@ Library Page
 ![image](https://user-images.githubusercontent.com/79801291/124874458-f7a79700-dff1-11eb-9b7e-f0baddcbd214.png)
 
 Room Page
--Create Room
+- Create Room
 ![image](https://user-images.githubusercontent.com/79801291/124875371-02aef700-dff3-11eb-95ef-906fa3c9f3c9.png)
 
--Join Room
+- Join Room
 ![image](https://user-images.githubusercontent.com/79801291/124875414-1195a980-dff3-11eb-9666-5deeb0172b74.png)
 
--Room Page
+- Room Page
 ![image](https://user-images.githubusercontent.com/79801291/124875946-ae584700-dff3-11eb-80bc-e4084605d390.png)
 
--Setting Room
+- Setting Room
 ![image](https://user-images.githubusercontent.com/79801291/124876001-bb753600-dff3-11eb-8bcc-5eaef1b384e0.png)
 
 
