@@ -59,15 +59,19 @@ Library Page
 
 Room Page
 - Create Room
+
 ![image](https://user-images.githubusercontent.com/79801291/124875371-02aef700-dff3-11eb-95ef-906fa3c9f3c9.png)
 
 - Join Room
+
 ![image](https://user-images.githubusercontent.com/79801291/124875414-1195a980-dff3-11eb-9666-5deeb0172b74.png)
 
 - Room Page
+
 ![image](https://user-images.githubusercontent.com/79801291/124875946-ae584700-dff3-11eb-80bc-e4084605d390.png)
 
 - Setting Room
+
 ![image](https://user-images.githubusercontent.com/79801291/124876001-bb753600-dff3-11eb-8bcc-5eaef1b384e0.png)
 
 
