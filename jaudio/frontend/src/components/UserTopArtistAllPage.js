@@ -9,6 +9,33 @@ const spotifyApi = new SpotifyWebApi({
 
 
 export default function UserTopArtistAllPage() {
+
+    window.onload=function navbar () {
+        const header = document.querySelector("header");
+        const sectionOne = document.querySelector(".header-content");
+
+        const sectionOneOptions = {
+          rootMargin: "-100px 0px 0px 0px"
+        };
+
+        const sectionOneObserver = new IntersectionObserver(function(
+          entries,
+          sectionOneObserver
+        ) {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+              header.classList.add("nav-scrolled");
+            } else {
+              header.classList.remove("nav-scrolled");
+            }
+          });
+        },
+        sectionOneOptions);
+
+        sectionOneObserver.observe(sectionOne);
+    }
+
+
     const USER_SERVICE_URL = 'http://127.0.0.1:8000/spotify/get-access_token';
 
     const [data, setData] = useState({});

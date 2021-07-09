@@ -136,6 +136,8 @@ li a span:last-child{
 }
 
 
+
+
 header{
   position: fixed;
   left: 240px;
@@ -145,11 +147,9 @@ header{
   background:rgba(0, 0, 0, 0.7);
   height: 60px;
   padding: 0rem 1rem;
-  display: fixed;
   align-items: center;
   transition: 0.8s ease-out;
 }
-
 
 .ghost{
   border-radius: 25px;

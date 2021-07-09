@@ -35,6 +35,8 @@ import Search_Spotity from "./Search_Spotity"
 import Libraryv2 from "./Libraryv2"
 
 import { withStyles } from "@material-ui/core/styles";
+
+
 export default class HomePage extends Component{
     constructor(props){
         super(props);
@@ -57,6 +59,7 @@ export default class HomePage extends Component{
  
     }
     
+    
     renderRoomPage(){
         const WhiteTextTypography = withStyles({
             root: {
@@ -67,17 +70,13 @@ export default class HomePage extends Component{
         return (
         <div>
             <div class ="header-content">
-                <h5>Discover new music every day</h5>
-                <h3>Millions of songs and podcasts. No credit card needed.</h3>
+                <h5>Room</h5> 
             </div>  
 
             <div class='extra'>
             </div>
             <Grid container spacing={3}>
                 <Grid item xs={12} align="center">
-                    <WhiteTextTypography variant="h3" compact="h3">
-                        Room Discord
-                    </WhiteTextTypography>
                 </Grid>
                 <Grid item xs={12} align="center">
                     <ButtonGroup disableElevation variant="contained" color="primary">
@@ -104,15 +103,12 @@ export default class HomePage extends Component{
 
     render(){
         const hello = this.state.data1;
-        const loginpls = "please login"
         return (
             <Router>
                 <Switch>
                     <Route 
                         exact path="/"
                         component={Explorev2} 
-
-         
                     />  
                     <Route 
                         path="/roompage"

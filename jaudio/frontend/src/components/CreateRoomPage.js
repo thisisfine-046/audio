@@ -142,8 +142,8 @@ export default class CreateRoomPage extends Component {
     return (
     <div>  
       <div class ="header-content">
-        <h5>Discover new music every day</h5>
-        <h3>Millions of songs and podcasts. No credit card needed.</h3>
+        <h5>Room</h5>
+        
       </div>  
 
       <div class='extra'>

@@ -233,12 +233,13 @@ form {
 	align-items: center;
 	margin: 0 5px;
 	height: 50px;
-	width: 50px;
+	width: 147px;
 	color: #333;
 	font-size: 25px;
 	text-decoration: none;
 	outline:none;
 	cursor: pointer;
+	background-color:transparent;
 }
 
 
@@ -278,6 +279,7 @@ form {
 
 .spotify:hover{
 	color: #1DB954;
+	border-color:#1DB954 ;
 }
 .spotify :active{
 	transform: scale(0.95);
