@@ -46,7 +46,7 @@ http://127.0.0.1:8000
 
 # Web application
 
-Demo 
+Click imgae to see Demo 
 
 [![Watch the video](https://miro.medium.com/max/724/1*AKTxXEEeVJXbl734JGsJJQ.png)](https://drive.google.com/file/d/17oNDfjWWFI7fz-nZ0o9JJWwEUOXWGfDE/view?usp=sharing)
 
